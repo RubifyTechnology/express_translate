@@ -15,7 +15,7 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
   gem.name = "rlang"
-  gem.homepage = "http://github.com/defunkt/rlang"
+  gem.homepage = "https://github.com/KarlRubify/rlang"
   gem.license = "MIT"
   gem.version = File.exist?('VERSION') ? File.read('VERSION') : ""
   gem.summary = %Q{TODO: one-line summary of your gem}

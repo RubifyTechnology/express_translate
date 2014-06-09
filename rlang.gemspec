@@ -50,7 +50,7 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/test_rlang.rb"
   ]
-  s.homepage = "http://github.com/defunkt/rlang"
+  s.homepage = "https://github.com/KarlRubify/rlang"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.23"
