@@ -54,8 +54,9 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/KarlRubify/rlang"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.23"
-  s.summary = "TODO: one-line summary of your gem"
+  s.rubygems_version = "1.0.0.0"
+  s.summary = "rubify languages"
+  # wTODO one-line summary of your gem
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
