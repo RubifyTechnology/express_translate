@@ -47,6 +47,7 @@ Gem::Specification.new do |s|
     "app/views/rubify_itranslate/itranslate/index.html.erb",
     "config/routes.rb",
     "lib/rlang.rb",
+    "rlang.gemspec",
     "test/helper.rb",
     "test/test_rlang.rb"
   ]
