@@ -1,0 +1,102 @@
+/* @group reset */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, code,
+del, dfn, em, img, q, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, 
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  background-color: transparent; }
+
+html.fit-width {
+  background: #777777 url(/images/html.png) repeat-y scroll center top; }
+
+input, textarea {
+  padding: 0px;
+  margin: 0px; }
+
+body {
+  line-height: 1.5;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, Arial, sans-serif;
+  font-size: 11px;
+  color: #000;
+  line-height: 14px; }
+
+body.fit-width {
+  max-width: 820px;
+  min-width: 650px;
+  margin: 0px auto;
+  border: 1px solid #000;
+  border-width: 0px 5px; }
+
+/* Tables still need 'cellspacing="0"' in the markup. */
+table {
+  border-collapse: separate;
+  border-spacing: 0; }
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal; }
+
+table, td, th {
+  vertical-align: middle; }
+
+/* Remove possible quote marks (") from <q>, <blockquote>. */
+blockquote:before, blockquote:after, q:before, q:after {
+  content: ""; }
+
+blockquote, q {
+  quotes: "" ""; }
+
+/* Remove annoying border on linked images. */
+a img {
+  border: none; }
+
+a:active {
+  outline: none; }
+
+:focus {
+  -moz-outline-style: none; }
+
+/* @end */
+
+a {
+  color: #333; }
+
+table {
+  border-collapse: collapse; }
+
+/* @group clearfix (clearing) */
+.clearfix:after {
+  content: "\0020";
+  display: block;
+  height: 0px;
+  clear: both;
+  visibility: hidden;
+  line-height: 0; }
+
+.clearfix {
+  display: inline-block; }
+
+/* Hides from IE-mac */
+* html .clearfix {
+  height: 1%; }
+
+html[xmlns] .clearfix {
+  display: block; }
+
+/* End hide from IE-mac */
+/* @end */
+
+.hidden {
+  display: none !important; }

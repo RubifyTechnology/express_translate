@@ -1,0 +1,89 @@
+<div class='stage'>
+	<div class='header'>ITranslate</div>
+	<hr class='thin-grey' />
+	<div class='instruction'>
+		Double click on the cell that you want to translate and key in the translation then hit <b>Enter</b> to let it save. Press <b>Esc</b> to cancel. 
+		<br/>
+		<span style='color: #c00;'><u>Note</u>: Do not translate <b>%{...}</b> as it is a variable</span>
+		<br/>
+		For example: <b>%{count} months</b> in English should be translated to Vietnamese as <b>%{count} tháng</b>
+		<br/>
+		Some texts are repeated or not clear to you what that's about. In such a case, you can mouse over to the key icon to see some more explanation.
+		<br/><br/>
+	</div>
+	
+	<div class='control-panel'>
+		<ul class='language-list clearfix'>
+			<li>Available Languages: </li>
+			<% @lang_list.each do |lang| %>
+				<li>
+					<input type='radio' value='<%= lang %>' name='lang' class='language-select'  /><label><%= lang.upcase %> </label>
+				</li>
+			<% end %>
+		</ul>	
+		<div class='loading-icon hidden' id='itranslated_loading_icon'>Loading...</div>
+		<div class='filters'>
+			<a href='#' class='alltranslated-link active'>All Translations</a>
+			<a href='#' class='untranslated-link'>Untranslated</a>
+		</div>
+	</div>
+	<div class='translate-panel clearfix' >
+		<div class='en column'>
+			<table class='itranslated-table'>
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th class='hidden'></th>												
+						<th>English</th>
+						<th></th>
+					</tr>
+				</thead>
+				<% counter = 0 %>
+				<% @en_list.each do |key,value| %>
+						<% counter = counter + 1%>
+						<% if value.class != Array %>
+							<% if value.blank? == false %>
+								<tr class='<%= counter == @en_list.length ? "last" : ""%> <%= counter == 1 ? "first" : ""%> <%=cycle('odd', 'even')%>'>
+									<td style='text-align: right;'>
+										<div class='counter' title='<%= key %>'>
+											<div class='key-icon'></div>
+											<div class='counter-number'>
+												<%= counter %>
+											</div>
+										</div>
+									</td>
+									<td class='key hidden' key='<%= key %>'></td>									
+									<td class='value-en' key='<%= key %>'><span><%= value %></span></td>
+									<td class='value-lang translated-needed' key='<%= key %>'></td>
+								</tr>
+							<% end %>
+						<% else %>
+							<% value.each_with_index do |from_text_section, index| %>
+								<%									
+									from_text_section = from_text_section.to_s
+								%>
+								<% if value[index].blank? == false %>
+									<tr class='<%= counter == @en_list.length ? "last" : ""%> <%= counter == 1 ? "first" : ""%> <%=cycle('odd', 'even')%>'>
+										<td style='text-align: right;'>
+											<div class='counter' title='<%= "#{key}[#{index}]" %>'>
+												<div class='key-icon'></div>
+												<div class='counter-number'>
+													<%= counter %>
+												</div>												
+											</div>
+										</td>
+										<td class='key hidden' key='<%= "#{key}[#{index}]"%>'></td>
+										
+										<td class='value-en' key='<%= key %>[<%= index %>]'><span><%= value[index]%></span></td>
+										<td class='value-lang translated-needed' key='<%= key %>[<%= index %>]'></td>
+									</tr>
+								<% end %>
+								<% counter += 1 %>
+								
+							<% end %>
+						<% end %>
+				<% end %>
+			</table>	
+		</div>	
+	</div>		
+</div>
