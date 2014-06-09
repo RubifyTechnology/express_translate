@@ -18,8 +18,8 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "https://github.com/KarlRubify/rlang"
   gem.license = "MIT"
   gem.version = File.exist?('VERSION') ? File.read('VERSION') : ""
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{one-line summary of your gem}
+  gem.description = %Q{longer description of your gem}
   gem.email = "karl@rubify.com"
   gem.authors = ["Karl"]
   # dependencies defined in Gemfile
