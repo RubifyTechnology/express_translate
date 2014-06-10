@@ -1,5 +1,6 @@
 class RubifyLanguages::OptionsController < ApplicationController
 
+  require 'rubygems'
   require "redis"
   
   include RubifyLanguages
