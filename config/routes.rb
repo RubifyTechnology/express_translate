@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  scope "itranslate" do  
-    match "/" => "rubify_itranslate/itranslate#index"
-    get "/load_language" , controller: 'rubify_itranslate/itranslate' , action: 'load_language'
-    post "/translate"    , controller: 'rubify_itranslate/itranslate' , action: 'translate'
+  scope "rlang" do  
+    match "" => "rlang/options#index"
+    get "" => "rlang/options#index"
+    get "/load_language" , controller: 'rlang/options' , action: 'load_language'
+    post "/translate"    , controller: 'rlang/options' , action: 'translate'
   end  
 end
