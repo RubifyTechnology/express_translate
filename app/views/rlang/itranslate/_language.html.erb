@@ -1,0 +1,28 @@
+<ul>
+	<% en_list.each do |key,value| %>
+		<% if value.class != Array %>
+			<li key='<%= key %>'> 
+				<%= @trans[key] %>
+				<input type='text' value='<%= @trans[key] %>' readonly='readonly' class='translate-box hidden' />
+			</li>
+		<% else %>
+			<li>
+				<ol>
+					<% value.each_with_index do |from_text_section, index| %>
+						<%
+							from_text_section = from_text_section.to_s
+							line_size = 100
+							# this is needed so the controller doesn't freak out when there is no translations found
+							# for this element yet...
+							to_text = Array.new if to_text.blank?
+						%>
+						<li key='<%= key %>[<%=index%>]'> 
+							<%= @trans[key][index] if @trans[key] %>
+							<input type='text' value='<%= trans[key] ? [index] : '' %>' readonly='readonly' class='translate-box hidden' />
+						</li>
+					<% end %>
+				</ol>
+			</li>
+		<% end %>
+	<% end %>
+</ul>	
