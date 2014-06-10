@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
+    ".DS_Store",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
@@ -27,18 +28,20 @@ Gem::Specification.new do |s|
     "VERSION",
     "app/.DS_Store",
     "app/assets/.DS_Store",
+    "app/assets/images/.DS_Store",
+    "app/assets/images/rubify_languages/.DS_Store",
+    "app/assets/images/rubify_languages/add.png",
+    "app/assets/images/rubify_languages/back.png",
     "app/assets/images/rubify_languages/background.png",
     "app/assets/images/rubify_languages/key.png",
-    "app/assets/images/rubify_languages/back.png",
-    "app/assets/images/rubify_languages/add.png",
     "app/assets/images/rubify_languages/loading.gif",
     "app/assets/javascript/rubify_languages/application.js",
     "app/assets/stylesheets/.DS_Store",
     "app/assets/stylesheets/rubify_languages/.DS_Store",
     "app/assets/stylesheets/rubify_languages/application.css",
     "app/assets/stylesheets/rubify_languages/reset.css",
-    "app/assets/stylesheets/rubify_languages/styles.scss",
     "app/assets/stylesheets/rubify_languages/rlang.css.scss",
+    "app/assets/stylesheets/rubify_languages/styles.scss",
     "app/controllers/rubify_languages/options_controller.rb",
     "app/views/.DS_Store",
     "app/views/layouts/rubify_languages/translate.html.erb",
@@ -46,6 +49,7 @@ Gem::Specification.new do |s|
     "app/views/rubify_languages/options/.DS_Store",
     "app/views/rubify_languages/options/_language.html.erb",
     "app/views/rubify_languages/options/index.html.erb",
+    "config/rlang.yml",
     "config/routes.rb",
     "lib/rlang.rb",
     "rlang.gemspec",
@@ -67,12 +71,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<bundler>, ["~> 1.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 2.0.1"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
+      s.add_development_dependency(%q<redis>, ["~> 3.1.0"])
     else
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_dependency(%q<bundler>, ["~> 1.0"])
       s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
       s.add_dependency(%q<simplecov>, [">= 0"])
+      s.add_dependency(%q<redis>, ["~> 3.1.0"])
     end
   else
     s.add_dependency(%q<shoulda>, [">= 0"])
@@ -80,6 +86,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<bundler>, ["~> 1.0"])
     s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
     s.add_dependency(%q<simplecov>, [">= 0"])
+    s.add_dependency(%q<redis>, ["~> 3.1.0"])
   end
 end
 
