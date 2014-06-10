@@ -1,5 +1,5 @@
 body {
-  background: url(<%= asset_path "rubify_itranslate/background.png" %>) repeat;
+  background: url("background.png") repeat;
 }
 
 .stage {
@@ -190,7 +190,7 @@ ul.language-list {
 div.control-panel {
 	position: relative;
 	div.loading-icon {
-		background: url(<%= asset_path "rubify_itranslate/loading.gif" %>) no-repeat;
+		background: url("loading.gif") no-repeat;
 		width: 32px;
 		height: 32px;
 		opacity: 0.5;		
@@ -260,7 +260,7 @@ div.counter {
 	position: relative;
 	cursor: pointer;
 	div.key-icon {
-		background: url(<%= asset_path "rubify_itranslate/key.png" %>) no-repeat;
+		background: url("key.png") no-repeat;
 		position: absolute;
 		right: -1px;
 		width: 16px;
