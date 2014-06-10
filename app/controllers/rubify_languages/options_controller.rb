@@ -5,8 +5,8 @@ class RubifyLanguages::OptionsController < ApplicationController
   include RubifyLanguages
   
   def index
-    puts load_all_languages
-    puts 1
+    # puts load_all_languages
+    puts 111111111111
     render :action => :index, layout: 'rubify_languages/translate'
   end
     
@@ -68,7 +68,7 @@ class RubifyLanguages::OptionsController < ApplicationController
   def db
     config = load_config
     redis = Redis.new(host: config.connect.host, port: config.connect.port, db: config.connect.db)
-    puts 1111
+    puts 2222222222
     redis
   end
   
