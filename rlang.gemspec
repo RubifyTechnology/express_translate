@@ -52,6 +52,55 @@ Gem::Specification.new do |s|
     "config/rlang.yml",
     "config/routes.rb",
     "lib/rlang.rb",
+    "node_modules/redis/.npmignore",
+    "node_modules/redis/README.md",
+    "node_modules/redis/benches/buffer_bench.js",
+    "node_modules/redis/benches/hiredis_parser.js",
+    "node_modules/redis/benches/re_sub_test.js",
+    "node_modules/redis/benches/reconnect_test.js",
+    "node_modules/redis/benches/stress/codec.js",
+    "node_modules/redis/benches/stress/pubsub/pub.js",
+    "node_modules/redis/benches/stress/pubsub/run",
+    "node_modules/redis/benches/stress/pubsub/server.js",
+    "node_modules/redis/benches/stress/rpushblpop/pub.js",
+    "node_modules/redis/benches/stress/rpushblpop/run",
+    "node_modules/redis/benches/stress/rpushblpop/server.js",
+    "node_modules/redis/benches/stress/speed/00",
+    "node_modules/redis/benches/stress/speed/plot",
+    "node_modules/redis/benches/stress/speed/size-rate.png",
+    "node_modules/redis/benches/stress/speed/speed.js",
+    "node_modules/redis/benches/sub_quit_test.js",
+    "node_modules/redis/changelog.md",
+    "node_modules/redis/diff_multi_bench_output.js",
+    "node_modules/redis/examples/auth.js",
+    "node_modules/redis/examples/backpressure_drain.js",
+    "node_modules/redis/examples/eval.js",
+    "node_modules/redis/examples/extend.js",
+    "node_modules/redis/examples/file.js",
+    "node_modules/redis/examples/mget.js",
+    "node_modules/redis/examples/monitor.js",
+    "node_modules/redis/examples/multi.js",
+    "node_modules/redis/examples/multi2.js",
+    "node_modules/redis/examples/psubscribe.js",
+    "node_modules/redis/examples/pub_sub.js",
+    "node_modules/redis/examples/simple.js",
+    "node_modules/redis/examples/sort.js",
+    "node_modules/redis/examples/subqueries.js",
+    "node_modules/redis/examples/subquery.js",
+    "node_modules/redis/examples/unix_socket.js",
+    "node_modules/redis/examples/web_server.js",
+    "node_modules/redis/generate_commands.js",
+    "node_modules/redis/index.js",
+    "node_modules/redis/lib/commands.js",
+    "node_modules/redis/lib/parser/hiredis.js",
+    "node_modules/redis/lib/parser/javascript.js",
+    "node_modules/redis/lib/queue.js",
+    "node_modules/redis/lib/to_array.js",
+    "node_modules/redis/lib/util.js",
+    "node_modules/redis/multi_bench.js",
+    "node_modules/redis/package.json",
+    "node_modules/redis/test-unref.js",
+    "node_modules/redis/test.js",
     "rlang.gemspec",
     "test/helper.rb",
     "test/test_rlang.rb"
@@ -72,6 +121,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 2.0.1"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
       s.add_development_dependency(%q<redis>, ["~> 3.1.0"])
+      s.add_development_dependency(%q<hiredis>, [">= 0"])
     else
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
@@ -79,6 +129,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
       s.add_dependency(%q<simplecov>, [">= 0"])
       s.add_dependency(%q<redis>, ["~> 3.1.0"])
+      s.add_dependency(%q<hiredis>, [">= 0"])
     end
   else
     s.add_dependency(%q<shoulda>, [">= 0"])
@@ -87,6 +138,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
     s.add_dependency(%q<simplecov>, [">= 0"])
     s.add_dependency(%q<redis>, ["~> 3.1.0"])
+    s.add_dependency(%q<hiredis>, [">= 0"])
   end
 end
 
