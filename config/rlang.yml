@@ -1,0 +1,8 @@
+connect:
+  host: "172.0.0.1"
+  port: 6380
+  db: rubify_languages
+  password: "password"
+  
+  path: "/tmp/redis.sock"
+  

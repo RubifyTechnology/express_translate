@@ -1,9 +1,12 @@
 class RubifyLanguages::OptionsController < ApplicationController
-  layout false
+
+  require "redis"
   
   include RubifyLanguages
   
   def index
+    puts load_all_languages
+    
     render :action => :index, layout: 'rubify_languages/translate'
   end
     
@@ -57,6 +60,23 @@ class RubifyLanguages::OptionsController < ApplicationController
   end  
   
   private
+  
+  def load_config
+    YAML.load_file(Rails.root.to_s + "/config/rlang.yml")
+  end
+  
+  def db
+    config = load_config
+    redis = Redis.new(host: config.connect.host, port: config.connect.port, db: config.connect.db)
+    puts redis
+    redis
+  end
+  
+  def load_all_languages
+    redis = db
+    redis.set("mykey", "hello world")
+    redis.get("mykey")
+  end
   
   def save_to_file(obj={},lang="")
     file_url = Rails.root.to_s + "/config/locales/#{lang}.yml"
