@@ -1,12 +1,10 @@
-class RubifyItranslate::ItranslateController < ApplicationController
+class RubifyLanguages::OptionsController < ApplicationController
   layout false
   
-  include RubifyItranslate
+  include RubifyLanguages
   
   def index
-    @lang_list = I18n.available_locales.reject{|key| key.to_s == "en"}
-    @en_list = Utils.to_shallow_hash(load_all_yaml)
-    render :action => :index, layout: 'rubify_itranslate/translate'
+    render :action => :index, layout: 'rubify_languages/translate'
   end
     
   def translate

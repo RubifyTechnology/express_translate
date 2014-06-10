@@ -1,7 +1,7 @@
 # require 'modules/utils'
 # require 'modules/hash'
 
-module RubifyItranslate  
+module RubifyLanguages  
   class Engine < Rails::Engine    
   end  
 end
