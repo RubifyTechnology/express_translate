@@ -10,6 +10,6 @@
  *
  *= require_self
  *= require ./reset
- *= require ./translate
+ *= require ./rlang
  *= require ./styles
 */
