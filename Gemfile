@@ -14,4 +14,5 @@ group :development do
 
 
   gem 'redis', '~> 3.1.0'
+  gem 'hiredis'
 end
