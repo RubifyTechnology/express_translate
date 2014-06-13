@@ -1,12 +1,14 @@
 class RubifyLanguages::OptionsController < ApplicationController
 
   require 'redis'
+  require 'json'
   
   include RubifyLanguages
   
   def index
-    # puts load_all_languages
-    puts 111111111111
+    RubifyLanguages.clear
+    RubifyLanguages.seeds
+    
     render :action => :index, layout: 'rubify_languages/translate'
   end
     
@@ -61,31 +63,17 @@ class RubifyLanguages::OptionsController < ApplicationController
   
   private
   
-  def load_config
-    YAML.load_file(Rails.root.to_s + "/config/rlang.yml")
-  end
-  
-  def db
-    config = load_config
-    redis = Redis.new(host: config.connect.host, port: config.connect.port, db: config.connect.db)
-    puts 2222222222
-    redis
-  end
-  
-  def load_all_languages
-    redis = db
-    redis.set("mykey", "hello world")
-    redis.get("mykey")
-  end
-  
-  def save_to_file(obj={},lang="")
-    file_url = Rails.root.to_s + "/config/locales/#{lang}.yml"
-    f = File.open(file_url, 'w')
-    f.write(YAML::dump(obj))
-    f.close
-    return 'success' 
-  end  
+  def add_data
+    en = {}
+    en["hello"] = "Hello World!"
+    en["bye"] = "Bye bye!"
+    vn = {}
+    vn["hello"] = "XinChao"
     
+    @redis.set("english", en.to_json)
+    @redis.set("vietnamese", vn.to_json)
+  end
+  
   def load_all_yaml(lang="en")
     I18n.backend.send(:translations)[lang.to_sym]
   end      
