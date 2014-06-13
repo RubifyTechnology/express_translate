@@ -6,9 +6,14 @@ class RubifyLanguages::OptionsController < ApplicationController
   include RubifyLanguages
   
   def index
-    RubifyLanguages.clear
+    RubifyLanguages.reset
     RubifyLanguages.seeds
-    
+    @packages = Package.all
+    puts @packages.inspect
+    # @packages.each do |pack|
+#       pack["count"] = Language.of_package(pack['id']).count
+#       # pack["langue"]
+#     end
     render :action => :index, layout: 'rubify_languages/translate'
   end
     

@@ -6,7 +6,13 @@
   </div>
   
   <div class="content">
-
+    <% @packages.each do |package| %>
+      <a class="lang" href="/rlang/package/<%= package['id'] %>">
+        <span><%= package['text'].slice(0,1).capitalize + package['text'].slice(1..-1) %></span>
+        <p><%= package['count'] %>%</p>
+        <h5>974/1106</h5>
+      </a>
+    <% end %>
   </div>
   
   <div class="footer">
