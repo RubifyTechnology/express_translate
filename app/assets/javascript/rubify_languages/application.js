@@ -12,5 +12,4 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.dialog
 //= require rubify_languages/bpopup
