@@ -46,8 +46,12 @@ GEM
       nokogiri (>= 1.5.10)
       rake
       rdoc
-    jquery-ui-rails (4.2.1)
-      railties (>= 3.2.16)
+    jquery-rails (3.1.0)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
+    jquery-ui-rails (3.0.1)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.8.1)
     jwt (1.0.0)
     mini_portile (0.6.0)
@@ -98,7 +102,7 @@ DEPENDENCIES
   bundler (~> 1.0)
   hiredis
   jeweler (~> 2.0.1)
-  jquery-ui-rails
+  jquery-ui-rails (~> 3.0.0)
   rdoc (~> 3.12)
   redis (~> 3.1.0)
   shoulda
