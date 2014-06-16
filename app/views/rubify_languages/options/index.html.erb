@@ -1,25 +1,17 @@
-<div id="rlang_body">
-  <div class="header">
-    <h1>RLang</h1>
-    <a class="back" href="#"></a>
-    <a class="add" href="#add"></a>
-  </div>
-  
-  <div class="content">
-    <% @packages.each do |package| %>
-      <a class="lang" href="/rlang/package/<%= package['id'] %>">
-        <span><%= package['text'].slice(0,1).capitalize + package['text'].slice(1..-1) %></span>
-        <p><%= package['count'] %>%</p>
-        <h5>974/1106</h5>
-      </a>
-    <% end %>
-  </div>
-  
-  <div class="footer">
-    <div class="note">
-      Note: ..............
-      <br>
-      Company: Rubify Technology
-    </div>
-  </div>
+<div class="header">
+  <h1>RLang</h1>
+  <a class="back" href="#"></a>
+  <a class="add" href="#add"></a>
+</div>
+
+<div class="content">
+  <% @packages.each do |package| %>
+    <a class="lang package count<%= package['language'].count %>" href="/rlang/package/<%= package['id'] %>">
+      <span><%= package['text'].slice(0,1).capitalize + package['text'].slice(1..-1) %></span>
+      <p><%= package['language'].count %></p>
+      <% package['language'].each_with_index do |lang, index| %>
+        <h6 class="index_<%= index %>"><%= lang['text'] %></h6>
+      <% end %>
+    </a>
+  <% end %>
 </div>
