@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Karl"]
-  s.date = "2014-06-10"
+  s.date = "2014-06-16"
   s.description = "longer description of your gem"
   s.email = "karl@rubify.com"
   s.extra_rdoc_files = [
@@ -36,12 +36,16 @@ Gem::Specification.new do |s|
     "app/assets/images/rubify_languages/key.png",
     "app/assets/images/rubify_languages/loading.gif",
     "app/assets/javascript/rubify_languages/application.js",
+    "app/assets/javascript/rubify_languages/bpopup.js",
     "app/assets/stylesheets/.DS_Store",
     "app/assets/stylesheets/rubify_languages/.DS_Store",
     "app/assets/stylesheets/rubify_languages/application.css",
+    "app/assets/stylesheets/rubify_languages/buttons.scss",
+    "app/assets/stylesheets/rubify_languages/loading.css",
     "app/assets/stylesheets/rubify_languages/reset.css",
     "app/assets/stylesheets/rubify_languages/rlang.css.scss",
     "app/assets/stylesheets/rubify_languages/styles.scss",
+    "app/controllers/rubify_languages/ajax_controller.rb",
     "app/controllers/rubify_languages/options_controller.rb",
     "app/views/.DS_Store",
     "app/views/layouts/rubify_languages/translate.html.erb",
@@ -49,9 +53,19 @@ Gem::Specification.new do |s|
     "app/views/rubify_languages/options/.DS_Store",
     "app/views/rubify_languages/options/_language.html.erb",
     "app/views/rubify_languages/options/index.html.erb",
+    "app/views/rubify_languages/options/language_detail.html.erb",
+    "app/views/rubify_languages/options/languages.html.erb",
     "config/rlang.yml",
     "config/routes.rb",
+    "lib/generators/rubify_languages/install_generator.rb",
     "lib/rlang.rb",
+    "lib/rubify_languages/database_management.rb",
+    "lib/rubify_languages/language_detail_management.rb",
+    "lib/rubify_languages/languages_management.rb",
+    "lib/rubify_languages/package_management.rb",
+    "lib/rubify_languages/rlang_model.rb",
+    "lib/seeds/languages_seed.rb",
+    "lib/seeds/packages_seed.rb",
     "node_modules/redis/.npmignore",
     "node_modules/redis/README.md",
     "node_modules/redis/benches/buffer_bench.js",
@@ -115,6 +129,7 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<jquery-ui-rails>, [">= 0"])
       s.add_runtime_dependency(%q<redis>, ["~> 3.1.0"])
       s.add_runtime_dependency(%q<hiredis>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
@@ -123,6 +138,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 2.0.1"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
     else
+      s.add_dependency(%q<jquery-ui-rails>, [">= 0"])
       s.add_dependency(%q<redis>, ["~> 3.1.0"])
       s.add_dependency(%q<hiredis>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
@@ -132,6 +148,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<simplecov>, [">= 0"])
     end
   else
+    s.add_dependency(%q<jquery-ui-rails>, [">= 0"])
     s.add_dependency(%q<redis>, ["~> 3.1.0"])
     s.add_dependency(%q<hiredis>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
