@@ -1,171 +1,176 @@
 <div class="header">
   <h1>RLang</h1>
   <a class="back" href="/rlang/package/<%= params[:package] %>"></a>
-  <a class="add" href="#add"></a>
+  <% if @origin_lang["id"] == params["id"] %>
+    <a class="add" href="#add"></a>
+  <% end %>
 </div>
 
-<div class="content">
-  
-  <% @origin_lang_detail.all.each_with_index do |item, index| %>
-    <div class="item_box">
-      <h6 class="index"><%= index + 1 %></h6>
-      <h6 class="code"><%= item['code'] %></h6>
-      <div class='edit'>
-        <a class='btn' href="/rlang/ajax/code/update/<%= item['code'] %>" type="update_code">Save</a>
-        <a class='btn btn_cancel' href="#">Cancel</a>
-        <h2><b>Origin:</b></h2>
-          <span><%= item['text'] %></span>
-        <h2><b>Translate:</b></h2>
-        <textarea class="new_value"><%= @lang_detail.find(item['code'])['text'] %></textarea>
-      </div>
-    
-      <div class="show">
-        <a class='btn btn_edit' href="#">Edit</a>
-        <a class='btn btn_delete' href="/rlang/ajax/code/delete/<%= item['code'] %>" type="delete_code">Delete</a>
-        <h2><b>Origin:</b></h2>
-          <span><%= item['text'] %></span>
-        <h2><b>Translate:</b></h2>
-          <span><%= @lang_detail.find(item['code'])['text'] %></span>
-      </div>
-      
-      <div class="waiting">
-        <div class="bubblingG">
-          <p id="bubblingG_1"></p>
-          <p id="bubblingG_2"></p>
-          <p id="bubblingG_3"></p>
-        </div>
-      </div>
-    </div>
-  <% end %>  
+<div class="content" id="content_code">
+  <%= render 'content_code' %>
 </div>
 
 <div class="popup">
   <form id="add_code">
-    <div class="title">Add</div>
+    <div class="title">Add Code</div>
     <div class="row">
       <label for="code">Code:</label>
       <input type="text" id="code"/>
     </div>
-    
     <div class="row">
-      <label for="origin">Origin:</label>
-      <textarea id='origin'></textarea>
-    </div>
-    
-    <div class="row">
-      <label for="text">Translate:</label>
+      <label for="text">Text:</label>
       <textarea id='text'></textarea>
     </div>
-    
+    <div style="clear: both"></div>
     <input type="submit" class='btn_green' value="Save"/>
   </form>
 </div>
 
 <script>
-  $(".add").click(function(event) {
-    event.preventDefault();
-    $('.popup').bPopup({
-      transition: 'slideDown',
-      onOpen: function () {
-        $("#add_code").submit(function(event) {
-          event.preventDefault();
-          $.ajax({
-            type: "POST",
-            url: "/rlang/ajax/code/add",
-            data: {
-              lang: "<%= params[:id] %>",
-              pack: "<%= params[:package] %>",
-              code: $("#add_code").find("#code").val(),
-              origin: $("#add_code").find("#origin").val(),
-              text: $("#add_code").find("#text").val()
-            },
-            success: function(data) {
-              if (data.success){
-                console.log(data);
-              }
-            }
-          })
-          
-        });
-      }      
-    });
-  })
   
-  $('.btn_edit').click(function(event) {
-    event.preventDefault();
-    var item = $(event.target).parents(".item_box");
-    item.addClass("update");
-  })
+  var form = $("#add_code");
+  var contentCode = $("#content_code");
+  var popup = $('.popup');
   
-  $('.btn_cancel').click(function(event) {
-    event.preventDefault();
-    var item = $(event.target).parents(".item_box");
-    item.removeClass("update");
-  })
-  
-  $("a[type='delete_code']").click(function(event) {
-    event.preventDefault();
-    var edit = $(event.target).parent(".edit");
-    var item = $(event.target).parents(".item_box");
-    item.addClass("wait");
-    $.ajax({
-      type: "POST",
-      url: $(event.target).attr("href"),
-      data: {
-        lang: "<%= params[:id] %>",
-        pack: "<%= params[:package] %>"
-      },
-      success: function(data) {
-        if (data.success){
-          console.log(data);
-        }
-        setTimeout(function() {
-          item.removeClass("wait");
-          item.removeClass("update");
-        }, 500); 
-      }
-    })
-  });
-  
-  $("a[type='update_code']").click(function(event) {
-    event.preventDefault();
-    $("body").dialog({
-      resizable: false,
-      height:140,
-      modal: true,
-      buttons: {
-        "Delete all items": function() {
-          $( this ).dialog( "close" );
+  var runJavascriptsCode = function () {
+    
+    var update = function (event) {
+      var edit = $(event.target).parents(".edit");
+      var item = $(event.target).parents(".item_box");
+      item.addClass("wait");
+      $.ajax({
+        type: "POST",
+        url: $(event.target).attr("href"),
+        data: {
+          lang: "<%= params[:id] %>",
+          pack: "<%= params[:package] %>",
+          text: edit.find(".new_value").val()
         },
-        'Cancel': function() {
-          $( this ).dialog( "close" );
-        }
-      }
-     });
-   
-    var edit = $(event.target).parent(".edit");
-    var item = $(event.target).parents(".item_box");
-    item.addClass("wait");
-    $.ajax({
-      type: "POST",
-      url: $(event.target).attr("href"),
-      data: {
-        lang: "<%= params[:id] %>",
-        pack: "<%= params[:package] %>",
-        text: edit.find(".new_value").val()
-      },
-      success: function(data) {
-        if (data.success){
-          console.log(data);
-        }
+        success: function(data) {
+          setTimeout(function() {
+            item.removeClass("wait");
+            item.removeClass("update");
+            window.notification("Successful for update!", true);
+            contentCode.html(data);
+            runJavascriptsCode();
+          }, 500);
         
-        setTimeout(function() {
-          item.removeClass("wait");
-          item.removeClass("update");
-        }, 500);
-        
+        }
+      })
+    }
+    
+    var add = function (){
+      $.ajax({
+        type: "POST",
+        url: "/rlang/ajax/code/add",
+        data: {
+          lang: "<%= params[:id] %>",
+          pack: "<%= params[:package] %>",
+          code: form.find("#code").val(),
+          text: form.find("#text").val()
+        },
+        success: function(data) {
+          if (typeof(data.success) == "undefined"){
+            popup.bPopup().close();
+            window.notification("Successful for save!", true);
+            contentCode.html(data);
+            runJavascriptsCode();
+          } else {
+            window.notification(data.error, false);
+          }
+        }
+      })
+    }    
+    
+    $(".add").click(function(event) {
+      event.preventDefault();
+      popup.bPopup({
+        transition: 'slideDown',
+        onOpen: function () {
+          form.unbind("submit");
+          form.submit(function(event) {
+            event.preventDefault();
+            add();
+          });
+        }      
+      });
+    })
+    
+    $(".popup textarea").keypress(function(event) {
+      if (event.keyCode == 13 && event.shiftKey == false) {
+        event.preventDefault();
+        add();
+      } else if (event.keyCode == 27) {
+        popup.bPopup().close();
       }
     })
     
-  })
+    $('.btn_edit').click(function(event) {
+      event.preventDefault();
+      $(".item_box").removeClass("update");
+      var item = $(event.target).parents(".item_box");
+      item.addClass("update");
+      var textarea = item.find("textarea");
+      textarea.focus();
+      textarea[0].selectionStart = textarea[0].selectionEnd = textarea[0].textLength;
+    })
+  
+    $('.btn_cancel').click(function(event) {
+      event.preventDefault();
+      var item = $(event.target).parents(".item_box");
+      item.removeClass("update");
+    })
+  
+    $("a[type='delete_code']").click(function(event) {
+      event.preventDefault();
+      var item = $(event.target).parents(".item_box");
+      $(".delete_dialog_" + item.attr("data")).dialog({
+        resizable: false,
+        height:140,
+        modal: true,
+        buttons: {
+          Yes: function() {
+            $(this).dialog("close");
+            item.addClass("wait");
+            $.ajax({
+              type: "POST",
+              url: $(event.target).attr("href"),
+              data: {
+                lang: "<%= params[:id] %>",
+                pack: "<%= params[:package] %>"
+              },
+              success: function(data) {
+                setTimeout(function() {
+                  item.removeClass("wait");
+                  window.notification("Successful for delete!", true);
+                  $("#"+$(event.target).attr("data_show")).html(data);
+                  runJavascriptsCode();
+                }, 500); 
+              }
+            })
+          },
+          No: function() {
+            $(this).dialog("close");
+          }
+        }
+      });
+    });
+  
+    $(".edit textarea").keypress(function(event) {
+      if (event.keyCode == 13 && event.shiftKey == false) {
+        event.preventDefault();
+        update(event);
+      } else if (event.keyCode == 27) {
+        var item = $(event.target).parents(".item_box");
+        item.removeClass("update");
+      }
+    })
+  
+    $("a[type='update_code']").click(function(event) {
+      event.preventDefault();
+      update(event);
+    })
+  }
+  
+  runJavascriptsCode();
 </script>

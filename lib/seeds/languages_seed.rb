@@ -5,7 +5,8 @@ module RubifyLanguages
       Language.add({
         id: RubifyLanguages.config["language"]["id"],
         text: RubifyLanguages.config["language"]["text"],
-        packages: RubifyLanguages.config["package"]["id"]
+        packages: RubifyLanguages.config["package"]["id"],
+        is_origin: true
       })
       
       LanguageDetail.name = "lang_#{RubifyLanguages.config["language"]["id"]}_#{RubifyLanguages.config["package"]["id"]}"
@@ -17,25 +18,29 @@ module RubifyLanguages
       Language.add({
         id: 'en',
         text: 'English',
-        packages: 'fe'
+        packages: 'fe',
+        is_origin: true
       })
       
       Language.add({
         id: 'vn',
         text: 'Vietnamese',
-        packages: 'fe'
+        packages: 'fe',
+        is_origin: false
       })
       
       Language.add({
         id: 'lao',
         text: 'Laos',
-        packages: 'fe'
+        packages: 'fe',
+        is_origin: false
       })
       
       Language.add({
         id: 'sing',
         text: 'Singapore',
-        packages: 'fe'
+        packages: 'fe',
+        is_origin: false
       })
     end
   end

@@ -6,41 +6,142 @@ class RubifyLanguages::OptionsController < ApplicationController
   include RubifyLanguages
   
   def index
-    RubifyLanguages.reset
-    RubifyLanguages.seeds
+    # RubifyLanguages.reset
+#     RubifyLanguages.seeds
     @packages = Package.all
     render :action => :index, layout: 'rubify_languages/translate'
   end
     
   def languages
-    @languages = Package.find(params[:id])['language']
-    @max = 0
+    origin = Language.get_origin(params[:packages])
+    @languages = Package.find(params[:packages])['language']
+    @max = origin.nil? ? 1 : LanguageDetail.info(origin).all.count
     @LanguageDetail = LanguageDetail
-    @languages.each do |lang|
-      lang_detail = LanguageDetail.info(lang)
-      tmp_count = lang_detail.all.count
-      @max = @max < tmp_count ? tmp_count : @max
-    end
+    @Package = Package
     render :action => :languages, layout: 'rubify_languages/translate'
   end
   
   def language_detail
     @languages = Package.find(params[:package])['language']
-    @max = 0
-    @origin_lang_detail = LanguageDetail.info(@languages[0])
-    @languages.each do |lang|
-      lang_detail = LanguageDetail.info(lang)
-      if @max < lang_detail.all.count
-        @max = lang_detail.all.count
-        @origin_lang_detail = lang_detail
-      end
-    end
-    
-    @lang_detail = LanguageDetail.info({'id'=> params[:id], 'packages'=> params[:package]})
+    @origin_lang = Language.get_origin(params[:package])
+    @LanguageDetail = LanguageDetail
+    @lang = {'id'=> params[:id], 'packages'=> params[:package]}
     render :action => :language_detail, layout: 'rubify_languages/translate'
   end
   
+  # AJAX
+  def code_add
+    @lang_detail = LanguageDetail.info({'id'=> params[:lang], 'packages'=> params[:pack]})
+    add = @lang_detail.add(params)
+    if add['success']
+      load_content_code(params)
+    else
+      render :json => add
+    end
+  end
+  
+  def code_update
+    @lang_detail = LanguageDetail.info({'id'=> params[:lang], 'packages'=> params[:pack]})
+    if @lang_detail.find(params[:code]).present?
+      @lang_detail.update(params)
+    else
+      @lang_detail.add(params)
+    end
+    load_content_code(params)
+  end
+  
+  def code_delete
+    @lang_detail = LanguageDetail.info({'id'=> params[:lang], 'packages'=> params[:pack]})
+    @lang_detail.delete(params[:code])
+    load_content_code(params)
+  end
+  
+  
+  def language_add
+    add = Language.add(params)
+    if add['success']
+      load_content_language(params)
+    else
+      render :json => add
+    end
+  end
+  
+  def language_update
+    update = Language.update_by_id_packages(params[:id], params[:packages], params)
+    if update['success']
+      load_content_language(params)
+    else
+      render :json => update
+    end
+  end
+  
+  def language_delete
+    delete = Language.delete_by_id_packages(params[:id], params[:packages])
+    if delete['success']
+      load_content_language(params)
+    else
+      render :json => delete
+    end
+  end
+  
+  def language_set_origin
+    update = Language.set_origin(params[:id], params[:packages])
+    if update['success']
+      load_content_language(params)
+    else
+      render :json => update
+    end
+  end
+  
+  
+  def package_add
+    add = Package.add(params)
+    if add['success']
+      load_content_package(params)
+    else
+      render :json => add
+    end
+  end
+  
+  def package_update
+    update = Package.update(params)
+    if update['success']
+      load_content_package(params)
+    else
+      render :json => update
+    end
+  end
+  
+  def package_delete
+    delete = Package.delete(params[:id])
+    if delete['success']
+      load_content_package(params)
+    else
+      render :json => delete
+    end
+  end
+  
   private
+  
+  def load_content_code(params)
+    @origin_lang = Language.get_origin(params[:pack])
+    @LanguageDetail = LanguageDetail
+    @lang = {'id'=> params[:lang], 'packages'=> params[:pack]}
+    render :action => :code_update
+  end
+  
+  def load_content_language(params)
+    origin = Language.get_origin(params[:packages])
+    @languages = Package.find(params[:packages])['language']
+    @max = origin.nil? ? 1 : LanguageDetail.info(origin).all.count
+    @LanguageDetail = LanguageDetail
+    render :action => :language_update
+  end
+  
+  def load_content_package(params)
+    @packages = Package.all
+    render :action => :package_update
+  end
   
   def load_all_yaml(lang="en")
     I18n.backend.send(:translations)[lang.to_sym]

@@ -13,8 +13,6 @@ group :development do
   gem "simplecov", ">= 0"
 end
 
-gem 'jquery-ui-rails', "~> 3.0.0"
-
 gem 'redis', '~> 3.1.0'
 gem 'hiredis'
 

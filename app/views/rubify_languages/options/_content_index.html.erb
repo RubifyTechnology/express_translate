@@ -1,0 +1,16 @@
+<% @packages.each do |package| %>
+  <a class="lang package <%= package['language'].count > 1 ? "multi" : "" %>" href="/rlang/package/<%= package['id'] %>">
+    <span><%= package['text'].slice(0,1).capitalize + package['text'].slice(1..-1) %></span>
+    <p><%= package['language'].count %></p>
+    <div class="list_review">
+      <% package['language'].each_with_index do |lang, index| %>
+        <h6 class="index_<%= index %>"><%= lang['text'] %></h6>
+      <% end %>
+    </div>
+    <div class="tool remove" data="<%= package['id'] %>"></div>
+    <div class="tool setting" data="<%= package['id'] %>" text="<%= package['text'] %>"></div>
+  </a>
+  <div class="delete_dialog_<%= package['id'] %>" style="display: none">
+    <h4>Are you sure you want to delete?</br><%= package['text'] %></h4>
+  </div>
+<% end %>

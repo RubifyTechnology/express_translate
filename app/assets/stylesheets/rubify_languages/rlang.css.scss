@@ -1,5 +1,5 @@
 body#rlang {
-  background: url("background.png") repeat;
+  background: #e6e6e6; //url("background.png") repeat
   font-family: Tahoma, Arial;
   
   #rlang_body {
@@ -11,8 +11,7 @@ body#rlang {
       float:left;
       width:100%;
       height: 50px;
-      margin-bottom:30px;
-      border-bottom:1px solid #666;
+      border-bottom:1px solid #999;
       
       a {
         opacity: 0.8;
@@ -49,10 +48,21 @@ body#rlang {
       }
     }
     
+    #info {
+      float:left;
+      width:100%;
+      height: 30px;
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #999;
+    }
+    
     .content {
       float:left;
       width:100%;
       padding-bottom:100px;
+      padding-top:20px;
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #999;
       
       .lang {
         position:relative;
@@ -75,69 +85,208 @@ body#rlang {
           box-shadow:0px 0px 3px #665;
           background: #398ac4;
           p {display:none;}
-          
           h5 {display:block;}
+          .remove {
+            opacity:1;
+            top:0px;
+            right:0px;
+          }
+          .setting {
+            opacity:1;
+            top:0px;
+            left:0px;
+          }
+          .set_origin {
+            opacity:1;
+            top:-20px;
+          }
         };
         
         &.package{
-          h6 {
-            display:none;
-            position:absolute;
-            text-decoration:none;
-            color:#fff;
-            opacity:0.2;
-            font-size: 16px;
-          }
-          
-          span {font-size: 22px;}
-          
+          background:#009999;
+                    
           &:hover {
-            overflow:hidden;
+            span {
+              text-shadow: 0px 0px 1px #333;
+            }
+            &.multi:before {
+              top: -1px;
+              left: -1px;
+            }
+            &.multi:after {
+              top: -1px;
+              left: -1px;
+            }
+
+            .remove {
+              opacity:1;
+            }
             
-             span {text-shadow: 0px 0px 1px #333;}
+            .setting {
+              opacity:1;
+            }
             
             h5 {display:none;}
   
-            h6.index_0 {
-              display:block;
-              bottom: 20px;
-              left: 0px;
-              width:100%;
-              text-align:center;
-              opacity:0.25;
+            h6 {
+              display:none;
+              position:absolute;
+              text-decoration:none;
+              color:#fff;
+              opacity:0.2;
+              font-size: 16px;
+              
+              &.index_0 {
+                display:block;
+                bottom: 20px;
+                left: 0px;
+                width:100%;
+                text-align:center;
+                opacity:0.25;
+              }
+
+              &.index_1 {
+                display:block;
+                bottom: 50px;
+                right: -20px;
+                font-size:20px;
+              }
+
+              &.index_2 {
+                display:block;
+                bottom: 40px;
+                left: -23px;
+                font-size:33px;
+                opacity:0.3;
+              }
+
+              &.index_3 {
+                display:block;
+                top: 12px;
+                right: 10px;
+                font-size:30px;
+                opacity:0.15;
+              }
             }
-  
-            h6.index_1 {
-              display:block;
-              bottom: 50px;
-              right: -20px;
-              font-size:20px;
-            }
-            
-            h6.index_2 {
-              display:block;
-              bottom: 40px;
-              left: -23px;
-              font-size:33px;
-              opacity:0.3;
-            }
-            
-            h6.index_3 {
-              display:block;
-              top: 12px;
-              right: 10px;
-              font-size:30px;
-              opacity:0.15;
-            }
+          };
+          
+          &.multi:before {
+            content: "";
+            display:block;
+            width:100%;
+            height:100%;
+            background:#1D7373;
+            position:absolute;
+            border-radius: 100px;
+            top: 3px;
+            left: 1px;
+            z-index:-1;
+            border:3px solid #fff;
+            opacity:0.6;
+            transition: top 0.2s, left 0.2s;
+            -moz-transition: top 0.2s, left 0.2s;
+            -webkit-transition: top 0.2s, left 0.2s;
+          }
+          
+          &.multi:after {
+            content: "";
+            display:block;
+            width:100%;
+            height:100%;
+            background:#1D7373;
+            position:absolute;
+            border-radius: 100px;
+            top: -7px;
+            left: -5px;
+            z-index:-1;
+            border:3px solid #fff;
+            opacity:0.6;
+            transition: top 0.2s, left 0.2s;
+            -moz-transition: top 0.2s, left 0.2s;
+            -webkit-transition: top 0.2s, left 0.2s;
+          }
+          
+          h6 {display:none;}
+          
+          .list_review {
+            overflow:hidden;
+            width:100%;
+            height:100%;
+            border-radius:100px;
+            position:absolute;
+            top:0px;
+            left:0px;
+          }
+          
+          .tool {
+            opacity:0;
+            background-size:70%;
+            background-color: #009999;
+            background-size:60%;
+            &:hover{
+              background-size:70%;
+              background-color: #1D7373;
+            };
+          }
+          
+          span {font-size: 22px;}
+        }
+        
+        &.origin_true {
+          background: #0B61A4;
+          
+          .set_origin {
+            display: none;
+          }
+        }
+        
+        .remove {
+          top:30px;
+          right:30px;
+          background-image: url("/assets/rubify_languages/remove.png");
+        }
+        
+        .setting {
+          top:30px;
+          left:30px;
+          background-image: url("/assets/rubify_languages/setting.png");
+        }
+        
+        .set_origin {
+          top:30px;
+          left:50%;
+          margin-left: -15px;
+          background-image: url("/assets/rubify_languages/key-white.png");
+        }
+        
+        .tool {
+          position:absolute;
+          width: 30px;
+          height: 30px;
+          z-index:1;
+          border-radius:50px;
+          border:2px solid #fff;
+          opacity:0;
+          transition:all 0.3s;
+          -moz-transition:all 0.3s;
+          -webkit-transition:all 0.3s;
+          background-color: #3e94d1;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size:60%;
+          &:hover {
+            background-size:70%;
+            background-color: #0D58A6;
           };
         }
         
         span {
           text-align:center;
-          width:100%;
+          width:90%;
+          height: 25px;
           float:left;
-          margin-top: 40px;
-          margin-bottom:20px;
+          overflow:hidden;
+          margin: 40px 5% 10px;
           font-size: 20px;
           color:#fff;
         }
@@ -162,29 +311,29 @@ body#rlang {
         float:left;
         width: 96%;
         height: auto;
-        min-height:80px;
+        min-height:40px;
         border:1px solid #ccc;
-        padding: 10px 2%;
+        padding: 14px 2% 10px;
         margin: 0px 0px 30px 0px;
         position:relative;
         background: #fff;
+        transition: height 1s;
+        -moz-transition: height 1s;
+        -webkit-transition: height 1s;
+        font-size:14px;
+        line-height:18px;
         
         &:hover {
           .btn {display:block;}
-          
           .code {display:none;}
+//          h2 {display:block;}
         };
         
         &.wait {
-          .waiting {
-            display: block;
-          }
-          .btn {
-            display: none;
-          }
-          .index {
-            display: none;
-          }
+          .waiting {display: block;}
+          .btn {display: none;}
+          .index {display: none;}
+          .code {display:none;}
         }
         
         .index {
@@ -245,7 +394,7 @@ body#rlang {
           top: -13px;
           z-index:4;
           font-size:30px;
-          color:rgba(0,0,0,0.05);
+          color:rgba(0,0,0,0.15);
           background:#fff;
           padding: 3px 8px;
           border-radius:3px;
@@ -279,6 +428,8 @@ body#rlang {
           float:left;
           width:100%;
           margin-top:10px;
+          color:#bcbcbc;
+          display:none;
         }
         
         .edit {
@@ -328,10 +479,12 @@ body#rlang {
         textarea {
           float:left;
           width: 100%;
-          height:80px;
+          height:200px;
           resize:none;
           margin:5px 0px;
-          padding: 10px;
+          padding: 5px 10px;
+          font-size:13px;
+          font-family:Tahoma, Arial;
           box-sizing:border-box;
           -moz-box-sizing:border-box;
           -webkit-box-sizing:border-box;
@@ -345,73 +498,101 @@ body#rlang {
       width:100%;
       height: 80px;
       bottom:0px;
-      border-top:1px solid #666;
+      border-top: 1px solid #fff;
     }
-  } 
-}
-
-.popup {
-  display:none;
-  width: 300px;
-  height:auto;
-  min-height: 200px;
-  background:#fff;
-  border:1px solid #ccc;
-  border-radius:3px;
-  float:left;
-  padding: 10px 0px;
-}
-
-form {
-  width:100%;
-  float:left;
-  
-  .title {
-    float:left;
-    width:100%;
-    text-align:center;
-    margin: 10px 0px;
-    font-size: 15px;
   }
   
-  .row {
-    width:100%;
-    float:left;
+  .popup {
+    display:none;
+    width: 500px;
     height:auto;
-    min-height: 40px;
-    padding: 10px 20px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    
-    label {
+    min-height: 200px;
+    background:#fff;
+    border:1px solid #ccc;
+    border-radius:3px;
+    float:left;
+    padding: 10px 0px;
+  }
+
+  form {
+    width:100%;
+    float:left;
+  
+    .title {
       float:left;
-      width: 60px;
+      width:100%;
+      text-align:center;
+      margin: 10px 0px;
+      font-size: 15px;
     }
-    
-    input {
+  
+    .row {
+      width:100%;
       float:left;
-      width:185px;
-      padding: 5px 10px;
+      height:auto;
+      min-height: 40px;
+      padding: 3px 20px;
       box-sizing: border-box;
       -moz-box-sizing: border-box;
       -webkit-box-sizing: border-box;
-    }
     
-    textarea {
-      width: 185px;
-      height: 80px;
-      resize:none;
-      padding: 5px 10px;
-      box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      -webkit-box-sizing: border-box;
+      label {
+        float:left;
+        width: 60px;
+      }
+    
+      input {
+        float:left;
+        width:385px;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+      }
+    
+      textarea {
+        width: 385px;
+        height: 80px;
+        resize:none;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+      }
+    }
+  
+    input[type="submit"] {
+      width: 130px;
+      margin: 5px auto;
+      margin-top:20px;
+      display:block;
     }
   }
   
-  input[type="submit"] {
-    width: 130px;
-    margin: 5px auto;
-    display:block;
+  #notification {
+    position:fixed;
+    bottom:0px;
+    left:0px;
+    width:100%;
+    color:#fff;
+    text-align:center;
+    line-height:40px;
+    height:0px;
+    font-size: 14px;
+    text-shadow: 1px 1px 1px #333;
+    background: rgba(0,0,0,0.5);
+    transition: height 1s, background 1s;
+    -webkit-transition: height 1s, background 1s;
+    -moz-transition: height 1s, background 1s;
+    z-index:10000;
+    
+    &.success {
+      background: rgba(100,255,0, 0.4);
+      height:40px;
+    }
+    &.error {
+      background: rgba(255,0,0,0.4);
+      height:40px;
+    }
   }
 }

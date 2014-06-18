@@ -4,12 +4,185 @@
   <a class="add" href="#add"></a>
 </div>
 
-<div class="content">
-  <% @languages.each do |lang| %>
-    <a class="lang count<%= lang['id'] %>" href="/rlang/language/<%= params[:id] %>/<%= lang['id'] %>">
-      <span><%= lang['text'].slice(0,1).capitalize + lang['text'].slice(1..-1) %></span>
-      <p><%= (@LanguageDetail.info(lang).all.count /  (@max == 0 ? 1 : @max) * 100).to_i %>%</p>
-      <h5><%= @LanguageDetail.info(lang).all.count %>/<%= @max %></h5>
-    </a>
-  <% end %>
+<!-- <div id="info"> -->
+  <!-- Package: <%= @Package.find(params[:packages])["text"] %> -->
+<!-- </div> -->
+  
+<div class="content" id="content_language">
+  <%= render 'content_language' %>
 </div>
+
+<div class="popup">
+  <form id="add_language">
+    <div class="title">Add Language</div>
+    <div class="row">
+      <label for="id">Code:</label>
+      <input type="text" id="id" required/>
+    </div>
+    
+    <div class="row">
+      <label for="text">Display:</label>
+      <input type="text" id="text" required/>
+    </div>
+        
+    <div style="clear: both"></div>
+    <input type="submit" class='btn_green' value="Save"/>
+  </form>
+</div>
+
+<script>
+  var popup = $('.popup');
+  var contentLanguage = $("#content_language");
+  
+  $(".add").click(function(event) {
+    event.preventDefault();
+    var form = $("#add_language");
+    var input_id = form.find("#id");
+    var input_text = form.find("#text");
+    var title = form.find(".title");
+    title.html("Add Language");
+    
+    input_id.val("");
+    input_id.prop('disabled', false);
+    input_text.val("");
+    
+    popup.bPopup({
+      transition: 'slideDown',
+      onOpen: function () {
+        form.unbind("submit");
+        form.submit(function(event) {
+          event.preventDefault();
+          $.ajax({
+            type: "POST",
+            url: "/rlang/ajax/language/add",
+            data: {
+              packages: "<%= params[:packages] %>",
+              id: input_id.val(),
+              text: input_text.val()
+            },
+            success: function(data) {
+              if (typeof(data.success) == "undefined"){
+                popup.bPopup().close();
+                window.notification("Successful for save!", true);
+                contentLanguage.html(data);
+                runJavascriptsLanguage();
+              } else {
+                window.notification(data.error, false);
+              }
+            }
+          })
+    
+        });
+      }      
+    });
+    return false;
+  })
+
+  var runJavascriptsLanguage = function () {
+    
+    $(".remove").click(function(event) {
+      event.preventDefault();
+      
+      $(".delete_dialog_" + event.currentTarget.attributes.data.value).dialog({
+        resizable: false,
+        height:140,
+        modal: true,
+        buttons: {
+          Yes: function() {
+            $(this).dialog("close");
+            var dataSent = {
+                id: event.target.attributes.data.value,
+                packages: "<%= params[:packages] %>"
+              }
+        
+            $.ajax({
+              url: "/rlang/ajax/language/delete",
+              type: "POST",
+              data: dataSent,
+              success: function (data){
+                if (typeof(data.success) == "undefined") {
+                  contentLanguage.html(data);
+                  window.notification("Successful for delete!", true);
+                  runJavascriptsLanguage();
+                } else {
+                  window.notification(data.error, false);
+                }
+              }
+            })
+          },
+          No: function() {
+            $(this).dialog("close");
+          }
+        }
+      });
+    });
+    
+    $(".set_origin").click(function(event) {
+      event.preventDefault();
+      var dataSent = {
+          id: event.target.attributes.data.value,
+          packages: "<%= params[:packages] %>"
+        }
+      $.ajax({
+        url: "/rlang/ajax/language/set_origin",
+        type: "POST",
+        data: dataSent,
+        success: function (data){
+          if (typeof(data.success) == "undefined") {
+            contentLanguage.html(data);
+            window.notification("Successful for set origin language!", true);
+            runJavascriptsLanguage();
+          } else {
+            window.notification(data.error, false);
+          }
+        }
+      })
+    });
+    
+    $(".setting").click(function(event) {
+      event.preventDefault();
+      var form = $("#add_language");
+      var input_id = form.find("#id");
+      var input_text = form.find("#text");
+      var title = form.find(".title");
+      title.html("Update Language");
+      
+      input_id.val(event.target.attributes.data.value);
+      input_id.prop('disabled', true);
+      input_text.val(event.target.attributes.text.value);
+      
+      popup.bPopup({
+        transition: 'slideDown',
+        onOpen: function () {
+          form.unbind("submit");
+          form.submit(function(event) {
+            event.preventDefault();
+            $.ajax({
+              type: "POST",
+              url: "/rlang/ajax/language/update",
+              data: {
+                packages: "<%= params[:packages] %>",
+                id: input_id.val(),
+                text: input_text.val()
+              },
+              success: function(data) {
+                if (typeof(data.success) == "undefined"){
+                  popup.bPopup().close();
+                  window.notification("Successful for update!", true);
+                  contentLanguage.html(data);
+                  runJavascriptsLanguage();
+                } else {
+                  window.notification(data.error, false);
+                }
+              }
+            })
+  
+          });
+        }      
+      });
+    });
+    
+  }
+
+  runJavascriptsLanguage();
+</script>
