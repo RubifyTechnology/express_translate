@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Karl"]
-  s.date = "2014-06-16"
+  s.date = "2014-06-18"
   s.description = "longer description of your gem"
   s.email = "karl@rubify.com"
   s.extra_rdoc_files = [
@@ -33,28 +33,53 @@ Gem::Specification.new do |s|
     "app/assets/images/rubify_languages/add.png",
     "app/assets/images/rubify_languages/back.png",
     "app/assets/images/rubify_languages/background.png",
+    "app/assets/images/rubify_languages/jquery_ui/animated-overlay.gif",
+    "app/assets/images/rubify_languages/jquery_ui/ui-bg_diagonals-thick_18_b81900_40x40.png",
+    "app/assets/images/rubify_languages/jquery_ui/ui-bg_diagonals-thick_20_666666_40x40.png",
+    "app/assets/images/rubify_languages/jquery_ui/ui-bg_flat_10_000000_40x100.png",
+    "app/assets/images/rubify_languages/jquery_ui/ui-bg_glass_100_f6f6f6_1x400.png",
+    "app/assets/images/rubify_languages/jquery_ui/ui-bg_glass_100_fdf5ce_1x400.png",
+    "app/assets/images/rubify_languages/jquery_ui/ui-bg_glass_65_ffffff_1x400.png",
+    "app/assets/images/rubify_languages/jquery_ui/ui-bg_gloss-wave_35_f6a828_500x100.png",
+    "app/assets/images/rubify_languages/jquery_ui/ui-bg_highlight-soft_100_eeeeee_1x100.png",
+    "app/assets/images/rubify_languages/jquery_ui/ui-bg_highlight-soft_75_ffe45c_1x100.png",
+    "app/assets/images/rubify_languages/jquery_ui/ui-icons_222222_256x240.png",
+    "app/assets/images/rubify_languages/jquery_ui/ui-icons_228ef1_256x240.png",
+    "app/assets/images/rubify_languages/jquery_ui/ui-icons_ef8c08_256x240.png",
+    "app/assets/images/rubify_languages/jquery_ui/ui-icons_ffd27a_256x240.png",
+    "app/assets/images/rubify_languages/jquery_ui/ui-icons_ffffff_256x240.png",
+    "app/assets/images/rubify_languages/key-white.png",
     "app/assets/images/rubify_languages/key.png",
     "app/assets/images/rubify_languages/loading.gif",
+    "app/assets/images/rubify_languages/remove.png",
+    "app/assets/images/rubify_languages/setting.png",
     "app/assets/javascript/rubify_languages/application.js",
     "app/assets/javascript/rubify_languages/bpopup.js",
+    "app/assets/javascript/rubify_languages/jquery-ui-1.10.4.js",
     "app/assets/stylesheets/.DS_Store",
     "app/assets/stylesheets/rubify_languages/.DS_Store",
     "app/assets/stylesheets/rubify_languages/application.css",
     "app/assets/stylesheets/rubify_languages/buttons.scss",
+    "app/assets/stylesheets/rubify_languages/jquery-ui-1.10.4.css",
     "app/assets/stylesheets/rubify_languages/loading.css",
     "app/assets/stylesheets/rubify_languages/reset.css",
     "app/assets/stylesheets/rubify_languages/rlang.css.scss",
     "app/assets/stylesheets/rubify_languages/styles.scss",
-    "app/controllers/rubify_languages/ajax_controller.rb",
     "app/controllers/rubify_languages/options_controller.rb",
     "app/views/.DS_Store",
     "app/views/layouts/rubify_languages/translate.html.erb",
     "app/views/rubify_languages/.DS_Store",
     "app/views/rubify_languages/options/.DS_Store",
+    "app/views/rubify_languages/options/_content_code.html.erb",
+    "app/views/rubify_languages/options/_content_index.html.erb",
+    "app/views/rubify_languages/options/_content_language.html.erb",
     "app/views/rubify_languages/options/_language.html.erb",
+    "app/views/rubify_languages/options/code_update.html.erb",
     "app/views/rubify_languages/options/index.html.erb",
     "app/views/rubify_languages/options/language_detail.html.erb",
+    "app/views/rubify_languages/options/language_update.html.erb",
     "app/views/rubify_languages/options/languages.html.erb",
+    "app/views/rubify_languages/options/package_update.html.erb",
     "config/rlang.yml",
     "config/routes.rb",
     "lib/generators/rubify_languages/install_generator.rb",
@@ -129,7 +154,6 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<jquery-ui-rails>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<redis>, ["~> 3.1.0"])
       s.add_runtime_dependency(%q<hiredis>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
@@ -138,7 +162,6 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 2.0.1"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
     else
-      s.add_dependency(%q<jquery-ui-rails>, ["~> 3.0.0"])
       s.add_dependency(%q<redis>, ["~> 3.1.0"])
       s.add_dependency(%q<hiredis>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
@@ -148,7 +171,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<simplecov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<jquery-ui-rails>, ["~> 3.0.0"])
     s.add_dependency(%q<redis>, ["~> 3.1.0"])
     s.add_dependency(%q<hiredis>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
