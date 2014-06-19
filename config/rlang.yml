@@ -12,3 +12,5 @@ language:
 package:
   id: be
   text: Backend
+  
+url: "http://localhost:3000/rlang/be/en"

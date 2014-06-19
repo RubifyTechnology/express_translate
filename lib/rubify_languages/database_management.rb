@@ -1,6 +1,8 @@
 module RubifyLanguages
   class Database
     include RubifyLanguages
+    require 'redis'
+    
     def self.redis
       @redis = Redis.new(host: RubifyLanguages.config["connect"]["host"], port: RubifyLanguages.config["connect"]["port"], db: RubifyLanguages.config["connect"]["db"])
     end

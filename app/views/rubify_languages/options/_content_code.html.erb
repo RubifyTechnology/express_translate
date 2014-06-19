@@ -20,7 +20,7 @@
     <div class="show <%= @origin_lang["id"] == params["id"] ? "origin_list" : "" %>">
       <a class='btn btn_edit' href="#">Edit</a>
       <a class='btn btn_delete' href="/rlang/ajax/code/delete/<%= item['code'] %>" type="delete_code" data_show="content_code">Delete</a>
-      <% if @origin_lang["id"] != params["id"] %>
+      <% if @origin_lang["id"] != @lang["id"] %>
         <div class="col1">
           <h2><b>Origin:</b></h2>
           <span class="origin_span"><%= item['text'] %></span>

@@ -1,4 +1,7 @@
-class RubifyLanguages::OptionsController < ApplicationController
+class RubifyLanguages::OptionsController < ActionController::Base
+
+  before_filter :check_authentication
+  # http_basic_authenticate_with name: "dhh", password: "secret", except: :index
 
   require 'redis'
   require 'json'
@@ -13,6 +16,8 @@ class RubifyLanguages::OptionsController < ApplicationController
   end
     
   def languages
+    @selects = YAML.load_file(Rails.root.to_s + "/config/languages.yml")
+    puts @selects
     origin = Language.get_origin(params[:packages])
     @languages = Package.find(params[:packages])['language']
     @max = origin.nil? ? 1 : LanguageDetail.info(origin).all.count
@@ -146,5 +151,21 @@ class RubifyLanguages::OptionsController < ApplicationController
   def load_all_yaml(lang="en")
     I18n.backend.send(:translations)[lang.to_sym]
   end      
+    
+  def check_authentication
+    
+    # if (request.headers['app-key'].to_s != APP_CONFIG[:api_key])
+#       return render text: 'unauthorized access', status: :unauthorized
+#     end
+    # if self.respond_to?(:rlang_accessible?) == false
+    #   # okay, can let anyone go in
+    # else
+    #   if self.rlang_accessible? == true
+    #     # okay, can let this person go in
+    #   else
+    #     redirect_to '/401'
+    #   end
+  end  
+  
   
 end

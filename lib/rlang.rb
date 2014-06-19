@@ -8,7 +8,18 @@ require 'rubify_languages/language_detail_management'
 require 'seeds/packages_seed'
 require 'seeds/languages_seed'
 
-module RubifyLanguages  
+module RubifyLanguages
+  
+  class << self; attr_accessor :package, :language, :url end
+  
+  @package = ""
+  @language = ""
+  @url = ""
+  
+  def language(lang)
+    I18n.locale = "#{YAML.load_file(Rails.root.to_s + '/config/rlang.yml')['package']['id']}#{lang}"
+  end
+  
   def self.config
     YAML.load_file(Rails.root.to_s + "/config/rlang.yml")
   end
@@ -29,11 +40,8 @@ module RubifyLanguages
     Language.destroy
   end
   
-  # def self.setup
-#     yield self
-#   end
-  
   def initialize
+    I18n.locale = "been"
   end
     
   class Engine < Rails::Engine
