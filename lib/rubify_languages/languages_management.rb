@@ -24,16 +24,25 @@ module RubifyLanguages
       end
     end
     
-    def self.update_by_id_packages(id, packages, params)
+    def self.update_by_id_packages(old_id, packages, params)
       all = self.all
-      count_before = all.count
-      all.reject!{|lang| (lang["id"] == id and lang["packages"] == packages)}
-      count_after = all.count
-      if count_before > count_after
-        self.save(all)
-        return self.add(params)
+      scan = all.select{|lang| (lang["id"] == params[:id] and lang["packages"] == packages)}
+      if scan.count == 0
+        count_before = all.count
+        all.reject!{|lang| (lang["id"] == old_id and lang["packages"] == packages)}
+        count_after = all.count
+        if count_before > count_after
+          self.save(all)
+          update = self.add(params)
+          if update["success"]
+            self.check_update_data(old_id, packages, params)
+          end
+          return update
+        else
+          return {"success"=> false, "error"=> "Data is not found!"}
+        end
       else
-        return {"success"=> false, "error"=> "Data is not found!"}
+        return {"success" => false, "error" => "Duplicate primary key"}
       end
     end
     
@@ -70,5 +79,23 @@ module RubifyLanguages
       end
     end
     
+    private
+
+    def self.check_update_data(old_id, packages, params)
+      if old_id != params[:id]
+        lang_detail_old = "lang_#{packages}_#{old_id}"
+        lang_detail_new = "lang_#{packages}_#{params[:id]}"
+        Database.redis.set(lang_detail_new, Database.redis.get(lang_detail_old))
+        Database.redis.del(lang_detail_old)
+        
+        keys = Database.redis.keys("#{packages}#{old_id}.*")
+        keys.each do |key|
+          key_array = key.split(".")
+          key_array[0] = "#{packages}#{params[:id]}"
+          Database.redis.set(key_array.join("."), Database.redis.get(key))
+          Database.redis.del(key)
+        end
+      end
+    end
   end
 end

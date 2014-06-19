@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require rubify_languages/bpopup
 //= require rubify_languages/jquery-ui-1.10.4
+//= require rubify_languages/wSelect

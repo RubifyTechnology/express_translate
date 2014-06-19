@@ -16,8 +16,7 @@ class RubifyLanguages::OptionsController < ActionController::Base
   end
     
   def languages
-    @selects = YAML.load_file(Rails.root.to_s + "/config/languages.yml")
-    puts @selects
+    @selects = YAML.load_file("#{RubifyLanguages.root}/config/languages.yml")
     origin = Language.get_origin(params[:packages])
     @languages = Package.find(params[:packages])['language']
     @max = origin.nil? ? 1 : LanguageDetail.info(origin).all.count
@@ -72,7 +71,7 @@ class RubifyLanguages::OptionsController < ActionController::Base
   end
   
   def language_update
-    update = Language.update_by_id_packages(params[:id], params[:packages], params)
+    update = Language.update_by_id_packages(params[:old_id], params[:packages], params)
     if update['success']
       load_content_language(params)
     else

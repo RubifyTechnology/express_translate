@@ -3,6 +3,7 @@
     <span><%= lang['text'].slice(0,1).capitalize + lang['text'].slice(1..-1) %></span>
     <p><%= (@LanguageDetail.info(lang).all.count.to_f / (@max == 0 ? 1 : @max) * 100).to_i %>%</p>
     <h5><%= @LanguageDetail.info(lang).all.count %>/<%= @max %></h5>
+    <h4><%= lang['id'] %></h4>
     <div class="tool remove" data="<%= lang['id'] %>"></div>
     <div class="tool set_origin" data="<%= lang['id'] %>"></div>
     <div class="tool setting" data="<%= lang['id'] %>" text="<%= lang['text'] %>"></div>

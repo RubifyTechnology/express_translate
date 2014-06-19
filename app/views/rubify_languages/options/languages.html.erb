@@ -15,20 +15,22 @@
 <div class="popup">
   <form id="add_language">
     <div class="title">Add Language</div>
-    <div class="row">
+    <!-- <div class="row">
       <label for="id">Code:</label>
       <input type="text" id="id" required/>
     </div>
-    
+
     <div class="row">
       <label for="text">Display:</label>
       <input type="text" id="text" required/>
     </div>
-    
+     -->
     <div class="row">
       <label for="text">Language:</label>
-      <select>
-        <option value=""></option>
+      <select id="lang_select">
+        <% @selects.each do |option| %>
+          <option value="<%= option[0] %>" data-icon="/assets/rubify_languages/flags/<%= option[0] %>.png"><%= option[1] %></option>
+        <% end %>
       </select>
     </div>
         
@@ -38,34 +40,34 @@
 </div>
 
 <script>
+  $('#lang_select').wSelect({
+    size: 12,
+    highlight: false
+  });
+  
   var popup = $('.popup');
   var contentLanguage = $("#content_language");
   
   $(".add").click(function(event) {
     event.preventDefault();
     var form = $("#add_language");
-    var input_id = form.find("#id");
-    var input_text = form.find("#text");
+    var input_language = form.find("#lang_select")
     var title = form.find(".title");
     title.html("Add Language");
-    
-    input_id.val("");
-    input_id.prop('disabled', false);
-    input_text.val("");
-    
+    input_language.val("en").change();
     popup.bPopup({
       transition: 'slideDown',
       onOpen: function () {
         form.unbind("submit");
-        form.submit(function(event) {
-          event.preventDefault();
+        form.submit(function(eventS) {
+          eventS.preventDefault();
           $.ajax({
             type: "POST",
             url: "/rlang/ajax/language/add",
             data: {
               packages: "<%= params[:packages] %>",
-              id: input_id.val(),
-              text: input_text.val()
+              id: input_language.val(),
+              text: input_language.find("option[value='"+ input_language.val() +"']").html()
             },
             success: function(data) {
               if (typeof(data.success) == "undefined"){
@@ -149,28 +151,25 @@
     $(".setting").click(function(event) {
       event.preventDefault();
       var form = $("#add_language");
-      var input_id = form.find("#id");
-      var input_text = form.find("#text");
+      var input_language = form.find("#lang_select")
       var title = form.find(".title");
       title.html("Update Language");
-      
-      input_id.val(event.target.attributes.data.value);
-      input_id.prop('disabled', true);
-      input_text.val(event.target.attributes.text.value);
-      
+      var old_id = event.target.attributes.data.value;
+      input_language.val(old_id).change();
       popup.bPopup({
         transition: 'slideDown',
         onOpen: function () {
           form.unbind("submit");
-          form.submit(function(event) {
-            event.preventDefault();
+          form.submit(function(eventS) {
+            eventS.preventDefault();
             $.ajax({
               type: "POST",
               url: "/rlang/ajax/language/update",
               data: {
                 packages: "<%= params[:packages] %>",
-                id: input_id.val(),
-                text: input_text.val()
+                id: input_language.val(),
+                text: input_language.find("option[value='"+ input_language.val() +"']").html(),
+                old_id: old_id
               },
               success: function(data) {
                 if (typeof(data.success) == "undefined"){
@@ -183,7 +182,6 @@
                 }
               }
             })
-  
           });
         }      
       });

@@ -86,6 +86,7 @@ body#rlang {
           background: #398ac4;
           p {display:none;}
           h5 {display:block;}
+          h4 {display:block;}
           .remove {
             opacity:1;
             top:0px;
@@ -284,6 +285,7 @@ body#rlang {
           text-align:center;
           width:90%;
           height: 25px;
+          line-height: 22px;
           float:left;
           overflow:hidden;
           margin: 40px 5% 10px;
@@ -304,6 +306,17 @@ body#rlang {
           float:left;
           font-size: 14px;
           color:#fff;
+        }
+        h4 {
+          display:none;
+          position:absolute;
+          width:100%;
+          text-align:center;
+          bottom:12px;
+          left:0px;
+          font-size:20px;
+          color:#fff;
+          opacity:0.4;
         }
       }
       
@@ -538,12 +551,16 @@ body#rlang {
     
       label {
         float:left;
-        width: 60px;
+        width: 70px;
+        line-height:25px;
+        font-size:15px;
+        text-align:right;
+        margin-right:10px;
       }
     
       input {
         float:left;
-        width:385px;
+        width:365px;
         padding: 5px 10px;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -551,13 +568,24 @@ body#rlang {
       }
     
       textarea {
-        width: 385px;
+        width: 365px;
         height: 80px;
         resize:none;
         padding: 5px 10px;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
+      }
+      
+      select {
+        float:left;
+        width:365px;
+      }
+      .wSelect-theme-classic.wSelect {
+        width: 365px !important;
+      }
+      .wSelect-options-holder {
+        width: 365px !important;
       }
     }
   

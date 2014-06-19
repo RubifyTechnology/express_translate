@@ -12,7 +12,9 @@ module RubifyLanguages
     end
     
     def self.get(key)
-      self.redis.get(key) ? JSON.parse(self.redis.get(key)) : nil
+      data = self.redis.get(key)
+      data = JSON.parse(data) if data.present?
+      data
     end
     
     def self.del(key)

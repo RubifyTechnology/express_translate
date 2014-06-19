@@ -20,6 +20,10 @@ module RubifyLanguages
     I18n.locale = "#{YAML.load_file(Rails.root.to_s + '/config/rlang.yml')['package']['id']}#{lang}"
   end
   
+  def self.root
+    File.expand_path '../..', __FILE__
+  end
+  
   def self.config
     YAML.load_file(Rails.root.to_s + "/config/rlang.yml")
   end

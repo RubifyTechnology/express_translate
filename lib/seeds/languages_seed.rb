@@ -23,21 +23,21 @@ module RubifyLanguages
       })
       
       Language.add({
-        id: 'vn',
+        id: 'vi',
         text: 'Vietnamese',
         packages: 'fe',
         is_origin: false
       })
       
       Language.add({
-        id: 'lao',
+        id: 'th',
         text: 'Laos',
         packages: 'fe',
         is_origin: false
       })
       
       Language.add({
-        id: 'sing',
+        id: 'my',
         text: 'Singapore',
         packages: 'fe',
         is_origin: false

@@ -11,6 +11,7 @@
  *= require_self
  *= require ./reset
  *= require ./jquery-ui-1.10.4
+ *= require ./wSelect
  *= require ./loading
  *= require ./buttons
  *= require ./rlang
