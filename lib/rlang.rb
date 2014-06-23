@@ -1,5 +1,6 @@
 require 'rubify_languages/rlang_model'
 require 'rubify_languages/database_management'
+require 'rubify_languages/account_management'
 require 'rubify_languages/package_management'
 require 'rubify_languages/languages_management'
 require 'rubify_languages/language_detail_management'
@@ -7,6 +8,7 @@ require 'rubify_languages/language_detail_management'
 # Seeds
 require 'seeds/packages_seed'
 require 'seeds/languages_seed'
+require 'seeds/accounts_seed'
 
 module RubifyLanguages
   
@@ -32,6 +34,7 @@ module RubifyLanguages
     if Package.all.count == 0
       Package.seed
       Language.seed
+      Account.seed
     end
   end
   

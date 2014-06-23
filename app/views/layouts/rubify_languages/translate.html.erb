@@ -21,14 +21,5 @@
   </div>
   
   <div id="notification"></div>
-  
-  <script>
-    window.notification = function (text, success) {
-      $("#notification").html(text).addClass(success ? 'success' : 'error');
-      setTimeout(function() {
-        $("#notification").removeClass(success ? 'success' : 'error');
-      }, 5000);
-    }
-    </script>
 </body>
 </html>

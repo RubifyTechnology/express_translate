@@ -1,6 +1,6 @@
-class RubifyLanguages::OptionsController < ActionController::Base
+class RubifyLanguages::OptionsController < RubifyLanguages::BaseController
 
-  before_filter :check_authentication
+  before_filter :check_login
   # http_basic_authenticate_with name: "dhh", password: "secret", except: :index
 
   require 'redis'
@@ -151,20 +151,9 @@ class RubifyLanguages::OptionsController < ActionController::Base
     I18n.backend.send(:translations)[lang.to_sym]
   end      
     
-  def check_authentication
-    
-    # if (request.headers['app-key'].to_s != APP_CONFIG[:api_key])
-#       return render text: 'unauthorized access', status: :unauthorized
-#     end
-    # if self.respond_to?(:rlang_accessible?) == false
-    #   # okay, can let anyone go in
-    # else
-    #   if self.rlang_accessible? == true
-    #     # okay, can let this person go in
-    #   else
-    #     redirect_to '/401'
-    #   end
-  end  
-  
-  
+  def check_login
+    if !check_authentication
+      redirect_to controller: "account", action: "login"
+    end
+  end
 end

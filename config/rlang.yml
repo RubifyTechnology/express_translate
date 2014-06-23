@@ -13,4 +13,11 @@ package:
   id: be
   text: Backend
   
-url: "http://localhost:3000/rlang/be/en"
+account: 
+  - 
+    username: "karl1"
+    password: "password"
+  - 
+    username: "karl2"
+    password: "password"
+

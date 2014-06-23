@@ -1,4 +1,6 @@
 <div class="header">
+  <span class="username_show">Rubify</span>
+  <a class="logout" href="#"></a>
   <h1>RLang</h1>
   <a class="back" href="/rlang/package/<%= params[:package] %>"></a>
   <% if @origin_lang["id"] == params["id"] %>
@@ -173,4 +175,5 @@
   }
   
   runJavascriptsCode();
+  showInfo();
 </script>

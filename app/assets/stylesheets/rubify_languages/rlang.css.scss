@@ -38,6 +38,25 @@ body#rlang {
         background: url("add.png") center no-repeat;
       }
       
+      .logout {
+        position:absolute;
+        right:0px;
+        bottom: 8px;
+        width:32px;
+        height:32px;
+        border-radius:50px;
+        background: #505050 url("logout.png") no-repeat center center / 16px;
+      }
+      
+      .username_show {
+        font-size:15px;
+        position:absolute;
+        right:50px;
+        bottom: 15px;
+        text-align:right;
+        color:#505050;
+      }
+      
       h1 {
         font-size: 25px;
         color: #c6c6c6;
@@ -594,33 +613,6 @@ body#rlang {
       margin: 5px auto;
       margin-top:20px;
       display:block;
-    }
-  }
-  
-  #notification {
-    position:fixed;
-    bottom:0px;
-    left:0px;
-    width:100%;
-    color:#fff;
-    text-align:center;
-    line-height:40px;
-    height:0px;
-    font-size: 14px;
-    text-shadow: 1px 1px 1px #333;
-    background: rgba(0,0,0,0.5);
-    transition: height 1s, background 1s;
-    -webkit-transition: height 1s, background 1s;
-    -moz-transition: height 1s, background 1s;
-    z-index:10000;
-    
-    &.success {
-      background: rgba(100,255,0, 0.4);
-      height:40px;
-    }
-    &.error {
-      background: rgba(255,0,0,0.4);
-      height:40px;
     }
   }
 }

@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     match "/package/:packages" => "rubify_languages/options#languages"
     match "/language/:package/:id" => "rubify_languages/options#language_detail" 
     
+    get "/login" => "rubify_languages/account#login"
+    post "/login" => "rubify_languages/account#login_check"
+    
     # CODE
     post "/ajax/code/add" => 'rubify_languages/options#code_add'
     post "/ajax/code/update/:code" => 'rubify_languages/options#code_update'
