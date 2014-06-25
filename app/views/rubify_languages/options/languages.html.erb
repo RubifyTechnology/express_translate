@@ -1,32 +1,10 @@
-<div class="header">
-  <span class="username_show">Rubify</span>
-  <a class="logout" href="#"></a>
-  <h1>RLang</h1>
-  <a class="back" href="/rlang"></a>
-  <a class="add" href="#add"></a>
-</div>
-
-<!-- <div id="info"> -->
-  <!-- Package: <%= @Package.find(params[:packages])["text"] %> -->
-<!-- </div> -->
-  
 <div class="content" id="content_language">
   <%= render 'content_language' %>
 </div>
 
-<div class="popup">
+<div class="popup" style="height: 90px">
   <form id="add_language">
     <div class="title">Add Language</div>
-    <!-- <div class="row">
-      <label for="id">Code:</label>
-      <input type="text" id="id" required/>
-    </div>
-
-    <div class="row">
-      <label for="text">Display:</label>
-      <input type="text" id="text" required/>
-    </div>
-     -->
     <div class="row">
       <label for="text">Language:</label>
       <select id="lang_select">
@@ -42,6 +20,8 @@
 </div>
 
 <script>
+  $(".back").attr({href:"/rlang"});
+
   $('#lang_select').wSelect({
     size: 12,
     highlight: false
@@ -189,8 +169,12 @@
       });
     });
     
+    $(".json").click(function(event) {
+      event.preventDefault();
+      openInNewTab(window.location.origin + "/rlang/service/" + $(event.target).attr("data") + ".json")
+    })
   }
 
   runJavascriptsLanguage();
-  showInfo();
+
 </script>

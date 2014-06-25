@@ -1,11 +1,10 @@
 body#rlang {
-  background: #e6e6e6; //url("background.png") repeat
+  background: #e6e6e6;
   font-family: Tahoma, Arial;
   
   #rlang_body {
     width:90%;
-    margin: 0px auto;
-    
+    margin: 0px auto;    
     .header {
       position:relative;
       float:left;
@@ -48,10 +47,20 @@ body#rlang {
         background: #505050 url("logout.png") no-repeat center center / 16px;
       }
       
+      .file {
+        position:absolute;
+        right: 50px;
+        bottom: 8px;
+        width:32px;
+        height:32px;
+        border-radius:50px;
+        background: #505050 url("file.png") no-repeat center center / 16px;
+      }
+      
       .username_show {
         font-size:15px;
         position:absolute;
-        right:50px;
+        right:100px;
         bottom: 15px;
         text-align:right;
         color:#505050;
@@ -105,20 +114,77 @@ body#rlang {
           background: #398ac4;
           p {display:none;}
           h5 {display:block;}
-          h4 {display:block;}
-          .remove {
+          h4 {display:block;}          
+          .tool {
             opacity:1;
-            top:0px;
-            right:0px;
-          }
-          .setting {
-            opacity:1;
-            top:0px;
-            left:0px;
-          }
-          .set_origin {
-            opacity:1;
-            top:-20px;
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px !important;
+            
+            &:nth-child(1) {
+              &:nth-last-child(1) {
+                top: -15px;
+                margin-left: -15px;
+              }
+              
+              &:nth-last-child(2),
+              &:nth-last-child(3) {
+                top: 0px;
+                left: 0px;
+              }
+              
+              &:nth-last-child(4) {
+                top: 50%;
+                margin-top:-15px;
+                left: -20px;
+              }
+            }
+            
+            &:nth-child(2) {
+              &:nth-last-child(1) {
+                top: 0px;
+                right: 0px;
+                left:auto;
+              }
+              
+              &:nth-last-child(2) {
+                top:-20px;
+                margin-left:-15px;
+              }
+              
+              &:nth-last-child(3) {
+                top: 25%;
+                left: 25%;
+                margin-left:-20px;
+                margin-top:-40px;
+              }
+            }
+            
+            &:nth-child(3) {
+              &:nth-last-child(1) {
+                top: 0px;
+                left: auto;
+                right: 0px;
+              }
+              
+              &:nth-last-child(2) {
+                top: 25%;
+                right: 25%;
+                margin-right:-20px !important;
+                margin-top:-40px;
+                left:auto;
+              }
+            }
+            
+            &:nth-child(4) {
+              &:nth-last-child(1) {
+                top: 50%;
+                right: -15px;
+                left:auto;
+                margin-top:-15px;
+              }
+            }
+            
           }
         };
         
@@ -138,14 +204,6 @@ body#rlang {
               left: -1px;
             }
 
-            .remove {
-              opacity:1;
-            }
-            
-            .setting {
-              opacity:1;
-            }
-            
             h5 {display:none;}
   
             h6 {
@@ -239,7 +297,6 @@ body#rlang {
           }
           
           .tool {
-            opacity:0;
             background-size:70%;
             background-color: #009999;
             background-size:60%;
@@ -254,32 +311,29 @@ body#rlang {
         
         &.origin_true {
           background: #0B61A4;
-          
-          .set_origin {
-            display: none;
-          }
         }
         
         .remove {
-          top:30px;
-          right:30px;
-          background-image: url("/assets/rubify_languages/remove.png");
+          background-image: url("remove.png");
         }
         
         .setting {
-          top:30px;
-          left:30px;
-          background-image: url("/assets/rubify_languages/setting.png");
+          background-image: url("setting.png");
         }
         
         .set_origin {
-          top:30px;
-          left:50%;
-          margin-left: -15px;
-          background-image: url("/assets/rubify_languages/key-white.png");
+          background-image: url("key-white.png");
+        }
+        
+        .json {
+          background-image: url("embed.png");
         }
         
         .tool {
+          top: 50%;
+          left: 50%;
+          margin-top: -15px;
+          margin-left: -15px;
           position:absolute;
           width: 30px;
           height: 30px;
@@ -298,6 +352,36 @@ body#rlang {
             background-size:70%;
             background-color: #0D58A6;
           };
+          
+          &:nth-child(2) {
+            &:nth-last-child(1) {
+              right: 50%;
+              margin-right:-15px;
+              left: auto;
+            }
+          }
+          
+          &:nth-child(3) {
+            &:nth-last-child(1) {
+              left: auto;
+              right: 50%;
+              margin-right:-15px;
+            }
+            
+            &:nth-last-child(2) {
+              right: 50%;
+              margin-right:-15px;
+              left:auto;
+            }
+          }
+          
+          &:nth-child(4) {
+            &:nth-last-child(1) {
+              right: 50%;
+              margin-right:-15px;
+              left: auto;
+            }
+          }
         }
         
         span {
@@ -538,7 +622,7 @@ body#rlang {
     display:none;
     width: 500px;
     height:auto;
-    min-height: 200px;
+    min-height: 140px;
     background:#fff;
     border:1px solid #ccc;
     border-radius:3px;
@@ -570,24 +654,28 @@ body#rlang {
     
       label {
         float:left;
-        width: 70px;
-        line-height:25px;
-        font-size:15px;
+        width: 85px;
+        line-height:36px;
+        font-size:18px;
         text-align:right;
         margin-right:10px;
       }
     
       input {
         float:left;
-        width:365px;
-        padding: 5px 10px;
+        width:350px;
+        padding: 0px 10px;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 3px;
+        font-size: 17px;
+        line-height: 36px;
       }
     
       textarea {
-        width: 365px;
+        width: 350px;
         height: 80px;
         resize:none;
         padding: 5px 10px;
@@ -598,13 +686,17 @@ body#rlang {
       
       select {
         float:left;
-        width:365px;
+        width:350px;
+      }
+      .wSelect-selected{
+        height:26px;
+        line-height:26px;
       }
       .wSelect-theme-classic.wSelect {
-        width: 365px !important;
+        width: 350px !important;
       }
       .wSelect-options-holder {
-        width: 365px !important;
+        width: 350px !important;
       }
     }
   
@@ -613,6 +705,65 @@ body#rlang {
       margin: 5px auto;
       margin-top:20px;
       display:block;
+    }
+  }
+  
+  #backup_layer {
+    left: 5%;
+    top: 30%;
+    width: 90%;
+    height: 40%;
+    z-index: 100;
+    display: none;
+    position: fixed;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 2px #333;
+    
+    &.add_files {
+      border: 3px dotted #fff;
+    }
+    
+    .kick {
+      top: 50%;
+      color: #fff;
+      width: 42%;
+      height: 120px;
+      font-size: 30px;
+      margin-top: -60px;
+      position: absolute;
+      text-align: center;
+      line-height: 120px;
+      text-decoration: none;
+      background-color: rgba(0,0,0,0.6);
+      &:hover {
+        background-color: rgba(0,0,0,0.9);
+      };
+    }
+    
+    .import {
+      left:5%;
+    }
+    
+    .export {
+      right:5%;
+    }
+    
+    .close_layer {
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      border-radius: 20px;
+      border: 1px solid #fff;
+      background-color: rgba(0,0,0,0.5);
+      background-image: url("close.png");
+      background-position: center;
+      &:hover {
+        background-color: rgba(0,0,0,0.9);
+      }
     }
   }
 }

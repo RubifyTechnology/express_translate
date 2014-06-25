@@ -1,12 +1,10 @@
-<div class="header">
+<!-- <div class="header">
   <span class="username_show">Rubify</span>
   <a class="logout" href="#"></a>
   <h1>RLang</h1>
-  <a class="back" href="/rlang/package/<%= params[:package] %>"></a>
-  <% if @origin_lang["id"] == params["id"] %>
-    <a class="add" href="#add"></a>
-  <% end %>
-</div>
+  <a class="back" href=""></a>
+  
+</div> -->
 
 <div class="content" id="content_code">
   <%= render 'content_code' %>
@@ -29,6 +27,14 @@
 </div>
 
 <script>
+
+<% if @origin_lang["id"] == params["id"] %>
+  $(".add").show();
+<% else %>
+  $(".add").hide();
+<% end %>
+
+  $(".back").attr({href:"/rlang/package/<%= params[:package] %>"});
   
   var form = $("#add_code");
   var contentCode = $("#content_code");
@@ -44,6 +50,7 @@
         type: "POST",
         url: $(event.target).attr("href"),
         data: {
+          code: $(event.target).attr("data"),
           lang: "<%= params[:id] %>",
           pack: "<%= params[:package] %>",
           text: edit.find(".new_value").val()
@@ -138,6 +145,7 @@
               type: "POST",
               url: $(event.target).attr("href"),
               data: {
+                code: $(event.target).attr("data"),
                 lang: "<%= params[:id] %>",
                 pack: "<%= params[:package] %>"
               },
@@ -175,5 +183,5 @@
   }
   
   runJavascriptsCode();
-  showInfo();
+
 </script>

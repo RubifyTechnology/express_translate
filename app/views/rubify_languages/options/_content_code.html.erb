@@ -4,7 +4,7 @@
     <h6 class="code"><%= item['code'] %></h6>
     
     <div class='edit'>
-      <a class='btn' href="/rlang/ajax/code/update/<%= item['code'] %>" type="update_code" data_show="content_code">Save</a>
+      <a class='btn' href="/rlang/ajax/code/update" data="<%= item['code'] %>" type="update_code" data_show="content_code">Save</a>
       <a class='btn btn_cancel' href="#">Cancel</a>
       <div class="col1 btn_cancel">
         <h2><b>Origin:</b></h2>
@@ -13,14 +13,14 @@
       <div class="col1">
         <h2><b>Translate:</b></h2>
         <% code = @LanguageDetail.info(@lang).find(item['code']) %>
-        <textarea class="new_value" href="/rlang/ajax/code/update/<%= item['code'] %>"><%= code.nil? ? "" : code['text'] %></textarea>
+        <textarea class="new_value" href="/rlang/ajax/code/update" data="<%= item['code'] %>"><%= code.nil? ? "" : code['text'] %></textarea>
       </div>
     </div>
   
     <div class="show <%= @origin_lang["id"] == params["id"] ? "origin_list" : "" %>">
       <a class='btn btn_edit' href="#">Edit</a>
       <% if @origin_lang["id"] != @lang["id"] %>
-        <a class='btn btn_delete' href="/rlang/ajax/code/delete/<%= item['code'] %>" type="delete_code" data_show="content_code">Delete</a>
+        <a class='btn btn_delete' href="/rlang/ajax/code/delete" data="<%= item['code'] %>" type="delete_code" data_show="content_code">Delete</a>
         <div class="col1">
           <h2><b>Origin:</b></h2>
           <span class="origin_span"><%= item['text'] %></span>

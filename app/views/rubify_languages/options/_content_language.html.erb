@@ -4,9 +4,14 @@
     <p><%= (@LanguageDetail.info(lang).all.count.to_f / (@max == 0 ? 1 : @max) * 100).to_i %>%</p>
     <h5><%= @LanguageDetail.info(lang).all.count %>/<%= @max %></h5>
     <h4><%= lang['id'] %></h4>
-    <div class="tool remove" data="<%= lang['id'] %>"></div>
-    <div class="tool set_origin" data="<%= lang['id'] %>"></div>
-    <div class="tool setting" data="<%= lang['id'] %>" text="<%= lang['text'] %>"></div>
+    <div class="tools">
+      <div class="tool remove" data="<%= lang['id'] %>"></div>
+      <% if !lang['is_origin'] %>
+        <div class="tool set_origin" data="<%= lang['id'] %>"></div>
+      <% end %>
+      <div class="tool setting" data="<%= lang['id'] %>" text="<%= lang['text'] %>"></div>
+      <div class="tool json" data="<%= [params[:packages], lang['id']].join("/") %>"></div>
+    </div>
   </a>
   <div class="delete_dialog_<%= lang['id'] %>" style="display: none">
     <h4>Are you sure you want to delete?</br><%= lang['text'] %></h4>

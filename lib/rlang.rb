@@ -10,6 +10,9 @@ require 'seeds/packages_seed'
 require 'seeds/languages_seed'
 require 'seeds/accounts_seed'
 
+# Lib
+require 'redis'
+
 module RubifyLanguages
   
   class << self; attr_accessor :package, :language, :url end
@@ -48,9 +51,12 @@ module RubifyLanguages
   end
   
   def initialize
-    I18n.locale = "been"
+    
   end
     
   class Engine < Rails::Engine
+    TRANSLATION_STORE = Redis.new
+    I18n.backend = I18n::Backend::Chain.new(I18n::Backend::KeyValue.new(TRANSLATION_STORE), I18n.backend)
+    I18n.locale = "been"
   end
 end

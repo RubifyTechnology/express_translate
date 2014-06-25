@@ -1,7 +1,7 @@
 module RubifyLanguages
   # Construction
-  #   id: en
-  #   text: English
+  #   code: no_one
+  #   text: Number one....
   
   class LanguageDetail < RLangModel
     @name = "lang_package_id"
@@ -38,6 +38,14 @@ module RubifyLanguages
         Database.redis.del("#{@lang['packages']}#{@lang['id']}.#{code}")
       end
       return delete
+    end
+    
+    def self.destroy
+      super
+      keys = Database.redis.keys([@name, ".*"].join)
+      keys.each do |key|
+        Database.redis.del(key)
+      end
     end
     
   end

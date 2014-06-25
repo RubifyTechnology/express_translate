@@ -25,7 +25,7 @@ window.notification = function (text, success) {
   }, 5000);
 }
 
-var showInfo = function () {
+function showInfo() {
   $(".username_show").html(getRlangCookie("username"));
   $(".logout").click(function(event) {
     event.preventDefault();
@@ -33,4 +33,9 @@ var showInfo = function () {
     setRlangCookie("username", "", -1);
     window.location = "/rlang";
   });
+}
+
+function openInNewTab(url) {
+  var win = window.open(url, '_blank');
+  win.focus();
 }

@@ -7,8 +7,11 @@
         <h6 class="index_<%= index %>"><%= lang['text'] %></h6>
       <% end %>
     </div>
-    <div class="tool remove" data="<%= package['id'] %>"></div>
-    <div class="tool setting" data="<%= package['id'] %>" text="<%= package['text'] %>"></div>
+    <div class="tools">
+      <div class="tool remove" data="<%= package['id'] %>"></div>
+      <div class="tool setting" data="<%= package['id'] %>" text="<%= package['text'] %>"></div>
+      <div class="tool json" data="<%= package['id'] %>"></div>
+    </div>
   </a>
   <div class="delete_dialog_<%= package['id'] %>" style="display: none">
     <h4>Are you sure you want to delete?</br><%= package['text'] %></h4>

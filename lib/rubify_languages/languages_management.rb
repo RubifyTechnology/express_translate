@@ -50,10 +50,12 @@ module RubifyLanguages
       check = false
       all = self.all
       all.each do |lang|
-        lang["is_origin"] = false
-        if (lang["id"] == id and lang["packages"] == packages)
-          lang["is_origin"] = true
-          check = true
+        if lang["packages"] == packages
+          lang["is_origin"] = false
+          if (lang["id"] == id)
+            lang["is_origin"] = true
+            check = true
+          end
         end
       end
       self.save(all)
