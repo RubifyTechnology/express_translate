@@ -8,27 +8,16 @@ module RubifyLanguages
     @name = "languages"
     @primary = "id"
     @attr = "text", "packages", "is_origin"
-
     @unique = "id", "packages"
     
     def self.delete_by_id_packages(id, packages)
-      all = self.all
-      count_before = all.count
-      all.reject!{|lang| (lang["id"] == id and lang["packages"] == packages)}
-      if count_before > all.count
-        self.save(all)
-        return self.successful(all)
-      end
-      return self.notfound
+      return self.reject_with_id_packages(id, packages)
     end
     
     def self.update_by_id_packages(old_id, packages, params)
       all = self.all
       if self.get_with_id_packages(params[:id], packages).nil?
-        count_before = all.count
-        all.reject!{|lang| (lang["id"] == old_id and lang["packages"] == packages)}
-        if count_before > all.count
-          self.save(all)
+        if self.reject_with_id_packages(old_id, packages)["success"]
           update = self.add(params)
           self.check_update_data(old_id, packages, params) if update["success"]
           return update
@@ -82,18 +71,21 @@ module RubifyLanguages
 
     def self.check_update_data(old_id, packages, params)
       if old_id != params[:id]
-        lang_detail_old = "lang_#{packages}_#{old_id}"
-        lang_detail_new = "lang_#{packages}_#{params[:id]}"
+        lang_detail_old = ["lang", packages, old_id].join("_")
+        lang_detail_new = ["lang", packages, params[:id]].join("_")
         Database.redis.set(lang_detail_new, Database.redis.get(lang_detail_old))
-        Database.redis.del(lang_detail_old)
-        
+        Database.redis.del(lang_detail_old)      
         keys = Database.redis.keys("#{packages}#{old_id}.*")
-        keys.each do |key|
-          key_array = key.split(".")
-          key_array[0] = "#{packages}#{params[:id]}"
-          Database.redis.set(key_array.join("."), Database.redis.get(key))
-          Database.redis.del(key)
-        end
+        self.updating_keys(keys, packages, params)
+      end
+    end
+    
+    def self.updating_keys(keys, packages, params)
+      keys.each do |key|
+        key_array = key.split(".")
+        key_array[0] = [packages, params[:id]].join
+        Database.redis.set(key_array.join("."), Database.redis.get(key))
+        Database.redis.del(key)
       end
     end
     
