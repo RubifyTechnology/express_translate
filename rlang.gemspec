@@ -19,7 +19,9 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".DS_Store",
+    ".rspec",
     ".travis.yml",
+    ".watchr",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
@@ -161,6 +163,7 @@ Gem::Specification.new do |s|
     "lib/seeds/accounts_seed.rb",
     "lib/seeds/languages_seed.rb",
     "lib/seeds/packages_seed.rb",
+    "lib/tasks/watchr.rake",
     "node_modules/redis/.npmignore",
     "node_modules/redis/README.md",
     "node_modules/redis/benches/buffer_bench.js",
@@ -211,6 +214,10 @@ Gem::Specification.new do |s|
     "node_modules/redis/test-unref.js",
     "node_modules/redis/test.js",
     "rlang.gemspec",
+    "spec/.rspec",
+    "spec/controllers/options_controller_spec.rb",
+    "spec/rails_helper.rb",
+    "spec/spec_helper.rb",
     "test/helper.rb",
     "test/test_rlang.rb"
   ]
