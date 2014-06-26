@@ -15,73 +15,68 @@ module RubifyLanguages
       all = self.all
       count_before = all.count
       all.reject!{|lang| (lang["id"] == id and lang["packages"] == packages)}
-      count_after = all.count
-      if count_before > count_after
+      if count_before > all.count
         self.save(all)
-        return {"success"=> true, "#{@name}" => all}
-      else
-        return {"success"=> false, "error"=> "Data is not found!"}
+        return self.successful(all)
       end
+      return self.notfound
     end
     
     def self.update_by_id_packages(old_id, packages, params)
       all = self.all
-      scan = all.select{|lang| (lang["id"] == params[:id] and lang["packages"] == packages)}
-      if scan.count == 0
+      if self.get_with_id_packages(params[:id], packages).nil?
         count_before = all.count
         all.reject!{|lang| (lang["id"] == old_id and lang["packages"] == packages)}
-        count_after = all.count
-        if count_before > count_after
+        if count_before > all.count
           self.save(all)
           update = self.add(params)
-          if update["success"]
-            self.check_update_data(old_id, packages, params)
-          end
+          self.check_update_data(old_id, packages, params) if update["success"]
           return update
-        else
-          return {"success"=> false, "error"=> "Data is not found!"}
         end
-      else
-        return {"success" => false, "error" => "Duplicate primary key"}
+        return self.notfound
       end
+      return self.primary_key
     end
     
     def self.set_origin(id, packages)
-      check = false
       all = self.all
-      all.each do |lang|
-        if lang["packages"] == packages
-          lang["is_origin"] = false
-          if (lang["id"] == id)
-            lang["is_origin"] = true
-            check = true
-          end
-        end
+      origin_old = self.get_origin(packages)
+      if origin_old.present?
+        origin_old["is_origin"] = false
+        self.update_by_id_packages(origin_old["id"], packages, origin_old)
       end
-      self.save(all)
-      if check
-        return {"success"=> true, "#{@name}" => all}
-      else
-        return {"success"=> false, "error"=> "Data is not found!"}
+      
+      origin_new = self.get_with_id_packages(id, packages)
+      if origin_new.present?
+        origin_new["is_origin"] = true
+        self.update_by_id_packages(origin_new["id"], packages, origin_new)
+        return self.successful(all)
       end
+
+      return self.notfound
     end
     
     def self.get_origin(packages)
       origin = self.all.select{|lang| (lang["packages"] == packages and lang["is_origin"] == true)}
-      if origin.count > 0
-        return origin[0]
-      else
-        all_of_package = self.all.select{|lang| lang["packages"] == packages}
-        if (all_of_package.count > 0)
-          self.set_origin(all_of_package[0]["id"], packages)
-          return all_of_package[0]
-        else
-          return nil
-        end
-      end
+      return origin[0] if origin.count > 0
+      return self.get_origin_part_1(packages)
+    end
+    
+    def self.get_with_id_packages(id, packages)
+      selects = self.all.select{|lang| (lang["id"] == id and lang["packages"] == packages)}
+      return selects.count > 0 ? selects[0] : nil
     end
     
     private
+    
+    def self.get_origin_part_1(packages)
+      all_of_package = self.all.select{|lang| lang["packages"] == packages}
+      if (all_of_package.count > 0)
+        self.set_origin(all_of_package[0]["id"], packages)
+        return all_of_package[0]
+      end
+      return nil
+    end
 
     def self.check_update_data(old_id, packages, params)
       if old_id != params[:id]
@@ -99,5 +94,6 @@ module RubifyLanguages
         end
       end
     end
+    
   end
 end

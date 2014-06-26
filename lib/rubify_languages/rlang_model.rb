@@ -32,14 +32,14 @@ module RubifyLanguages
     
     def self.add(params)
       if JSON.parse(params.to_json)[@primary] == ""
-        return {"success" => false, "error" => "Primary data is nil!"}
+        return self.primary_nil
       end
       if self.check_unique_allow_add(params)
         data = self.all.push(params)
         self.save(data)
-        return {"success" => true, "#{@name}" => data}
+        return self.successful(data)
       else
-        return {"success" => false, "error" => "Duplicate primary key"}
+        return self.primary_key
       end
     end
     
@@ -47,13 +47,7 @@ module RubifyLanguages
       all = self.all
       count_before = all.count
       all.reject!{|package| package[@primary] == id}
-      count_after = all.count
-      if count_before > count_after
-        self.save(all)
-        return {"success" => true, "#{@name}" => all}
-      else
-        return {"success" => false, "error" => "Data is not found!"}
-      end
+      return self.change_data(count_before, all.count, all)
     end
     
     def self.update(params)
@@ -61,13 +55,8 @@ module RubifyLanguages
       count_before = all.count
       all.reject!{|package| package[@primary] == params[@primary]}
       count_after = all.count
-      if count_before > count_after
-        all.push(params)
-        self.save(all)
-        return {"success" => true, "#{@name}" => all}
-      else
-        return {"success" => false, "error" => "Data is not found!"}
-      end
+      all.push(params) if count_before > count_after
+      return self.change_data(count_before, count_after, all)
     end
     
     def self.find(code)
@@ -93,11 +82,7 @@ module RubifyLanguages
         end
         return check_unique
       else
-        find = self.find(item[@primary])
-        if find.present?
-          return false
-        end
-        return true
+        return self.find(item[@primary]).nil?
       end
     end
     
@@ -139,5 +124,31 @@ module RubifyLanguages
       end
     end
     
+    # Return
+    
+    def self.change_data(before, after, data)
+      if before > after
+        self.save(data)
+        return self.successful(data)
+      else
+        return self.notfound
+      end
+    end
+    
+    def self.notfound
+      return {"success"=> false, "error"=> "Data is not found!"}
+    end
+    
+    def self.primary_key
+      return {"success" => false, "error" => "Duplicate primary key"}
+    end
+    
+    def self.primary_nil
+      return {"success" => false, "error" => "Primary data is nil!"}
+    end
+    
+    def self.successful(data)
+      return {"success" => true, "#{@name}" => data}
+    end
   end
 end
