@@ -25,12 +25,12 @@ function runJSTranslateLayout() {
     $("#upload_file_form").submit();
   })
 
-  function done(_this){
+  $("#upload_file_iframe").load(function(event) {
     $(".import").html("Import");
     setTimeout(function() {
       window.location.reload();
     }, 100);
-  }
+  })
 
   var obj = $("#backup_layer");
 

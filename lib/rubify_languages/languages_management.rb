@@ -41,18 +41,12 @@ module RubifyLanguages
     def self.set_origin(id, packages)
       all = self.all
       origin_old = self.get_origin(packages)
-      if origin_old.present?
-        origin_old["is_origin"] = false
-        self.update_by_id_packages(origin_old["id"], packages, origin_old)
-      end
-      
-      origin_new = self.get_with_id_packages(id, packages)
+      self.update_origin_only(origin_old["id"], packages, false) if origin_old.present?
+      origin_new = self.get_with_id_packages(id, packages)      
       if origin_new.present?
-        origin_new["is_origin"] = true
-        self.update_by_id_packages(origin_new["id"], packages, origin_new)
+        self.update_origin_only(origin_new["id"], packages, true)
         return self.successful(all)
       end
-
       return self.notfound
     end
     
@@ -62,12 +56,20 @@ module RubifyLanguages
       return self.get_origin_part_1(packages)
     end
     
-    def self.get_with_id_packages(id, packages)
-      selects = self.all.select{|lang| (lang["id"] == id and lang["packages"] == packages)}
-      return selects.count > 0 ? selects[0] : nil
+    private
+    
+    def self.reject_with_id_packages(id, packages)
+      all_reject = self.all
+      count_before = all_reject.count
+      all_reject.reject!{|lang| (lang["id"] == id and lang["packages"] == packages)}
+      return self.change_data(count_before, all_reject.count, all_reject)
     end
     
-    private
+    def self.update_origin_only(id, packages, is_true)
+      this = self.get_with_id_packages(id, packages)
+      this["is_origin"] = is_true
+      self.save(self.all.push(this)) if self.reject_with_id_packages(id, packages)["success"]
+    end
     
     def self.get_origin_part_1(packages)
       all_of_package = self.all.select{|lang| lang["packages"] == packages}
@@ -93,6 +95,11 @@ module RubifyLanguages
           Database.redis.del(key)
         end
       end
+    end
+    
+    def self.get_with_id_packages(id, packages)
+      selects = self.all.select{|lang| (lang["id"] == id and lang["packages"] == packages)}
+      return selects.count > 0 ? selects[0] : nil
     end
     
   end
