@@ -17,26 +17,18 @@ module RubifyLanguages
     end
     
     def self.add(params)
-      add = super(params)
-      if add["success"]
-        Database.redis.set("#{@lang['packages']}#{@lang['id']}.#{params[:code]}", params[:text].to_json)
-      end
-      return add
+      sync_i18n(params)
+      return super(params)
     end
     
     def self.update(params)
-      update = super(params)
-      if update["success"]
-        Database.redis.set("#{@lang['packages']}#{@lang['id']}.#{params[:code]}", params[:text].to_json)
-      end
-      return update
+      sync_i18n(params)
+      return super(params)
     end
     
     def self.delete(code)
       delete = super(code)
-      if delete["success"]
-        Database.redis.del("#{@lang['packages']}#{@lang['id']}.#{code}")
-      end
+      Database.redis.del("#{@lang['packages']}#{@lang['id']}.#{code}") if delete["success"]
       return delete
     end
     
@@ -48,5 +40,10 @@ module RubifyLanguages
       end
     end
     
+    private
+    
+    def sync_i18n(params)
+      Database.redis.set("#{@lang['packages']}#{@lang['id']}.#{params[:code]}", params[:text].to_json) if update["success"]
+    end
   end
 end
