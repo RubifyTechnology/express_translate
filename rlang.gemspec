@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "rlang"
-  s.version = "1.0.0.0"
+  s.version = "1.0.0.0.beta"
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Karl"]
-  s.date = "2014-06-23"
+  s.date = "2014-06-26"
   s.description = "longer description of your gem"
   s.email = "karl@rubify.com"
   s.extra_rdoc_files = [
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".DS_Store",
+    ".travis.yml",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
@@ -32,7 +33,10 @@ Gem::Specification.new do |s|
     "app/assets/images/rubify_languages/.DS_Store",
     "app/assets/images/rubify_languages/add.png",
     "app/assets/images/rubify_languages/back.png",
-    "app/assets/images/rubify_languages/background.png",
+    "app/assets/images/rubify_languages/blur.svg",
+    "app/assets/images/rubify_languages/close.png",
+    "app/assets/images/rubify_languages/embed.png",
+    "app/assets/images/rubify_languages/file.png",
     "app/assets/images/rubify_languages/flags/Chad.png",
     "app/assets/images/rubify_languages/flags/ar.png",
     "app/assets/images/rubify_languages/flags/az.png",
@@ -95,8 +99,6 @@ Gem::Specification.new do |s|
     "app/assets/images/rubify_languages/jquery_ui/ui-icons_ffd27a_256x240.png",
     "app/assets/images/rubify_languages/jquery_ui/ui-icons_ffffff_256x240.png",
     "app/assets/images/rubify_languages/key-white.png",
-    "app/assets/images/rubify_languages/key.png",
-    "app/assets/images/rubify_languages/loading.gif",
     "app/assets/images/rubify_languages/login.png",
     "app/assets/images/rubify_languages/logout.png",
     "app/assets/images/rubify_languages/password.png",
@@ -110,6 +112,7 @@ Gem::Specification.new do |s|
     "app/assets/javascript/rubify_languages/bpopup.js",
     "app/assets/javascript/rubify_languages/jquery-ui-1.10.4.js",
     "app/assets/javascript/rubify_languages/login.js",
+    "app/assets/javascript/rubify_languages/translate.layout.js",
     "app/assets/javascript/rubify_languages/wSelect.js",
     "app/assets/stylesheets/.DS_Store",
     "app/assets/stylesheets/rubify_languages/.DS_Store",
@@ -127,6 +130,7 @@ Gem::Specification.new do |s|
     "app/controllers/rubify_languages/account_controller.rb",
     "app/controllers/rubify_languages/base_controller.rb",
     "app/controllers/rubify_languages/options_controller.rb",
+    "app/controllers/rubify_languages/services_controller.rb",
     "app/views/.DS_Store",
     "app/views/layouts/rubify_languages/login.html.erb",
     "app/views/layouts/rubify_languages/translate.html.erb",
