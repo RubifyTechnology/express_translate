@@ -16,15 +16,9 @@ module RubifyLanguages
     
     def self.update_by_id_packages(old_id, packages, params)
       all = self.all
-      if self.get_with_id_packages(params[:id], packages).nil?
-        if self.reject_with_id_packages(old_id, packages)["success"]
-          update = self.add(params)
-          self.check_update_data(old_id, packages, params) if update["success"]
-          return update
-        end
-        return self.notfound
-      end
-      return self.primary_key
+      return self.primary_key if self.get_with_id_packages(params[:id], packages).present?
+      return self.notfound if self.reject_with_id_packages(old_id, packages)["success"].present?
+      return self.check_update_data(old_id, packages, params, self.add(params))  
     end
     
     def self.set_origin(id, packages)
@@ -69,8 +63,8 @@ module RubifyLanguages
       return nil
     end
 
-    def self.check_update_data(old_id, packages, params)
-      if old_id != params[:id]
+    def self.check_update_data(old_id, packages, params, update)
+      if old_id != params[:id] and update["success"]
         lang_detail_old = ["lang", packages, old_id].join("_")
         lang_detail_new = ["lang", packages, params[:id]].join("_")
         Database.redis.set(lang_detail_new, Database.redis.get(lang_detail_old))
@@ -78,6 +72,7 @@ module RubifyLanguages
         keys = Database.redis.keys("#{packages}#{old_id}.*")
         self.updating_keys(keys, packages, params)
       end
+      return update
     end
     
     def self.updating_keys(keys, packages, params)
