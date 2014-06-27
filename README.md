@@ -12,31 +12,11 @@ Express Translate
   gem 'rubify_dashboard', :git => 'git@github.com:RubifyTechnology/express_translate.git'
   ```
   
-###2. Config
-  Create new file: "/config/rlang.yml" with content.
+###2. Install
+  Open terminal and run:
   
   ```bash
-  connect:
-    host: "0.0.0.0"
-    port: 6379
-    db: rubify_languages
-    # password: "password"
-    # path: "/tmp/redis.sock"
-    
-  language:
-    id: en
-    text: English
-  package:
-    id: be
-    text: Backend
-
-  account: 
-    - 
-      username: "karl_nguyen"
-      password: "********"
-    - 
-      username: "karl_nguyen_1"
-      password: "********"
+  rails g rlang:install
    ``` 
    
 ###3. Setup
@@ -51,3 +31,16 @@ Express Translate
   '''
   
 ##Using
+### Login page
+  You can see login page at:
+    http://you_domain/rlang/login
+  
+    * e.g: http://localhost:3000/rlang/login
+  
+### Packages management
+  You can see at: 
+    http://you_domain/rlang
+  
+    * e.g: http://localhost:3000/rlang
+    
+  Note: You can see before login. Account for login in config file ("/config/rlang.yml").

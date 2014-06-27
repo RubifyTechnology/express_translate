@@ -2,8 +2,6 @@ connect:
   host: "0.0.0.0"
   port: 6379
   db: rubify_languages
-  # password: "password"
-  # path: "/tmp/redis.sock"
   
 # Default
 language:
@@ -15,9 +13,9 @@ package:
   
 account: 
   - 
-    username: "karl1"
+    username: "karl_nguyen"
     password: "password"
   - 
-    username: "karl2"
+    username: "karl_nguyen_1"
     password: "password"
 
