@@ -1,6 +1,15 @@
 Express Translate
 =====
 
+
+   __                               _____                     _       _       
+  /__\_  ___ __  _ __ ___ ___ ___  /__   \_ __ __ _ _ __  ___| | __ _| |_ ___ 
+ /_\ \ \/ / '_ \| '__/ _ \ __/ __|   / /\/ '__/ _` | '_ \/ __| |/ _` | __/ _ \
+//__  >  <| |_) | | |  __\__ \__ \  / /  | | | (_| | | | \__ \ | (_| | |_  __/
+\__/ /_/\_\ .__/|_|  \___|___/___/  \/   |_|  \__,_|_| |_|___/_|\__,_|\__\___|
+          |_|                                                                 
+
+
 [![Gem Version](https://img.shields.io/gem/v/express_translate.svg)](https://rubygems.org/gems/express_translate)
 [![Code Climate](https://codeclimate.com/github/RubifyTechnology/express_translate.png)](https://codeclimate.com/github/RubifyTechnology/express_translate)
 [![Build Status](https://travis-ci.org/RubifyTechnology/express_translate.svg?branch=master)](https://travis-ci.org/RubifyTechnology/express_translate)
