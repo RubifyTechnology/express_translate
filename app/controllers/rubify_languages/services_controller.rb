@@ -10,11 +10,7 @@ class RubifyLanguages::ServicesController < RubifyLanguages::BaseController
     respond_to do |format|
       format.json do
         package = Package.find(params[:package])
-        if package.present?
-          render :json => {success: true, languages: package["language"], name: package["text"], id: package["id"]}
-        else
-          render :json => {success: false, error: "Package is not found!"}
-        end
+        render :json => package.present? ? {success: true, languages: package["language"], name: package["text"], id: package["id"]} : {success: false, error: "Package is not found!"}
       end
     end
   end
@@ -22,28 +18,31 @@ class RubifyLanguages::ServicesController < RubifyLanguages::BaseController
   def service_language
     respond_to do |format|
       format.json do
-        data = {}
+        @data = {}
         keys = Database.redis.keys("#{params[:packages]}#{params[:language]}.*")
         keys.sort!
         keys.each do |key|
-          path = key.split(".")
-          i = path.count - 1
-          items = [i]
-          items[i-1] = {"#{path[i]}"=> Database.redis.get(key)}
-          i-=1
-          while i > 0 do
-            items[i-1] = {"#{path[i]}"=> items[i]}
-            i-=1
-          end
-          extendObjects(data, items[0])
+          service_language_detail(key)
         end
-    
-        render :json => data
+        render :json => @data
       end
     end
   end
   
   private
+  
+  def service_language_detail(key)
+    path = key.split(".")
+    i = path.count - 1
+    items = [i]
+    items[i-1] = {"#{path[i]}"=> Database.redis.get(key)}
+    i-=1
+    while i > 0 do
+      items[i-1] = {"#{path[i]}"=> items[i]}
+      i-=1
+    end
+    extendObjects(@data, items[0])
+  end
   
   def extendObjects(obj1, obj2)
     if obj1.is_a?(String)
