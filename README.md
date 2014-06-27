@@ -21,14 +21,14 @@ Express Translate
    
 ###3. Setup
   Run on terminal.
-  '''bash
+  ```bash
     bundle install
-  '''
+  ```
   
   and start Redis Server
-  '''bash
+  ```bash
     redis-server
-  '''
+  ```
   
 ##Using
 ### Login page
