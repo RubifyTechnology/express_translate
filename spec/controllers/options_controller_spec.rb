@@ -1,4 +1,4 @@
-# describe RubifyLanguages::OptionsController do
+# describe ExpressTranslate::OptionsController do
 #
 #   describe "Get index" do
 #     it "returns a list of packages" do

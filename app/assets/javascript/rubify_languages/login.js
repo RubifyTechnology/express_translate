@@ -12,4 +12,4 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require rubify_languages/base
+//= require express_translate/base

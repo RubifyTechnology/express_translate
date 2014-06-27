@@ -14,8 +14,8 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
-  gem.name = "rlang"
-  gem.homepage = "https://github.com/KarlRubify/rlang"
+  gem.name = "express_translate"
+  gem.homepage = "https://github.com/RubifyTechnology/express_translate"
   gem.license = "MIT"
   gem.summary = %Q{one-line summary of your gem}
   gem.description = %Q{longer description of your gem}
@@ -46,7 +46,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "rlang #{version}"
+  rdoc.title = "express_translate #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

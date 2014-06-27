@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require rubify_languages/base
-//= require rubify_languages/bpopup
-//= require rubify_languages/jquery-ui-1.10.4
-//= require rubify_languages/wSelect
-//= require rubify_languages/translate.layout
+//= require express_translate/base
+//= require express_translate/bpopup
+//= require express_translate/jquery-ui-1.10.4
+//= require express_translate/wSelect
+//= require express_translate/translate.layout

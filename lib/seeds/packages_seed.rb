@@ -1,11 +1,11 @@
-module RubifyLanguages
+module ExpressTranslate
   class Package
-    include RubifyLanguages
+    include ExpressTranslate
     def self.seed
       if !(Package.all.present?)
         Package.add({
-          id: RubifyLanguages.config["package"]["id"],
-          text: RubifyLanguages.config["package"]["text"]
+          id: ExpressTranslate.config["package"]["id"],
+          text: ExpressTranslate.config["package"]["text"]
         })
         Package.add({
           id: 'fe',

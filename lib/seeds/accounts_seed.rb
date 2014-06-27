@@ -1,9 +1,9 @@
-module RubifyLanguages
+module ExpressTranslate
   class Account
-    include RubifyLanguages
+    include ExpressTranslate
     def self.seed
       if !(Account.all.present?)
-        RubifyLanguages.config["account"].each do |account|
+        ExpressTranslate.config["account"].each do |account|
           Account.add({
             username: account["username"],
             password: account["password"]

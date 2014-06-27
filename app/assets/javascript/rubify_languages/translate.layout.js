@@ -5,14 +5,14 @@ function runJSTranslateLayout() {
     event.preventDefault();
     $("#backup_layer").fadeIn();
     $("body").append($("<div/>").addClass("bg-lock"));
-    $("#rlang_body").addClass("blur");
+    $("#express_translate_body").addClass("blur");
   })
 
   $(".close_layer").click(function(event) {
     event.preventDefault();
     $("#backup_layer").fadeOut();
     $(".bg-lock").remove();
-    $("#rlang_body").removeClass("blur");
+    $("#express_translate_body").removeClass("blur");
   })
 
   $(".import").click(function(event) {
@@ -66,7 +66,7 @@ function runJSTranslateLayout() {
   }
   
   function sendFileToServer(formData) {
-    var uploadURL ="/rlang/import";
+    var uploadURL ="/express_translate/import";
     var extraData ={};
     var jqXHR = $.ajax({
       xhr: function() {

@@ -15,11 +15,11 @@
 */
 
 
-body#rlang.login_page {
+body#express_translate.login_page {
   background: #e6e6e6;
   font-family: Tahoma, Arial;
   
-  #rlang_body {
+  #express_translate_body {
     position:fixed;
     width:100%;
     height:100%;
@@ -86,7 +86,7 @@ body#rlang.login_page {
             border-top-right-radius:4px;
             border-bottom-right-radius:4px;
             border-left:3px solid #009EAE;
-            background: #eee url("/assets/rubify_languages/login.png") center / 26px no-repeat;
+            background: #eee url("/assets/express_translate/login.png") center / 26px no-repeat;
             &:hover,
             &:focus {
               background-color: #ddd;
@@ -97,7 +97,7 @@ body#rlang.login_page {
         #username {
           top:20px;
           left:10px;
-          background: url("/assets/rubify_languages/username.png") no-repeat scroll 2px center;
+          background: url("/assets/express_translate/username.png") no-repeat scroll 2px center;
           padding-left: 25px;
           width:175px;
           height: 25px;
@@ -106,7 +106,7 @@ body#rlang.login_page {
         #password {
           top: 65px;
           left:10px;
-          background: url("/assets/rubify_languages/password.png") no-repeat scroll 2px center;
+          background: url("/assets/express_translate/password.png") no-repeat scroll 2px center;
           padding-left: 25px;
           width:175px;
           height: 25px;

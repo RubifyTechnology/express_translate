@@ -15,6 +15,6 @@
  *= require ./wSelect
  *= require ./loading
  *= require ./buttons
- *= require ./rlang
+ *= require ./express_translate
  *= require ./styles
 */

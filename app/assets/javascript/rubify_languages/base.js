@@ -31,7 +31,7 @@ function showInfo() {
     event.preventDefault();
     setRlangCookie("token", "", -1);
     setRlangCookie("username", "", -1);
-    window.location = "/rlang";
+    window.location = "/express_translate";
   });
 }
 

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Languages | Login</title>
+    <%= stylesheet_link_tag    "express_translate/login", :media => "all" %>
+    <%= javascript_include_tag "express_translate/login" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body id="express_translate" class="login_page">
+    <div id="express_translate_body">
+      <%= yield %>
+    </div>
+    
+    <div id="notification"></div>
+  </body>
+</html>

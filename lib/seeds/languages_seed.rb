@@ -1,16 +1,16 @@
-module RubifyLanguages
+module ExpressTranslate
   class Language
-    include RubifyLanguages
+    include ExpressTranslate
     def self.seed
       if !(Language.all.present?)
         Language.add({
-          id: RubifyLanguages.config["language"]["id"],
-          text: RubifyLanguages.config["language"]["text"],
-          packages: RubifyLanguages.config["package"]["id"],
+          id: ExpressTranslate.config["language"]["id"],
+          text: ExpressTranslate.config["language"]["text"],
+          packages: ExpressTranslate.config["package"]["id"],
           is_origin: true
         })
       
-        LanguageDetail.name = "lang_#{RubifyLanguages.config["language"]["id"]}_#{RubifyLanguages.config["package"]["id"]}"
+        LanguageDetail.name = "lang_#{ExpressTranslate.config["language"]["id"]}_#{ExpressTranslate.config["package"]["id"]}"
         LanguageDetail.add({
           code: 'hello',
           text: 'Hello...'

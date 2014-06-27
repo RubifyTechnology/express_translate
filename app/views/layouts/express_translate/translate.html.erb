@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Languages</title>
+  <%= stylesheet_link_tag    "express_translate/application", :media => "all" %>
+  <%= javascript_include_tag "express_translate/application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body id="express_translate">
+  <div id="express_translate_body">
+    
+    <div class="header">
+      <span class="username_show">Rubify</span>
+      <a class="logout" href="#"></a>
+      <a class="back" href="/express_translate"></a>
+      <a class="add" href="#add"></a>
+      <a class="file" href="#"></a>
+      <h1>RLang</h1>
+    </div>
+
+    <%= yield %>
+  
+    <div class="footer">
+      <div class="note">
+        Note: ..............
+        <br>
+        Company: Rubify Technology
+      </div>
+    </div>
+  </div>
+  
+  <div id="notification"></div>
+  
+  <div id="backup_layer">
+    <a class="kick import" href="#">Import</a>
+    <a class="kick export" href="/express_translate/export.csv" target="_blank">Export</a>
+    <a href="#" class="close_layer"></a>
+
+    <form class="hidden" id="upload_file_form" target="upload_file_iframe"  action="/express_translate/import" enctype='multipart/form-data' method="post">
+      <input type="file" id="upload_file" name="file_csv"/>
+    </form>
+    
+    <iframe id="upload_file_iframe" name="upload_file_iframe" src="#" style="width:1px; height:1px; opacity:0">
+      
+    </iframe>
+  </div>
+  
+  <script> 
+    runJSTranslateLayout();
+  </script>
+</body>
+</html>

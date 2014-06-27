@@ -1,0 +1,154 @@
+<div class="content" id="content_packages">
+  <%= render "/express_translate/ajax/packages/content_index" %>
+</div>
+
+<div class="popup">
+  <form id="add_package">
+    <div class="title">Add Package</div>
+    <div class="row">
+      <label for="id">Code:</label>
+      <input type="text" id="id" required/>
+    </div>
+    
+    <div class="row">
+      <label for="text">Display:</label>
+      <input type="text" id="text" required/>
+    </div>
+        
+    <div style="clear: both"></div>
+    <input type="submit" class='btn_green' value="Save"/>
+  </form>
+</div>
+
+<script>
+  
+  $(".back").attr({href:"#"});
+  
+  var contentPackage = $("#content_packages");
+  var popup = $('.popup');
+  
+  $(".add").click(function(event) {
+    event.preventDefault();
+    var form = $("#add_package");
+    var input_id = form.find("#id");
+    var input_text = form.find("#text");
+    var title = form.find(".title");
+    title.html("Add Package");
+  
+    input_id.val("");
+    input_id.prop('disabled', false);
+    input_text.val("");
+  
+    popup.bPopup({
+      transition: 'slideDown',
+      onOpen: function () {
+        form.unbind("submit");
+        form.submit(function(event) {
+          event.preventDefault();
+          $.ajax({
+            type: "POST",
+            url: "/express_translate/ajax/package/add",
+            data: {
+              id: input_id.val(),
+              text: input_text.val()
+            },
+            success: function(data) {
+              if (typeof(data.success) == "undefined"){
+                popup.bPopup().close();
+                window.notification("Successful for save!", true);
+                contentPackage.html(data);
+                runJavascriptsIndex();
+              } else {
+                window.notification(data.error, false);
+              }
+            }
+          })  
+        });
+      }      
+    });
+    return false;
+  });
+  
+  var runJavascriptsIndex = function () {
+  
+    $(".remove").click(function(event) {
+      event.preventDefault();
+      $(".delete_dialog_" + event.currentTarget.attributes.data.value).dialog({
+        resizable: false,
+        height:140,
+        modal: true,
+        buttons: {
+          Yes: function() {
+            $(this).dialog("close");
+            $.ajax({
+              url: "/express_translate/ajax/package/delete",
+              type: "POST",
+              data: {id: event.target.attributes.data.value},
+              success: function (data){
+                if (typeof(data.success) == "undefined") {
+                  contentPackage.html(data);
+                  window.notification("Successful for delete!", true);
+                  runJavascriptsIndex();
+                } else {
+                  window.notification(data.error, false);
+                }
+              }
+            })
+          },
+          No: function() {
+            $(this).dialog("close");
+          }
+        }
+      });
+    });
+  
+    $(".setting").click(function(event) {
+      event.preventDefault();
+      var form = $("#add_package");
+      var input_id = form.find("#id");
+      var input_text = form.find("#text");
+      var title = form.find(".title");
+      title.html("Update Package");
+    
+      input_id.val(event.target.attributes.data.value);
+      input_id.prop('disabled', true);
+      input_text.val(event.target.attributes.text.value);
+    
+      popup.bPopup({
+        transition: 'slideDown',
+        onOpen: function () {
+          form.unbind("submit");
+          form.submit(function(event) {
+            event.preventDefault();
+            $.ajax({
+              type: "POST",
+              url: "/express_translate/ajax/package/update",
+              data: {
+                id: input_id.val(),
+                text: input_text.val()
+              },
+              success: function(data) {
+                if (typeof(data.success) == "undefined"){
+                  popup.bPopup().close();
+                  window.notification("Successful for update!", true);
+                  contentPackage.html(data);
+                  runJavascriptsIndex();
+                } else {
+                  window.notification(data.error, false);
+                }
+              }
+            })
+
+          });
+        }      
+      });
+    });
+    
+    $(".json").click(function(event) {
+      event.preventDefault();
+      openInNewTab(window.location.origin + "/express_translate/service/" + $(event.target).attr("data") + ".json");
+    })
+  }
+
+  runJavascriptsIndex();
+</script>
