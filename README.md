@@ -15,6 +15,7 @@ Express Translate
 [![Build Status](https://travis-ci.org/RubifyTechnology/express_translate.svg?branch=master)](https://travis-ci.org/RubifyTechnology/express_translate)
 [![Dependency Status](https://gemnasium.com/RubifyTechnology/express_translate.svg)](https://gemnasium.com/RubifyTechnology/express_translate)
 [![Coverage Status](https://coveralls.io/repos/RubifyTechnology/express_translate/badge.png)](https://coveralls.io/r/RubifyTechnology/express_translate)
+[![Inline docs](http://inch-ci.org/github/RubifyTechnology/express_translate.png?branch=master)](http://inch-ci.org/github/RubifyTechnology/express_translate)
 
 =====
 
