@@ -155,6 +155,7 @@ Gem::Specification.new do |s|
     "app/views/layouts/express_translate/translate.html.erb",
     "config/languages.yml",
     "config/routes.rb",
+    "express_translate.gemspec",
     "lib/express_translate.rb",
     "lib/express_translate/account_management.rb",
     "lib/express_translate/database_management.rb",
@@ -217,13 +218,12 @@ Gem::Specification.new do |s|
     "node_modules/redis/package.json",
     "node_modules/redis/test-unref.js",
     "node_modules/redis/test.js",
-    "rlang.gemspec",
     "spec/.rspec",
     "spec/controllers/options_controller_spec.rb",
     "spec/rails_helper.rb",
     "spec/spec_helper.rb",
     "test/helper.rb",
-    "test/test_rlang.rb"
+    "test/test_express_translate.rb"
   ]
   s.homepage = "https://github.com/RubifyTechnology/express_translate"
   s.licenses = ["MIT"]
