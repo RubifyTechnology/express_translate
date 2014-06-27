@@ -89,12 +89,16 @@ module RubifyLanguages
     def self.protect_attr_items(items)
       items_copy = []
       items.each do |item|
-        items_copy.push(self.protect_attr(item))
+        items_copy.push(self.protect_attr(item)) if item.present?
       end
       return items_copy
     end
     
     def self.protect_attr(item)
+      if item.to_json == ""
+        puts item.inspect
+        return nil
+      end
       item = JSON.parse(item.to_json)
       item_copy = {}
       item_copy[@primary] = item[@primary]
