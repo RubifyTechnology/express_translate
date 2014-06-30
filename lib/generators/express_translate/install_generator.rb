@@ -12,10 +12,6 @@ module ExpressTranslate
       template "config/express_translate.yml", "config/express_translate.yml"
     end
     
-    def reset_data
-      ExpressTranslate.reset
-    end
-    
     def seeds_data
       ExpressTranslate.seeds
     end

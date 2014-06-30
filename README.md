@@ -44,6 +44,24 @@ Express Translate
   ```bash
   redis-server
   ```
+  
+### Reset data
+  ```bash
+  rails g express_translate:reset
+  ```
+  
+### Reset Account
+  ```bash
+  rails g express_translate:reset_account
+  ```
+  Account list config in "/config/express_translate.yml"
+  You can add account:
+  ```bash
+  account: 
+    - 
+      username: "abc_name"
+      password: "abc_pass"
+  ```
 ### Login page
   You can see login page at:
     http://you_domain/express_translate/login

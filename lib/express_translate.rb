@@ -37,7 +37,6 @@ module ExpressTranslate
     if Package.all.count == 0
       Package.seed
       Language.seed
-      Account.seed
     end
   end
   
