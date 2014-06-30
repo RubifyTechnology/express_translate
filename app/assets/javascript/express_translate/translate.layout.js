@@ -28,7 +28,7 @@ function runJSTranslateLayout() {
   $("#upload_file_iframe").load(function(event) {
     $(".import").html("Import");
     setTimeout(function() {
-      window.location.reload();
+      // window.location = "/express_translate"
     }, 100);
   })
 

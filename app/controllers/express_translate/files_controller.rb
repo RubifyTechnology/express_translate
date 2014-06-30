@@ -76,9 +76,23 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
   # Import yml file
   def import_yml_file(path)
     data = YAML.load_file(path)
-    data.each do |lang|
-      # puts lang
-    end
+    # data.each do |lang|
+#       lang[1].each do |item|
+#         puts item.inspect
+#         get_data_yml_file(item)
+#       end
+#     end
+  end
+  
+  # Get item data with key and value
+  def get_data_yml_file(item)
+    puts item.inspect
+    # if item[1].is_a?(String)
+#       puts item[1]
+#     elsif item[1].is_a?(Object)
+#       get_data_yml_file(item[1])
+#       # puts item[1]
+#     end
   end
   
   # Processing
