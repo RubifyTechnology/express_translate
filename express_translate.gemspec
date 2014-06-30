@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "express_translate"
-  s.version = "1.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Karl"]
@@ -147,7 +147,6 @@ Gem::Specification.new do |s|
     "app/views/express_translate/ajax/packages/_content_index.html.erb",
     "app/views/express_translate/ajax/packages/package_update.html.erb",
     "app/views/express_translate/options/.DS_Store",
-    "app/views/express_translate/options/_language.html.erb",
     "app/views/express_translate/options/index.html.erb",
     "app/views/express_translate/options/language_detail.html.erb",
     "app/views/express_translate/options/languages.html.erb",
