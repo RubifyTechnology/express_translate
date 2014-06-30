@@ -22,7 +22,7 @@ Express Translate
 ##Installation
 ### 1. Gemfile
   ```bash
-  gem 'rubify_dashboard', :git => 'git@github.com:RubifyTechnology/express_translate.git'
+  gem 'express_translate', :git => 'git@github.com:RubifyTechnology/express_translate.git'
   ```
   
 ### 2. Install
@@ -75,3 +75,13 @@ Express Translate
     * e.g: http://localhost:3000/express_translate
     
   Note: You can see before login. Account for login in config file ("/config/express_translate.yml").
+  
+##Support
+
+### Files
+  Export and Import csv file
+
+### Application
+  Backend for Ruby on Rails
+  
+  Get data with json (for Javascript)
