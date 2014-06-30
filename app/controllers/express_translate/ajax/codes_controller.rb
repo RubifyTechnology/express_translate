@@ -1,3 +1,4 @@
+# Ajax action for Codes Controller
 class ExpressTranslate::Ajax::CodesController < ActionController::Base
   
   # Include and require Libraries

@@ -1,3 +1,4 @@
+# Ajax action for Package Controller
 class ExpressTranslate::Ajax::PackagesController < ActionController::Base
 
   # Include and require Libraries
@@ -28,8 +29,8 @@ class ExpressTranslate::Ajax::PackagesController < ActionController::Base
   
   # Load packages html content
   # The firstly: check status for action add, update, delete package
-    # render to html content for successful
-    # render to json content for error
+  # render to html content for successful
+  # render to json content for error
   def load_content_package(check)
     if check['success']
       @packages = Package.all

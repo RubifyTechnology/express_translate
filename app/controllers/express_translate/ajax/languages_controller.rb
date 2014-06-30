@@ -1,3 +1,4 @@
+# Ajax action for Languages Controller
 class ExpressTranslate::Ajax::LanguagesController < ActionController::Base
   
   # Include and require Libraries  
@@ -34,9 +35,9 @@ class ExpressTranslate::Ajax::LanguagesController < ActionController::Base
   
   # Load language html content
   # The firstly: check status for action add, update, delete and set origin language
-    # get origin language for know max count => percent complete
-    # get max number language origin
-    # render to html content
+  # get origin language for know max count => percent complete
+  # get max number language origin
+  # render to html content
   def load_content_language(params, check)
     if check['success']
       origin = Language.get_origin(params[:packages])
