@@ -1,5 +1,5 @@
 <% @languages.each do |lang| %>
-  <a class="lang origin_<%= lang['is_origin'] %>" href="/express_translate/language/<%= params[:packages] %>/<%= lang['id'] %>">
+  <a class="lang add_files origin_<%= lang['is_origin'] %>" href="/express_translate/language/<%= params[:packages] %>/<%= lang['id'] %>">
     <span><%= lang['text'].slice(0,1).capitalize + lang['text'].slice(1..-1) %></span>
     <p><%= (@LanguageDetail.info(lang).all.count.to_f / (@max == 0 ? 1 : @max) * 100).to_i %>%</p>
     <h5><%= @LanguageDetail.info(lang).all.count %>/<%= @max %></h5>

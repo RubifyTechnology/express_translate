@@ -28,6 +28,15 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
     render text: "Uploaded"
   end
   
+  def import_yml
+    filename = Rails.root.join('public', "last_import.yml")
+    File.open(filename, 'wb') do |file|
+      file.write(params[:file_yml].read)
+    end
+    import_yml_file(File.open(filename, 'r').path)
+    render text: "Uploaded"
+  end
+  
   private
   
   # Check login status when excute with files
@@ -48,7 +57,7 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
     csv_string
   end
   
-  # Import files
+  # Import csv file
   def import_csv(path)
     @before_row = []
     @last_package = {}
@@ -61,6 +70,14 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
       end
       add_row(row) if @action_add
       @before_row = row
+    end
+  end
+  
+  # Import yml file
+  def import_yml_file(path)
+    data = YAML.load_file(path)
+    data.each do |lang|
+      # puts lang
     end
   end
   

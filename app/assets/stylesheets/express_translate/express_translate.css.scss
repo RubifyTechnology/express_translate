@@ -313,6 +313,10 @@ body#express_translate {
           background: #0B61A4;
         }
         
+        &.add_files {
+          border:3px dotted #cacaca;
+        }
+        
         .remove {
           background-image: url("remove.png");
         }

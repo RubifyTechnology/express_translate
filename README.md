@@ -21,67 +21,67 @@ Express Translate
 
 ##Installation
 ### 1. Gemfile
-  ```bash
-  gem 'express_translate', :git => 'git@github.com:RubifyTechnology/express_translate.git'
-  ```
-  
-### 2. Install
-  Open terminal and run:
-  
-  ```bash
-  rails g express_translate:install
-   ``` 
-   
-### 3. Setup
-  Run on terminal.
-  ```bash
-  bundle install
-  ```
+```bash
+gem 'express_translate', '~> 1.0.0'
+```
+ 
+### 2. Setup
+Run on terminal.
+```bash
+bundle install
+```
+
+### 3. Install
+Open terminal and run:
+
+```bash
+rails g express_translate:install
+ ``` 
   
 ##Using
 ### Run
-  Start Redis Server
-  ```bash
-  redis-server
-  ```
+Start Redis Server
+```bash
+redis-server
+```
   
 ### Reset data
-  ```bash
-  rails g express_translate:reset
-  ```
+```bash
+rails g express_translate:reset
+```
   
 ### Reset Account
-  ```bash
-  rails g express_translate:reset_account
-  ```
-  Account list config in "/config/express_translate.yml"
-  You can add account:
-  ```bash
-  account: 
-    - 
-      username: "abc_name"
-      password: "abc_pass"
-  ```
+```bash
+rails g express_translate:reset_account
+```
+Account list config in "/config/express_translate.yml"
+You can add account:
+```bash
+account: 
+  - 
+    username: "abc_name"
+    password: "abc_pass"
+```
 ### Login page
-  You can see login page at:
-    http://you_domain/express_translate/login
-  
-    * e.g: http://localhost:3000/express_translate/login
+You can see login page at:
+  http://you_domain/express_translate/login
+
+  * e.g: http://localhost:3000/express_translate/login
   
 ### Packages management
-  You can see at: 
-    http://you_domain/express_translate
+You can see at: 
+  http://you_domain/express_translate
+
+  * e.g: http://localhost:3000/express_translate
   
-    * e.g: http://localhost:3000/express_translate
-    
-  Note: You can see before login. Account for login in config file ("/config/express_translate.yml").
+Note: You can see before login. Account for login in config file ("/config/express_translate.yml").
   
 ##Support
 
 ### Files
-  Export and Import csv file
+Export and Import csv file
 
 ### Application
-  Backend for Ruby on Rails
-  
-  Get data with json (for Javascript)
+Backend for Ruby on Rails
+
+Get data with json (for Javascript)

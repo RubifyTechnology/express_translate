@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
     get "/export" => "express_translate/files#export"
     post "/import" => "express_translate/files#import"
+    post "/import_yml" => "express_translate/files#import_yml"
     
     get "/login" => "express_translate/account#login"
     post "/login" => "express_translate/account#login_check"
