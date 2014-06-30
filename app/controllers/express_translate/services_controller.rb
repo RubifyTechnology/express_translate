@@ -1,11 +1,12 @@
 class ExpressTranslate::ServicesController < ExpressTranslate::BaseController
 
+  # Require and include Libraries
   require 'redis'
-  
   include ExpressTranslate
   
   # SERVICE
   
+  # Get all languages in package with json data
   def service_languages
     respond_to do |format|
       format.json do
@@ -15,6 +16,7 @@ class ExpressTranslate::ServicesController < ExpressTranslate::BaseController
     end
   end
   
+  # Get all data of language with json data
   def service_language
     respond_to do |format|
       format.json do
@@ -30,7 +32,7 @@ class ExpressTranslate::ServicesController < ExpressTranslate::BaseController
   end
   
   private
-  
+  # Convert redis database to json data
   def service_language_detail(key)
     path = key.split(".")
     i = path.count - 1
@@ -44,6 +46,7 @@ class ExpressTranslate::ServicesController < ExpressTranslate::BaseController
     extendObjects(@data, items[0])
   end
   
+  # Function for convert redis database to json data (support multi level)
   def extendObjects(obj1, obj2)
     if obj1.is_a?(String)
       if obj2.is_a?(String)

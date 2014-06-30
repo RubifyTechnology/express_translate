@@ -1,9 +1,12 @@
 class ExpressTranslate::FilesController < ExpressTranslate::BaseController
+  
+  # Require or include Libraries
   before_filter :check_login_files
   require 'redis'
   require 'json'
   require 'csv'
   
+  # Export to csv file form redis database
   def export
     respond_to do |format|
       format.csv do
@@ -14,6 +17,8 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
     end
   end
   
+  # Export form csv file to redis database
+  # Upload csv file
   def import
     filename = Rails.root.join('public', "last_import.csv")
     File.open(filename, 'wb') do |file|
@@ -25,6 +30,7 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
   
   private
   
+  # Check login status when excute with files
   def check_login_files
     redirect_to controller: "account", action: "login" if !check_authentication
   end
@@ -74,6 +80,7 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
     csv << []
   end
   
+  # Export row
   def exp_rows(csv)
     all_of_origin = LanguageDetail.info(@origin_lang).all
     all_of_origin.each_with_index do |item, index|
@@ -81,6 +88,7 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
     end
   end
   
+  # Export header row for file
   def exp_header(csv)
     header = ["No.", "Key", @origin_lang["text"]]
     @package["language"].each do |lang|
@@ -89,6 +97,7 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
     csv << header
   end
   
+  # Export data with row data
   def exp_row(csv, item, index)
     row = ["#{index+1}", item["code"], item["text"]]
     @package["language"].each do |lang|
@@ -100,6 +109,7 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
     csv << row
   end
   
+  # Add row when import file
   def add_row(row)
     if row[0].to_i > 0
       index_col = 0
@@ -110,6 +120,7 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
     end
   end
   
+  # Add details of row when import file
   def add_row_detail(row, cell_header, index_col)
     if row[index_col].present?
       lang_id = lang_text_to_id(cell_header)
@@ -117,6 +128,7 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
     end
   end
   
+  # Set header row for package
   def is_header_row(row)
     packages = Package.all.select{|pack| pack["id"] == @before_row[0]}
     if packages.count > 0
@@ -127,6 +139,7 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
     end
   end
   
+  # Clear old data in language
   def clear_lang(pack_id, row_header)
     row_header.each do |cell_header|
       lang_id = lang_text_to_id(cell_header)
@@ -134,6 +147,7 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
     end
   end
   
+  # Detect language id with text language
   def lang_text_to_id(text)
     languages = YAML.load_file("#{ExpressTranslate.root}/config/languages.yml")
     languages.each do |lang|
