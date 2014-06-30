@@ -44,7 +44,12 @@ Start Redis Server
 ```bash
 redis-server
 ```
-  
+
+### Seed
+```bash
+rails g express_translate:seed
+```
+
 ### Reset data
 ```bash
 rails g express_translate:reset
