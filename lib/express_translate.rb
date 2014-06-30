@@ -24,6 +24,7 @@ module ExpressTranslate
   @url = ""
   
   # Change language locals for I18N
+  # lang: is a code of language want to change for backend
   def language(lang)
     I18n.locale = "#{YAML.load_file(Rails.root.to_s + '/config/express_translate.yml')['package']['id']}#{lang}"
   end
