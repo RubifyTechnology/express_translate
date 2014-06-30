@@ -8,10 +8,12 @@ module ExpressTranslate
     
     include ExpressTranslate
     
+    # Copy config file for my gem
     def create_file_config
       template "config/express_translate.yml", "config/express_translate.yml"
     end
     
+    # Seed data for redis database
     def seeds_data
       ExpressTranslate.seeds
     end
