@@ -32,7 +32,13 @@ class ExpressTranslate::ServicesController < ExpressTranslate::BaseController
   end
   
   private
-  # Convert redis database to json data
+  
+  # Convert redis database to json data with key
+    # Nnew arrayfor store value level key
+      # ex: en.home.hello = "Hello"
+        # ["home" => {"hello"=> "Hello"}, {"hello"=> "Hello"}]
+    # Set data for array
+    # Support multi level keys
   def service_language_detail(key)
     path = key.split(".")
     i = path.count - 1
@@ -47,6 +53,16 @@ class ExpressTranslate::ServicesController < ExpressTranslate::BaseController
   end
   
   # Function for convert redis database to json data (support multi level)
+    # Check type of old data
+      # String: extend value
+      # Object: add attribute for object
+      # Nil: add attribute for object
+    # If type of old and new data is Object
+      # Extend new object for old object
+  # Description:
+    #obj1: old object
+    #obj2: new object
+  # Return: Object
   def extendObjects(obj1, obj2)
     if obj1.is_a?(String)
       if obj2.is_a?(String)

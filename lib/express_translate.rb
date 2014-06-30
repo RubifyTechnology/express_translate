@@ -51,9 +51,10 @@ module ExpressTranslate
   end
   
   # def initialize
-#
-#   end
+  #
+  # end
       
+  # Setup My gem
   def self.setup
     yield self        
   end
