@@ -10,10 +10,12 @@ module ExpressTranslate
     @attr = "text", "packages", "is_origin"
     @unique = "id", "packages"
     
+    # Remove package by ID package
     def self.delete_by_id_packages(id, packages)
       return self.reject_with_id_packages(id, packages)
     end
     
+    # Update package by item id and ID package
     def self.update_by_id_packages(old_id, packages, params)
       all = self.all
       return self.primary_key if self.get_with_id_packages(params[:id], packages).present?
@@ -21,6 +23,7 @@ module ExpressTranslate
       return self.check_update_data(old_id, packages, params, self.add(params))  
     end
     
+    # Set origin language id and packages id    
     def self.set_origin(id, packages)
       all = self.all
       origin_old = self.get_origin(packages)
@@ -33,6 +36,7 @@ module ExpressTranslate
       return self.notfound
     end
     
+    # Get origin language id and packages id
     def self.get_origin(packages)
       origin = self.all.select{|lang| (lang["packages"] == packages and lang["is_origin"] == true)}
       return origin[0] if origin.count > 0
@@ -41,6 +45,7 @@ module ExpressTranslate
     
     private
     
+    # Remove Language by ID and Package ID
     def self.reject_with_id_packages(id, packages)
       all_reject = self.all
       count_before = all_reject.count
@@ -48,6 +53,7 @@ module ExpressTranslate
       return self.change_data(count_before, all_reject.count, all_reject)
     end
     
+    # Update status origin for language
     def self.update_origin_only(id, packages, is_true)
       this = self.get_with_id_packages(id, packages)
       this["is_origin"] = is_true
