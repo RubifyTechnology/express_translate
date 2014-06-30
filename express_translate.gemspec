@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Karl"]
-  s.date = "2014-06-27"
+  s.date = "2014-06-30"
   s.description = "longer description of your gem"
   s.email = "karl@rubify.com"
   s.extra_rdoc_files = [
@@ -164,6 +164,7 @@ Gem::Specification.new do |s|
     "lib/express_translate/languages_management.rb",
     "lib/express_translate/package_management.rb",
     "lib/generators/express_translate/install_generator.rb",
+    "lib/generators/express_translate/reset_generator.rb",
     "lib/generators/express_translate/templates/config/express_translate.yml",
     "lib/seeds/accounts_seed.rb",
     "lib/seeds/languages_seed.rb",
