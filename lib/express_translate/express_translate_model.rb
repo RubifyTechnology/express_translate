@@ -5,14 +5,20 @@ module ExpressTranslate
   #   ......
   
   class ExpressTranslateModel
-
+    # Attributes for table
     class << self; attr_accessor :name, :primary, :has_many, :attr, :unique end
     # attr_accessor :
+    
     # Config for item
+    # List table relationship
     @has_many = []
+    # Table name
     @name = "express_translate"
+    # Primary key for table
     @primary = "id"
+    # All attributes
     @attr = ""
+    # @unique for options check when add data
     @unique = ""
     
     # get all item in table
