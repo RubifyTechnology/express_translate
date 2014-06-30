@@ -1,3 +1,4 @@
+# Class in my gem
 require 'express_translate/express_translate_model'
 require 'express_translate/database_management'
 require 'express_translate/account_management'
@@ -13,6 +14,7 @@ require 'seeds/accounts_seed'
 # Lib
 require 'redis'
 
+# Main module for my gem
 module ExpressTranslate
   
   class << self; attr_accessor :package, :language, :url end
@@ -21,6 +23,7 @@ module ExpressTranslate
   @language = ""
   @url = ""
   
+  # Change language locals for I18N
   def language(lang)
     I18n.locale = "#{YAML.load_file(Rails.root.to_s + '/config/express_translate.yml')['package']['id']}#{lang}"
   end
