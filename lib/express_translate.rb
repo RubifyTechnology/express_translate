@@ -48,11 +48,12 @@ module ExpressTranslate
   def self.clear
     Package.destroy
     Language.destroy
+    LanguageDetail.destroy
   end
   
-  def initialize
-    
-  end
+  # def initialize
+#
+#   end
       
   def self.setup
     yield self        

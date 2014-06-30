@@ -7,10 +7,6 @@ module ExpressTranslate
           id: ExpressTranslate.config["package"]["id"],
           text: ExpressTranslate.config["package"]["text"]
         })
-        Package.add({
-          id: 'fe',
-          text: 'Frontend'
-        })
       end
     end
   end

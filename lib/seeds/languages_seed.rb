@@ -10,38 +10,10 @@ module ExpressTranslate
           is_origin: true
         })
       
-        LanguageDetail.name = "lang_#{ExpressTranslate.config["language"]["id"]}_#{ExpressTranslate.config["package"]["id"]}"
+        LanguageDetail.name = "lang_#{ExpressTranslate.config["package"]["id"]}_#{ExpressTranslate.config["language"]["id"]}"
         LanguageDetail.add({
           code: 'hello',
-          text: 'Hello...'
-        })
-      
-        Language.add({
-          id: 'en',
-          text: 'English',
-          packages: 'fe',
-          is_origin: true
-        })
-      
-        Language.add({
-          id: 'vi',
-          text: 'Vietnamese',
-          packages: 'fe',
-          is_origin: false
-        })
-      
-        Language.add({
-          id: 'th',
-          text: 'Laos',
-          packages: 'fe',
-          is_origin: false
-        })
-      
-        Language.add({
-          id: 'my',
-          text: 'Singapore',
-          packages: 'fe',
-          is_origin: false
+          text: 'Hello'
         })
       end
     end

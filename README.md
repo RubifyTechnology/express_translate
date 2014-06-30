@@ -20,30 +20,30 @@ Express Translate
 =====
 
 ##Installation
-###1. Gemfile
+### 1. Gemfile
   ```bash
   gem 'rubify_dashboard', :git => 'git@github.com:RubifyTechnology/express_translate.git'
   ```
   
-###2. Install
+### 2. Install
   Open terminal and run:
   
   ```bash
   rails g express_translate:install
    ``` 
    
-###3. Setup
+### 3. Setup
   Run on terminal.
   ```bash
   bundle install
   ```
   
-  and start Redis Server
+##Using
+### Run
+  Start Redis Server
   ```bash
   redis-server
   ```
-  
-##Using
 ### Login page
   You can see login page at:
     http://you_domain/express_translate/login

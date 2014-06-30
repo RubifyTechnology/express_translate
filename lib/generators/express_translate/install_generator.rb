@@ -6,8 +6,18 @@ module ExpressTranslate
   class InstallGenerator < Rails::Generators::Base
     source_root File.expand_path("../templates", __FILE__)
     
+    include ExpressTranslate
+    
     def create_file_config
       template "config/express_translate.yml", "config/express_translate.yml"
+    end
+    
+    def reset_data
+      ExpressTranslate.reset
+    end
+    
+    def seeds_data
+      ExpressTranslate.seeds
     end
   end
 end
