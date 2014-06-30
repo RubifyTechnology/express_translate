@@ -3,7 +3,7 @@ module ExpressTranslate
   #   code: no_one
   #   text: Number one....
   
-  class LanguageDetail < RLangModel
+  class LanguageDetail < ExpressTranslateModel
     @name = "lang_package_id"
     @primary = "code"
     @attr = "text"

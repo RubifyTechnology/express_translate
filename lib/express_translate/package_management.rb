@@ -3,7 +3,7 @@ module ExpressTranslate
   #   id: be
   #   text: Backend
   
-  class Package < RLangModel
+  class Package < ExpressTranslateModel
     @name = "packages"
     @primary = "id"
     @attr = "text"

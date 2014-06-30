@@ -4,7 +4,7 @@ module ExpressTranslate
   #   password: 
   require "base64"
   
-  class Account < RLangModel
+  class Account < ExpressTranslateModel
     @name = "account"
     @primary = "username"
     @attr = "password", "token"

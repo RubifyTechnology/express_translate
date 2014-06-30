@@ -4,7 +4,7 @@ module ExpressTranslate
   #   text: English
   #   packages: be
   
-  class Language < RLangModel
+  class Language < ExpressTranslateModel
     @name = "languages"
     @primary = "id"
     @attr = "text", "packages", "is_origin"

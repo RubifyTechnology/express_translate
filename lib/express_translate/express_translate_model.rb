@@ -4,16 +4,18 @@ module ExpressTranslate
   #   ......
   #   ......
   
-  class RLangModel
+  class ExpressTranslateModel
 
     class << self; attr_accessor :name, :primary, :has_many, :attr, :unique end
     # attr_accessor :
+    # Config for item
     @has_many = []
     @name = "express_translate"
     @primary = "id"
     @attr = ""
     @unique = ""
     
+    # get all item in table
     def self.all
       data = Database.get(@name)
       data = data.nil? ? [] : (data.is_a?(Array) ? data : [].push(data))
@@ -22,14 +24,21 @@ module ExpressTranslate
       data
     end
     
+    # Save obj to redis database
+    # Synchronize data to redis database
     def self.save(obj)
       Database.set(@name, self.protect_attr_items(obj))
     end
     
+    # Clear all data of table
     def self.destroy
       Database.del(@name)
     end
     
+    # Add item with params
+    # Check primary key for present
+    # Check unique data
+    # Return messages
     def self.add(params)
       if JSON.parse(params.to_json)[@primary] == ""
         return self.primary_nil
@@ -43,13 +52,19 @@ module ExpressTranslate
       end
     end
     
+    # Delete item by id
+    # Remove item with primary key
     def self.delete(id)
       all = self.all
       count_before = all.count
       all.reject!{|package| package[@primary] == id}
       return self.change_data(count_before, all.count, all)
     end
-    
+
+    # Update item by params
+    # Remove old item
+    # Add new item with exsits data
+    # Return json data for status
     def self.update(params)
       all = self.all
       count_before = all.count
@@ -59,6 +74,9 @@ module ExpressTranslate
       return self.change_data(count_before, count_after, all)
     end
     
+    # Find item by code
+    # Select item with primary key
+    # return limit items selected
     def self.find(code)
       data = self.all
       search = data.select{|package| package[@primary] == code}
@@ -72,6 +90,7 @@ module ExpressTranslate
     
     private
     
+    # Check duplicate primary key or list unique
     def self.check_unique_allow_add(item)
       if @unique.present?
         @unique = @unique.is_a?(Array) ? @unique : [@unique]
@@ -86,6 +105,7 @@ module ExpressTranslate
       end
     end
     
+    # Check attributes for allow store for list items
     def self.protect_attr_items(items)
       items_copy = []
       items.each do |item|
@@ -94,6 +114,7 @@ module ExpressTranslate
       return items_copy
     end
     
+    # Check attributes for allow store only one item
     def self.protect_attr(item)
       if item.to_json == ""
         puts item.inspect
@@ -111,12 +132,14 @@ module ExpressTranslate
       return item_copy
     end
     
+    # Add relationship for model for item list
     def self.add_has_many(items)
       items.each do |item|
         self.add_has_many_item(item)
       end
     end
     
+    # Add relationship for model only one item
     def self.add_has_many_item(item)
       if @has_many.present?
         @has_many = @has_many.is_a?(Array) ? @has_many : [@has_many]
@@ -128,8 +151,9 @@ module ExpressTranslate
       end
     end
     
-    # Return
+    # Return messages
     
+    # Messages for change data
     def self.change_data(before, after, data)
       if before > after
         self.save(data)
@@ -138,19 +162,23 @@ module ExpressTranslate
         return self.notfound
       end
     end
-    
+
+    # Messages for not found data
     def self.notfound
       return {"success"=> false, "error"=> "Data is not found!"}
     end
     
+    # Messages for duplicate primary key
     def self.primary_key
       return {"success" => false, "error" => "Duplicate primary key"}
     end
     
+    # Messages for primary key is nil
     def self.primary_nil
       return {"success" => false, "error" => "Primary data is nil!"}
     end
     
+    # Messages for successful
     def self.successful(data)
       return {"success" => true, "#{@name}" => data}
     end
