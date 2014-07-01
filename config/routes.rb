@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   scope "express_translate" do  
-    match "/" => "express_translate/options#index"
-    match "/package/:packages" => "express_translate/options#languages"
-    match "/language/:package/:id" => "express_translate/options#language_detail" 
+    get "/" => "express_translate/options#index"
+    get "/package/:packages" => "express_translate/options#languages"
+    get "/language/:package/:id" => "express_translate/options#language_detail" 
 
     get "/export" => "express_translate/files#export"
     post "/import" => "express_translate/files#import"

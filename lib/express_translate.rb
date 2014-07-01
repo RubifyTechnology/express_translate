@@ -13,6 +13,7 @@ require 'seeds/accounts_seed'
 
 # Lib
 require 'redis'
+require 'rails'
 
 # Main module for my gem
 module ExpressTranslate
@@ -24,7 +25,7 @@ module ExpressTranslate
   @url = ""
   
   # Change language locals for I18N
-  # lang: is a code of language want to change for backend
+  # @lang: is a code of language want to change for backend
   def language(lang)
     I18n.locale = "#{YAML.load_file(Rails.root.to_s + '/config/express_translate.yml')['package']['id']}#{lang}"
   end
@@ -34,7 +35,9 @@ module ExpressTranslate
   end
   
   def self.config
-    YAML.load_file(Rails.root.to_s + "/config/express_translate.yml")
+    file_name = Rails.root.to_s + "/config/express_translate.yml"
+    file_name = File.exist?(file_name) ? file_name : self.root + "/lib/generators/express_translate/templates/config/express_translate.yml"
+    return YAML.load_file(file_name)
   end
   
   def self.seeds
@@ -66,16 +69,7 @@ module ExpressTranslate
   class Engine < Rails::Engine
     TRANSLATION_STORE = Redis.new
     I18n.backend = I18n::Backend::Chain.new(I18n::Backend::KeyValue.new(TRANSLATION_STORE), I18n.backend)
+    I18n.enforce_available_locales = false
     I18n.locale = "been"
-    
-    config.generators do |g|
-      g.test_framework :rspec, fixture: true
-      g.fixture_replacement :factory_girl, dir: 'spec/factories'
-      g.view_specs false
-      g.helper_specs false
-      g.stylesheets = false
-      g.javascripts = false
-      g.helper = false
-    end
   end
 end
