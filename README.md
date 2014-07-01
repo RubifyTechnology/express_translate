@@ -97,4 +97,4 @@ Note: You can see before login. Account for login in config file ("/config/expre
 
 ### Application
 Backend for Ruby on Rails
-Get data with json (for Javascript) => Development
+<!-- Get data with json (for Javascript) => Development -->
