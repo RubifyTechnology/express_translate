@@ -28,6 +28,10 @@ gem 'express_translate', '~> 1.0.3'
 ### 2. Setup
 Run on terminal.
 ```bash
+gem install express_translate
+```
+
+```bash
 bundle install
 ```
 
