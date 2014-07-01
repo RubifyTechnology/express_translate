@@ -147,7 +147,74 @@
     $(".json").click(function(event) {
       event.preventDefault();
       openInNewTab(window.location.origin + "/express_translate/service/" + $(event.target).attr("data") + ".json");
-    })
+    });
+    
+    var obj = $(".package");
+
+    obj.on('dragenter', function (e){
+      e.stopPropagation();
+      e.preventDefault();
+      $(this).removeClass("add_files");
+    });
+
+    obj.on('dragover', function (e){
+       e.stopPropagation();
+       e.preventDefault();
+       $(this).addClass("add_files");
+    });
+
+    obj.on('drop', function (e){
+       $(this).removeClass("add_files");
+       e.preventDefault();
+       var files = e.originalEvent.dataTransfer.files;
+       handleFileUpload(files, obj);
+    }); 
+  
+    obj.on('dragleave', function (e) {
+      $(this).removeClass("add_files");
+    });  
+  
+    function handleFileUpload(files, obj) {
+      obj.addClass("wait");
+      for (var i = 0; i < files.length; i++) {
+        var fd = new FormData();
+        fd.append("pack", obj.attr("data"));
+        fd.append('file_yml', files[i]);
+        sendFileToServer(fd, obj);
+      }
+    }
+  
+    function sendFileToServer(formData, obj) {
+      var uploadURL ="/express_translate/import_yml";
+      var jqXHR = $.ajax({
+        xhr: function() {
+          var xhrobj = $.ajaxSettings.xhr();
+          if (xhrobj.upload) {
+            xhrobj.upload.addEventListener('progress', function(event) {
+              var percent = 0;
+              var position = event.loaded || event.position;
+              var total = event.total;
+              if (event.lengthComputable) {
+                percent = Math.ceil(position / total * 100);
+                console.log(percent)
+              }
+            }, false);
+          }
+          return xhrobj;
+        },
+        url: uploadURL,
+        type: "POST",
+        contentType:false,
+        processData: false,
+        cache: false,
+        data: formData,
+        success: function(data){
+          console.log(data)
+          // Uploaded
+          obj.removeClass("wait");
+        }
+      });
+    }
   }
 
   runJavascriptsIndex();

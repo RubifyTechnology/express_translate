@@ -1,5 +1,5 @@
 <% @packages.each do |package| %>
-  <a class="lang package <%= package['language'].count > 1 ? "multi" : "" %>" href="/express_translate/package/<%= package['id'] %>">
+  <a data="<%= package['id'] %>" class="lang package <%= package['language'].count > 1 ? "multi" : "" %>" href="/express_translate/package/<%= package['id'] %>">
     <span><%= package['text'].slice(0,1).capitalize + package['text'].slice(1..-1) %></span>
     <p><%= package['language'].count %></p>
     <div class="list_review">
@@ -11,6 +11,14 @@
       <div class="tool remove" data="<%= package['id'] %>"></div>
       <div class="tool setting" data="<%= package['id'] %>" text="<%= package['text'] %>"></div>
       <div class="tool json" data="<%= package['id'] %>"></div>
+    </div>
+    
+    <div class="waiting">
+      <div class="bubblingG">
+        <p id="bubblingG_1"></p>
+        <p id="bubblingG_2"></p>
+        <p id="bubblingG_3"></p>
+      </div>
     </div>
   </a>
   <div class="delete_dialog_<%= package['id'] %>" style="display: none">

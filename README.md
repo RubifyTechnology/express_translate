@@ -22,7 +22,7 @@ Express Translate
 ##Installation
 ### 1. Gemfile
 ```bash
-gem 'express_translate', '~> 1.0.2'
+gem 'express_translate', '~> 1.0.3'
 ```
  
 ### 2. Setup
@@ -84,9 +84,12 @@ Note: You can see before login. Account for login in config file ("/config/expre
 ##Support
 
 ### Files
-Export and Import csv file
+#### Import
+* CSV file
+* YML file
+#### Export
+* CSV file
 
 ### Application
 Backend for Ruby on Rails
-
-Get data with json (for Javascript)
+Get data with json (for Javascript) => Development

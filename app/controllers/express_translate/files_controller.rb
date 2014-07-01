@@ -33,7 +33,9 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
     File.open(filename, 'wb') do |file|
       file.write(params[:file_yml].read)
     end
-    import_yml_file(File.open(filename, 'r').path)
+    @list_data = []
+    lang_id = import_yml_file(File.open(filename, 'r').path)
+    add_data_form_list(params["pack"], lang_id)
     render text: "Uploaded"
   end
   
@@ -76,23 +78,31 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
   # Import yml file
   def import_yml_file(path)
     data = YAML.load_file(path)
-    # data.each do |lang|
-#       lang[1].each do |item|
-#         puts item.inspect
-#         get_data_yml_file(item)
-#       end
-#     end
+    data.each do |lang|
+      @list_data = to_shallow_hash(lang[1])
+      return lang[0]
+    end
   end
   
-  # Get item data with key and value
-  def get_data_yml_file(item)
-    puts item.inspect
-    # if item[1].is_a?(String)
-#       puts item[1]
-#     elsif item[1].is_a?(Object)
-#       get_data_yml_file(item[1])
-#       # puts item[1]
-#     end
+  def add_data_form_list(pack, lang)
+    language_detail = LanguageDetail.info({"id"=> lang, "packages"=> pack})
+    language_detail.destroy
+    @list_data.each do |item|
+      language_detail.add({code: item[0], text: item[1]})
+    end
+  end
+  
+  def to_shallow_hash(hash)
+    hash.inject({}) do |shallow_hash, (key, value)|
+      if value.is_a?(Hash)
+        to_shallow_hash(value).each do |sub_key, sub_value|
+          shallow_hash[[key, sub_key].join(".")] = sub_value
+        end
+      else
+        shallow_hash[key.to_s] = value
+      end
+      shallow_hash
+    end
   end
   
   # Processing
