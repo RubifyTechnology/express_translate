@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'factory_girl'
-require 'express_translate'
+# require 'express_translate'
 
 require 'action_pack'
 require 'action_controller'
