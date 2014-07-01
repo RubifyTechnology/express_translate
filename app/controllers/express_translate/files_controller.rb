@@ -20,26 +20,27 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
   # Export form csv file to redis database
   # Upload csv file
   def import
-    filename = Rails.root.join('public', "last_import.csv")
-    File.open(filename, 'wb') do |file|
-      file.write(params[:file_csv].read)
-    end
-    import_csv(File.open(filename, 'r').path)
+    import_csv(get_path(params[:file_csv], "last_import.csv"))
     render text: "Uploaded"
   end
   
   def import_yml
-    filename = Rails.root.join('public', "last_import.yml")
-    File.open(filename, 'wb') do |file|
-      file.write(params[:file_yml].read)
-    end
     @list_data = []
-    lang_id = import_yml_file(File.open(filename, 'r').path)
+    lang_id = import_yml_file(get_path(params[:file_yml], "last_import.yml"))
     add_data_form_list(params["pack"], lang_id)
     render text: "Uploaded"
   end
   
   private
+  
+  # get Path file from Params
+  def get_path(file, name)
+    filename = Rails.root.join('public', name)
+    File.open(filename, 'wb') do |file|
+      file.write(file.read)
+    end
+    return File.open(filename, 'r').path
+  end
   
   # Check login status when excute with files
   def check_login_files
