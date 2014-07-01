@@ -23,5 +23,5 @@ include ExpressTranslate
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
-  Rails.env = "test"
+  # Rails.env = "test"
 end
