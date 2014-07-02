@@ -1,6 +1,13 @@
-<div class="content" id="content_code">
-  
+<div class="content" id="content_code" style='background-color:rgba(0,0,0,0.8)'>
+  <div class="waiting">
+    <div class="bubblingG">
+      <p id="bubblingG_1"></p>
+      <p id="bubblingG_2"></p>
+      <p id="bubblingG_3"></p>
+    </div>
+  </div>
 </div>
+
 <div class="popup">
   <form id="add_code">
     <div class="title">Add Code</div>
@@ -195,6 +202,7 @@
         if (data.success) {
           var template = Handlebars.compile($("#code_item").html());
           contentCode.html(template(data));
+          contentCode.css("background-color", "");
           runJavascriptsCode();
         }
       }

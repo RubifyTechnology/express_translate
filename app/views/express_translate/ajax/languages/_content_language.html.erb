@@ -1,8 +1,13 @@
 <% @languages.each do |lang| %>
   <a class="lang origin_<%= lang['is_origin'] %>" href="/express_translate/language/<%= params[:packages] %>/<%= lang['id'] %>" style="background-image: url('/assets/express_translate/flags/<%= lang['id'] %>.png')">
     <span><%= lang['text'].slice(0,1).capitalize + lang['text'].slice(1..-1) %></span>
-    <p><%= (@LanguageDetail.info(lang).all.count.to_f / (@max == 0 ? 1 : @max) * 100).to_i %>%</p>
-    <h5><%= @LanguageDetail.info(lang).all.count %>/<%= @max %></h5>
+    <% @lang_keys = [] %>
+    <% @LanguageDetail.info(lang).all.each do |item| %>
+    <%   @lang_keys.push(item["code"]) %>
+    <% end %>
+    <% count = (@lang_keys & @origin_keys).count %>
+    <p><%= (count.to_f / (@max == 0 ? 1 : @max) * 100).to_i %>%</p>
+    <h5><%= count %>/<%= @max %></h5>
     <h4><%= lang['id'] %></h4>
     <div class="tools">
       <div class="tool remove" data="<%= lang['id'] %>"></div>

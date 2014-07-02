@@ -22,7 +22,7 @@ Express Translate
 ##Installation
 ### 1. Gemfile
 ```bash
-gem 'express_translate', '~> 1.0.6'
+gem 'express_translate', '~> 1.0.7'
 ```
  
 ### 2. Setup
@@ -51,7 +51,7 @@ redis-server
 
 ### Modify accounts
 
-Account list config in "/config/express_translate.yml"
+Account list config in "/config/express_translate.yml".
 You can add account:
 ```bash
 account: 

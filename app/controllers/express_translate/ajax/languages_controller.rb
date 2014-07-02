@@ -40,10 +40,16 @@ class ExpressTranslate::Ajax::LanguagesController < ActionController::Base
   # render to html content
   def load_content_language(params, check)
     if check['success'] == true
-      origin = Language.get_origin(params[:packages])
+      @selects = YAML.load_file("#{ExpressTranslate.root}/config/languages.yml")
+      @origin = Language.get_origin(params[:packages])
+      @origin_keys = []
+      LanguageDetail.info(@origin).all.each do |item|
+        @origin_keys.push(item["code"])
+      end
       @languages = Package.find(params[:packages])['language']
-      @max = origin.nil? ? 1 : LanguageDetail.info(origin).all.count
+      @max = @origin.nil? ? 1 : LanguageDetail.info(@origin).all.count
       @LanguageDetail = LanguageDetail
+      @Package = Package
       render :action => :language_update
       return
     end

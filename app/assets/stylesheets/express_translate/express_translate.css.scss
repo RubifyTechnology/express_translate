@@ -642,6 +642,11 @@ body#express_translate {
           -webkit-box-sizing:border-box;
         }
       }
+      
+      & > .waiting {
+        position:relative;
+        top: 40px;
+      }
     }
     
     .footer {

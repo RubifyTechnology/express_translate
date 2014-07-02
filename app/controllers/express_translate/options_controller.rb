@@ -22,9 +22,13 @@ class ExpressTranslate::OptionsController < ExpressTranslate::BaseController
   # Get max count of percent translate
   def languages
     @selects = YAML.load_file("#{ExpressTranslate.root}/config/languages.yml")
-    origin = Language.get_origin(params[:packages])
+    @origin = Language.get_origin(params[:packages])
+    @origin_keys = []
+    LanguageDetail.info(@origin).all.each do |item|
+      @origin_keys.push(item["code"])
+    end
     @languages = Package.find(params[:packages])['language']
-    @max = origin.nil? ? 1 : LanguageDetail.info(origin).all.count
+    @max = @origin.nil? ? 1 : LanguageDetail.info(@origin).all.count
     @LanguageDetail = LanguageDetail
     @Package = Package
     render :action => :languages, layout: 'express_translate/translate'
