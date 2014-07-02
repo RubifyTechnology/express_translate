@@ -63,7 +63,7 @@ module ExpressTranslate
     def self.get_origin_part_1(packages)
       all_of_package = self.all.select{|lang| lang["packages"] == packages}
       if (all_of_package.count > 0)
-        self.set_origin(all_of_package[0]["id"], packages)
+        self.update_origin_only(all_of_package[0]["id"], packages, true)
         return all_of_package[0]
       end
       return nil

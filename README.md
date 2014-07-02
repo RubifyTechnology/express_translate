@@ -22,7 +22,7 @@ Express Translate
 ##Installation
 ### 1. Gemfile
 ```bash
-gem 'express_translate', '~> 1.0.4'
+gem 'express_translate', '~> 1.0.5'
 ```
  
 ### 2. Setup

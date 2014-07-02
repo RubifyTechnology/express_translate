@@ -39,7 +39,7 @@ class ExpressTranslate::Ajax::LanguagesController < ActionController::Base
   # get max number language origin
   # render to html content
   def load_content_language(params, check)
-    if check['success']
+    if check['success'] == true
       origin = Language.get_origin(params[:packages])
       @languages = Package.find(params[:packages])['language']
       @max = origin.nil? ? 1 : LanguageDetail.info(origin).all.count
