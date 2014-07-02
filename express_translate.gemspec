@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "express_translate"
-  s.version = "1.0.3"
+  s.version = "1.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Karl"]
-  s.date = "2014-07-01"
+  s.date = "2014-07-02"
   s.description = "longer description of your gem"
   s.email = "karl@rubify.com"
   s.extra_rdoc_files = [
@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
-    ".DS_Store",
     ".rspec",
     ".travis.yml",
     ".watchr",
@@ -113,7 +112,6 @@ Gem::Specification.new do |s|
     "app/assets/javascript/express_translate/base.js",
     "app/assets/javascript/express_translate/bpopup.js",
     "app/assets/javascript/express_translate/jquery-ui-1.10.4.js",
-    "app/assets/javascript/express_translate/login.js",
     "app/assets/javascript/express_translate/translate.layout.js",
     "app/assets/javascript/express_translate/wSelect.js",
     "app/assets/stylesheets/.DS_Store",
@@ -221,8 +219,13 @@ Gem::Specification.new do |s|
     "node_modules/redis/test-unref.js",
     "node_modules/redis/test.js",
     "spec/.rspec",
+    "spec/controllers/account_controller_spec.rb",
+    "spec/controllers/ajax/codes_controller_spec.rb",
+    "spec/controllers/ajax/languages_controller_spec.rb",
+    "spec/controllers/ajax/packages_controller_spec.rb",
+    "spec/controllers/files_controller_spec.rb",
     "spec/controllers/options_controller_spec.rb",
-    "spec/rails_helper.rb",
+    "spec/controllers/services_controller_spec.rb",
     "spec/spec_helper.rb",
     "test/helper.rb",
     "test/test_express_translate.rb"
@@ -239,6 +242,9 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<redis>, ["~> 3.1.0"])
       s.add_runtime_dependency(%q<hiredis>, [">= 0"])
+      s.add_runtime_dependency(%q<actionpack>, [">= 3.2.0"])
+      s.add_runtime_dependency(%q<rspec>, [">= 0"])
+      s.add_runtime_dependency(%q<factory_girl>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0"])
@@ -247,6 +253,9 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<redis>, ["~> 3.1.0"])
       s.add_dependency(%q<hiredis>, [">= 0"])
+      s.add_dependency(%q<actionpack>, [">= 3.2.0"])
+      s.add_dependency(%q<rspec>, [">= 0"])
+      s.add_dependency(%q<factory_girl>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_dependency(%q<bundler>, ["~> 1.0"])
@@ -256,6 +265,9 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<redis>, ["~> 3.1.0"])
     s.add_dependency(%q<hiredis>, [">= 0"])
+    s.add_dependency(%q<actionpack>, [">= 3.2.0"])
+    s.add_dependency(%q<rspec>, [">= 0"])
+    s.add_dependency(%q<factory_girl>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<rdoc>, ["~> 3.12"])
     s.add_dependency(%q<bundler>, ["~> 1.0"])
