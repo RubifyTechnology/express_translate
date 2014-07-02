@@ -31,6 +31,12 @@ class ExpressTranslate::AccountController < ExpressTranslate::BaseController
     string = (0...50).map { o[rand(o.length)] }.join
   end
   
+  # Reset account with url
+  def reset
+    Account.reset
+    redirect_to action: "login"
+  end
+  
   # Check login status function
   # If logined auto change location for Client
   def check_login

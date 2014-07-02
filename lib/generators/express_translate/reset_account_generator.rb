@@ -5,8 +5,7 @@ module ExpressTranslate
     # Reset all account
     # Synchronize account with config file 
     def reset_data
-      Database.redis.del("account")
-      Account.seed
+      Account.reset
       puts "Reset account is successful!"
     end
   end

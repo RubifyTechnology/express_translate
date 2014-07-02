@@ -11,7 +11,11 @@ Rails.application.routes.draw do
     get "/login" => "express_translate/account#login"
     post "/login" => "express_translate/account#login_check"
     
+    # TOOLS
+    get "/reset/account" => "express_translate/account#reset"
+    
     # CODE
+    post "/ajax/code/load" => 'express_translate/ajax/codes#code_load'
     post "/ajax/code/add" => 'express_translate/ajax/codes#code_add'
     post "/ajax/code/update" => 'express_translate/ajax/codes#code_update'
     post "/ajax/code/delete" => 'express_translate/ajax/codes#code_delete'

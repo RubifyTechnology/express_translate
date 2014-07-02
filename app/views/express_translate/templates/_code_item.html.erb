@@ -1,0 +1,49 @@
+<script id="code_item" type="text/x-handlebars-template">
+  {{#each data}}
+    <div class="item_box" data="{{item_code}}">
+      <h6 class="index">{{index}}</h6>
+      <h6 class="code">{{item_code}}</h6>
+  
+      <div class='edit'>
+        <a class='btn' href="/express_translate/ajax/code/update" data="{{item_code}}" type="update_code" data_show="content_code">Save</a>
+        <a class='btn btn_cancel' href="#">Cancel</a>
+        <div class="col1 btn_cancel">
+          <h2><b>Origin:</b></h2>
+          <span>{{item_text}}</span>
+        </div>
+        <div class="col1">
+          <h2><b>Translate:</b></h2>
+          <textarea class="new_value" href="/express_translate/ajax/code/update" data="{{item_code}}">{{code_text}}</textarea>
+        </div>
+      </div>
+
+      <div class="show {{origin_list}}">
+        <a class='btn btn_edit' href="#">Edit</a>
+        {{#unless origin_lang}}
+          <a class='btn btn_delete' href="/express_translate/ajax/code/delete" data="{{item_code}}" type="delete_code" data_show="content_code">Delete</a>
+          <div class="col1">
+            <h2><b>Origin:</b></h2>
+            <span class="origin_span">{{item_text}}</span>
+            <hr>
+          </div>
+        {{/unless}}
+        <div class="col1 btn_edit">
+          <h2><b>Translate:</b></h2>
+          <span class="trans_span">{{code_text}}</span>
+        </div>
+      </div>
+  
+      <div class="waiting">
+        <div class="bubblingG">
+          <p id="bubblingG_1"></p>
+          <p id="bubblingG_2"></p>
+          <p id="bubblingG_3"></p>
+        </div>
+      </div>
+  
+      <div class="delete_dialog_{{item_code}}" style="display: none">
+        <h4>Are you sure you want to delete?</br>{{item_text}}</h4>
+      </div>
+    </div>
+  {{/each}}
+</script>

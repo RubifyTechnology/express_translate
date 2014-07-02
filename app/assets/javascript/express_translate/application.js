@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require express_translate/base
+//= require express_translate/handlebars-v1.3.0
 //= require express_translate/bpopup
 //= require express_translate/jquery-ui-1.10.4
 //= require express_translate/wSelect

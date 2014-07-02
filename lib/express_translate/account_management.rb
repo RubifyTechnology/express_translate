@@ -27,5 +27,10 @@ module ExpressTranslate
       encode = encode.split("=").join()
       encode = encode.split("\n").join()
     end
+    
+    def self.reset
+      Database.redis.del("account")
+      self.seed
+    end
   end
 end

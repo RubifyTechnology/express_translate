@@ -98,7 +98,7 @@ body#express_translate {
         float: left;
         width: 130px;
         height: 130px;
-        background: #3e94d1;
+        background-color: #3e94d1;
         border-radius: 80px;
         border:3px solid #fff;
         box-shadow:0px 0px 2px #888;
@@ -108,10 +108,15 @@ body#express_translate {
         transition:all 0.5s;
         -webkit-transition:all 0.5s;
         -moz-transition:all 0.5s;
+        background-repeat:no-repeat;
+        background-position:center 13%;
+        background-size:25%;
         
         &:hover {
           box-shadow:0px 0px 3px #665;
-          background: #398ac4;
+          background-color: #398ac4;
+          background-position:center 8%;
+          background-size:35%;
           & > p {display:none;}
           h5 {display:block;}
           h4 {display:block;}          
@@ -310,7 +315,7 @@ body#express_translate {
         }
         
         &.origin_true {
-          background: #0B61A4;
+          background-color: #0B61A4;
         }
         
         &.add_files {

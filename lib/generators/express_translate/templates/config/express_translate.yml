@@ -13,9 +13,9 @@ package:
   
 account: 
   - 
-    username: "karl_nguyen"
+    username: "username"
     password: "password"
   - 
-    username: "karl_nguyen_1"
+    username: "express_translate"
     password: "password"
 

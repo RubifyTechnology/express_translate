@@ -7,6 +7,11 @@ class ExpressTranslate::Ajax::CodesController < ActionController::Base
   require 'csv'
   include ExpressTranslate
   
+  # Load all codes
+  def code_load
+    load_content_code(params)
+  end
+  
   # Add code
   # The first: selector LanguageDetail want to add with Language ID and Package ID
   # After: add code for LanguageDetail selected
@@ -28,7 +33,6 @@ class ExpressTranslate::Ajax::CodesController < ActionController::Base
     load_content_code(params)
   end
   
-  
   # Delete code
   # The first: selector LanguageDetail want to add with Language ID and Package ID
   # Next step: find and remove code data
@@ -46,8 +50,20 @@ class ExpressTranslate::Ajax::CodesController < ActionController::Base
   # The second: selector Language want to show
   def load_content_code(params)
     @origin_lang = Language.get_origin(params[:pack])
-    @LanguageDetail = LanguageDetail
     @lang = {'id'=> params[:lang], 'packages'=> params[:pack]}
-    render :action => :code_update
+    data = []
+    LanguageDetail.info(@origin_lang).all.each_with_index do |item, index|
+      is_origin = @origin_lang["id"] == @lang["id"]
+      code = LanguageDetail.info(@lang).find(item['code']) if !is_origin
+      data.push({
+        index: index + 1,
+        item_code: item["code"],
+        item_text: item["text"],
+        code_text: is_origin ? item["text"] : (code.present? ? code["text"] : ""),
+        origin_lang: is_origin,
+        origin_list: is_origin ? "origin_list" : ""
+      })
+    end
+    render json: {success: true, data: data}
   end
 end

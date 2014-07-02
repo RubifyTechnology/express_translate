@@ -1,7 +1,6 @@
 <div class="content" id="content_code">
-  <%= render "/express_translate/ajax/codes/content_code" %>
+  
 </div>
-
 <div class="popup">
   <form id="add_code">
     <div class="title">Add Code</div>
@@ -17,6 +16,8 @@
     <input type="submit" class='btn_green' value="Save"/>
   </form>
 </div>
+
+<%= render "/express_translate/templates/code_item" %>
 
 <script>
 
@@ -48,14 +49,15 @@
           text: edit.find(".new_value").val()
         },
         success: function(data) {
-          setTimeout(function() {
+          if (data.success) {
+            var template = Handlebars.compile($("#code_item").html());
+            var html = template(data);
             item.removeClass("wait");
             item.removeClass("update");
             window.notification("Successful for update!", true);
-            contentCode.html(data);
+            contentCode.html(html);
             runJavascriptsCode();
-          }, 500);
-        
+          }
         }
       })
     }
@@ -71,10 +73,12 @@
           text: form.find("#text").val()
         },
         success: function(data) {
-          if (typeof(data.success) == "undefined"){
+          if (data.success) {
+            var template = Handlebars.compile($("#code_item").html());
+            var html = template(data);
             popup.bPopup().close();
             window.notification("Successful for save!", true);
-            contentCode.html(data);
+            contentCode.html(html);
             runJavascriptsCode();
           } else {
             window.notification(data.error, false);
@@ -142,12 +146,17 @@
                 pack: "<%= params[:package] %>"
               },
               success: function(data) {
-                setTimeout(function() {
-                  item.removeClass("wait");
+                item.removeClass("wait");
+                if (data.success) {
+                  var template = Handlebars.compile($("#code_item").html());
+                  var html = template(data);
+                  popup.bPopup().close();
                   window.notification("Successful for delete!", true);
-                  $("#"+$(event.target).attr("data_show")).html(data);
+                  contentCode.html(html);
                   runJavascriptsCode();
-                }, 500); 
+                } else {
+                  window.notification(data.error, false);
+                }
               }
             })
           },
@@ -174,6 +183,24 @@
     })
   }
   
-  runJavascriptsCode();
+  var load_index = function(args) {
+    $.ajax({
+      type: "POST",
+      url: "/express_translate/ajax/code/load",
+      data: {
+        lang: "<%= params[:id] %>",
+        pack: "<%= params[:package] %>",
+      },
+      success: function(data) {
+        if (data.success) {
+          var template = Handlebars.compile($("#code_item").html());
+          contentCode.html(template(data));
+          runJavascriptsCode();
+        }
+      }
+    })
+  }
+  
+  load_index();
 
 </script>

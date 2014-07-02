@@ -22,7 +22,7 @@ Express Translate
 ##Installation
 ### 1. Gemfile
 ```bash
-gem 'express_translate', '~> 1.0.5'
+gem 'express_translate', '~> 1.0.6'
 ```
  
 ### 2. Setup
@@ -49,6 +49,28 @@ Start Redis Server
 redis-server
 ```
 
+### Modify accounts
+
+Account list config in "/config/express_translate.yml"
+You can add account:
+```bash
+account: 
+  - 
+    username: "abc_name"
+    password: "abc_pass"
+```
+
+You need reset account for modified
+```bash
+rails g express_translate:reset_account
+```
+Or goto url
+```bash
+  http://you_domain/express_translate/reset/account
+
+  * e.g: http://localhost:3000/express_translate/reset/account
+```
+
 ### Seed
 ```bash
 rails g express_translate:seed
@@ -58,19 +80,7 @@ rails g express_translate:seed
 ```bash
 rails g express_translate:reset
 ```
-  
-### Reset Account
-```bash
-rails g express_translate:reset_account
-```
-Account list config in "/config/express_translate.yml"
-You can add account:
-```bash
-account: 
-  - 
-    username: "abc_name"
-    password: "abc_pass"
-```
+
 ### Login page
 You can see login page at:
   http://you_domain/express_translate/login
