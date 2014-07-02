@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "express_translate"
-  s.version = "1.0.5"
+  s.version = "1.0.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Karl"]
@@ -111,6 +111,7 @@ Gem::Specification.new do |s|
     "app/assets/javascript/express_translate/application.js",
     "app/assets/javascript/express_translate/base.js",
     "app/assets/javascript/express_translate/bpopup.js",
+    "app/assets/javascript/express_translate/handlebars-v1.3.0.js",
     "app/assets/javascript/express_translate/jquery-ui-1.10.4.js",
     "app/assets/javascript/express_translate/translate.layout.js",
     "app/assets/javascript/express_translate/wSelect.js",
@@ -138,8 +139,6 @@ Gem::Specification.new do |s|
     "app/views/.DS_Store",
     "app/views/express_translate/.DS_Store",
     "app/views/express_translate/account/login.html.erb",
-    "app/views/express_translate/ajax/codes/_content_code.html.erb",
-    "app/views/express_translate/ajax/codes/code_update.html.erb",
     "app/views/express_translate/ajax/languages/_content_language.html.erb",
     "app/views/express_translate/ajax/languages/language_update.html.erb",
     "app/views/express_translate/ajax/packages/_content_index.html.erb",
@@ -148,6 +147,7 @@ Gem::Specification.new do |s|
     "app/views/express_translate/options/index.html.erb",
     "app/views/express_translate/options/language_detail.html.erb",
     "app/views/express_translate/options/languages.html.erb",
+    "app/views/express_translate/templates/_code_item.html.erb",
     "app/views/layouts/express_translate/login.html.erb",
     "app/views/layouts/express_translate/translate.html.erb",
     "config/languages.yml",
