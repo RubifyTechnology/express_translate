@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require ./reset
+ *= require ./animate
  *= require ./base
  *= require ./jquery-ui-1.10.4
  *= require ./wSelect
@@ -17,4 +18,5 @@
  *= require ./buttons
  *= require ./express_translate
  *= require ./styles
+ *= require ./login
 */

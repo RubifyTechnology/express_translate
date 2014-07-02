@@ -34,10 +34,10 @@ class ExpressTranslate::FilesController < ExpressTranslate::BaseController
   private
   
   # get Path file from Params
-  def get_path(file, name)
+  def get_path(file_params, name)
     filename = Rails.root.join('public', name)
     File.open(filename, 'wb') do |file|
-      file.write(file.read)
+      file.write(file_params.read)
     end
     return File.open(filename, 'r').path
   end
