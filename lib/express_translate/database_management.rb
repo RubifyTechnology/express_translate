@@ -4,7 +4,12 @@ module ExpressTranslate
     require 'redis'
     
     def self.redis
-      @redis ||= Redis.new(host: ExpressTranslate.config["connect"]["host"], port: ExpressTranslate.config["connect"]["port"], db: ExpressTranslate.config["connect"]["db"])
+      host = ExpressTranslate.config["connect"]["host"]
+      port = ExpressTranslate.config["connect"]["port"]
+      db = ExpressTranslate.config["connect"]["db"]
+      password =ExpressTranslate.config["connect"]["password"]
+      
+      @redis ||= Redis.new(:url => "redis://:#{password}@#{host}:#{port}/#{db}")
     end
     
     def self.set(key, obj)

@@ -23,13 +23,11 @@ I18n Translation Interface for end user in Rails app
 ## Installation
 ### 1. Gemfile
 ```bash
-gem 'express_translate', '~> 1.0.9'
+gem 'express_translate', '~> 1.0.10'
 ```
  
 ### 2. Setup
 Run on terminal.
-
-```gem install express_translate```
 
 ```bundle install```
 
