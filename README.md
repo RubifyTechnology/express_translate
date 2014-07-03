@@ -115,5 +115,5 @@ Note:
   * CSV file
 
 ### Application
-Backend for Ruby on Rails
-Frontend (Single Page Application) with I18next (can you see more info: http://i18next.com)
+* Backend for Ruby on Rails
+* Frontend (Single Page Application) with I18next (can you see more info: http://i18next.com)
