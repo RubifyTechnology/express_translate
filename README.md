@@ -96,11 +96,13 @@ You can see at:
 Note: You can see before login. Account for login in config file ("/config/express_translate.yml").
 
 ### i18next
+Add script to header page
 ```bash
 <script src="http://you_domain/express_translate/i18n/app_code"></script>
 ```
-Note: "app_code" is a application code.
-
+Note: 
+  * you_domain: e.g "localhost:3000"
+  * app_code: is a application code.
 ##Support
 
 ### Files
