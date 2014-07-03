@@ -68,14 +68,14 @@ You need reset account for modified
 
 **``http://you_domain/express_translate/reset/account``**
 
-### Seed data
+#### Seed data
 
 ``rails g express_translate:seed``
 
-### Reset data
+#### Reset data
 ``rails g express_translate:reset``
 
-### i18next
+#### i18next
 Add script to header page
 ``<script src="http://you_domain/express_translate/i18n/package_id"></script>``
 Note: 
