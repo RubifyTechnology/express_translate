@@ -21,7 +21,9 @@ Express Translate
 
 ##Installation
 ### 1. Gemfile
-```gem 'express_translate', '~> 1.0.8'```
+```bash
+gem 'express_translate', '~> 1.0.8'
+```
  
 ### 2. Setup
 Run on terminal.
@@ -37,8 +39,7 @@ Open terminal and run:
 ##Using
 ### Run
 Start Redis Server
-```redis-server```
-
+``redis-server``
 ### Modify accounts
 
 Account list config in ``/config/express_translate.yml``.
