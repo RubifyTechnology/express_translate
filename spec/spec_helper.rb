@@ -27,4 +27,21 @@ include ExpressTranslate
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   # Rails.env = "test"
+  
+  Redis.stub(:new).and_return({})
+  Redis.class_eval do
+    @memory_redis = {}
+    alias_method :original_set, :set
+    def set(key, obj)
+      @memory_redis[key] = obj.to_json
+    end
+
+    def get(key)
+      @memory_redis[key]
+    end
+
+    def del(key)
+      @memory_redis.delete(:key)
+    end
+  end
 end

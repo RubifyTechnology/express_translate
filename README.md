@@ -21,37 +21,27 @@ Express Translate
 
 ##Installation
 ### 1. Gemfile
-```bash
-gem 'express_translate', '~> 1.0.8'
-```
+```gem 'express_translate', '~> 1.0.8'```
  
 ### 2. Setup
 Run on terminal.
-```bash
-gem install express_translate
-```
+```gem install express_translate```
 
-```bash
-bundle install
-```
+```bundle install```
 
 ### 3. Install
 Open terminal and run:
 
-```bash
-rails g express_translate:install
- ``` 
+```rails g express_translate:install```
   
 ##Using
 ### Run
 Start Redis Server
-```bash
-redis-server
-```
+```redis-server```
 
 ### Modify accounts
 
-Account list config in "/config/express_translate.yml".
+Account list config in ``/config/express_translate.yml``.
 You can add account:
 ```bash
 account: 
@@ -61,23 +51,22 @@ account:
 ```
 
 You need reset account for modified
-```bash
-rails g express_translate:reset_account
-```
-Or goto url
-```bash
-  http://you_domain/express_translate/reset/account
 
-  * e.g: http://localhost:3000/express_translate/reset/account
-```
+```rails g express_translate:reset_account```
+
+Or goto url
+
+```http://you_domain/express_translate/reset/account```
+
+```* e.g: http://localhost:3000/express_translate/reset/account```
 
 ### Seed
-```bash
+```
 rails g express_translate:seed
 ```
 
 ### Reset data
-```bash
+```
 rails g express_translate:reset
 ```
 
@@ -93,26 +82,24 @@ You can see at:
 
   * e.g: http://localhost:3000/express_translate
   
-Note: You can see before login. Account for login in config file ("/config/express_translate.yml").
+Note: You can see before login. Account for login in config file (``/config/express_translate.yml``).
 
 ### i18next
 Add script to header page
-```bash
-<script src="http://you_domain/express_translate/i18n/app_code"></script>
-```
+```<script src="http://you_domain/express_translate/i18n/app_code"></script>```
 Note: 
-* you_domain: e.g "localhost:3000"
+* you_domain: e.g ``localhost:3000``
 * app_code: is a application code.
 
 ##Support
 
 ### Files
 #### Import
-  * CSV file
-  * YML file
+* CSV file
+* YML file
 
 #### Export
-  * CSV file
+* CSV file
 
 ### Application
 * Backend for Ruby on Rails

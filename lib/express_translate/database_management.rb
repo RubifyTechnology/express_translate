@@ -4,7 +4,7 @@ module ExpressTranslate
     require 'redis'
     
     def self.redis
-      @redis = Redis.new(host: ExpressTranslate.config["connect"]["host"], port: ExpressTranslate.config["connect"]["port"], db: ExpressTranslate.config["connect"]["db"])
+      @redis ||= Redis.new(host: ExpressTranslate.config["connect"]["host"], port: ExpressTranslate.config["connect"]["port"], db: ExpressTranslate.config["connect"]["db"])
     end
     
     def self.set(key, obj)

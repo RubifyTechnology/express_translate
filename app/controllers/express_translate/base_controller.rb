@@ -3,12 +3,14 @@ class ExpressTranslate::BaseController < ActionController::Base
 
   # Check login status by cookie
   def check_authentication
-    token_store = getCookie(request.headers["HTTP_COOKIE"], "token")
+    token_store = Utils.getCookie(request.headers["HTTP_COOKIE"], "token")
     return (token_store.present? and Account.find_by_token(token_store).present?)
   end
-  
+end
+
+class Utils
   # Get cookie form header action
-  def getCookie(string, key)
+  def self.getCookie(string, key)
     if string.present?
       string.split(";").each do |cookie|
         cookie.strip!
@@ -21,3 +23,5 @@ class ExpressTranslate::BaseController < ActionController::Base
     return ""
   end
 end
+
+# Utils.get_cookie("token=value; token2=value2", key).should == "value1,value2"
