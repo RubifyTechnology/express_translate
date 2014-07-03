@@ -84,17 +84,27 @@ Note:
 
 ## Support
 
-### Import files
+- Import files
 * CSV file
 * YML file
 
-### Export files
+- Export files
 * CSV file
 
-### Application
+- Application
 * Backend for Ruby on Rails
 * Frontend (Single Page Application) with I18next (can you see more info: http://i18next.com)
 
+## Supported Ruby Versions
+This library aims to support and is tested against the following Ruby implementations:
+ 	Ruby 1.9.3
+  Ruby 2.0.0
+  Ruby 2.1.2
+  
+## Supported Ruby Versions
+This library aims to support the following Rails implementations:
+ 	More than Rails 3.0
+  
 ## Contributing to formnestic
  
 - Contribution, Suggestion and Issues are very much appreciated :). Please also fork and send your pull request!
