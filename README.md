@@ -94,7 +94,13 @@ You can see at:
   * e.g: http://localhost:3000/express_translate
   
 Note: You can see before login. Account for login in config file ("/config/express_translate.yml").
-  
+
+### i18next
+```bash
+<script src="http://you_domain/express_translate/i18n/app_code"></script>
+```
+Note: "app_code" is a application code.
+
 ##Support
 
 ### Files
@@ -107,4 +113,4 @@ Note: You can see before login. Account for login in config file ("/config/expre
 
 ### Application
 Backend for Ruby on Rails
-<!-- Get data with json (for Javascript) => Development -->
+Frontend (Single Page Application) with I18next (can you see more info: http://i18next.com)
