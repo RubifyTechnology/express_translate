@@ -53,33 +53,30 @@ account:
 
 You need reset account for modified
 
-```rails g express_translate:reset_account```
+``rails g express_translate:reset_account``
 
 Or goto url
 
-```http://you_domain/express_translate/reset/account```
+``http://you_domain/express_translate/reset/account``
 
-```* e.g: http://localhost:3000/express_translate/reset/account```
+* e.g: http://localhost:3000/express_translate/reset/account
 
 ### Seed
-```
-rails g express_translate:seed
-```
+
+``rails g express_translate:seed``
 
 ### Reset data
-```
-rails g express_translate:reset
-```
+``rails g express_translate:reset``
 
 ### Login page
 You can see login page at:
-  http://you_domain/express_translate/login
+  ``http://you_domain/express_translate/login``
 
   * e.g: http://localhost:3000/express_translate/login
   
 ### Packages management
 You can see at: 
-  http://you_domain/express_translate
+  ``http://you_domain/express_translate``
 
   * e.g: http://localhost:3000/express_translate
   
@@ -87,7 +84,7 @@ Note: You can see before login. Account for login in config file (``/config/expr
 
 ### i18next
 Add script to header page
-```<script src="http://you_domain/express_translate/i18n/app_code"></script>```
+``<script src="http://you_domain/express_translate/i18n/app_code"></script>``
 Note: 
 * you_domain: e.g ``localhost:3000``
 * app_code: is a application code.
