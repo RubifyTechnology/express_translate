@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = "express_translate"
-  s.version = "1.0.7"
+  s.version = "1.0.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Karl"]
-  s.date = "2014-07-02"
-  s.description = "longer description of your gem"
+  s.date = "2014-07-03"
+  s.description = "Express Translate for you"
   s.email = "karl@rubify.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -147,6 +147,9 @@ Gem::Specification.new do |s|
     "app/views/express_translate/options/index.html.erb",
     "app/views/express_translate/options/language_detail.html.erb",
     "app/views/express_translate/options/languages.html.erb",
+    "app/views/express_translate/services/_i18next.1.7.3.html.erb",
+    "app/views/express_translate/services/_i18next.1.7.3.min.html.erb",
+    "app/views/express_translate/services/i18n_lang.html.erb",
     "app/views/express_translate/templates/_code_item.html.erb",
     "app/views/layouts/express_translate/login.html.erb",
     "app/views/layouts/express_translate/translate.html.erb",
@@ -234,7 +237,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.23"
-  s.summary = "one-line summary of your gem"
+  s.summary = "Express Translate for you"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
