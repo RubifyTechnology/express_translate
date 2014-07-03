@@ -20,7 +20,7 @@ I18n Translation Interface for end user in Rails app
 
 =====
 
-##Installation
+## Installation
 ### 1. Gemfile
 ```bash
 gem 'express_translate', '~> 1.0.9'
@@ -38,7 +38,7 @@ Open terminal and run:
 
 ```rails g express_translate:install```
 
-##Using
+## Using
 ### Run
 Start Redis Server
 ``redis-server``
@@ -82,14 +82,13 @@ Note:
 * you_domain: e.g ``localhost:3000``
 * package_id: is a package id.
 
-##Support
+## Support
 
-### Files
-#### Import
+### Import files
 * CSV file
 * YML file
 
-#### Export
+### Export files
 * CSV file
 
 ### Application
