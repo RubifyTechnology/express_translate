@@ -101,8 +101,8 @@ Add script to header page
 <script src="http://you_domain/express_translate/i18n/app_code"></script>
 ```
 Note: 
-  * you_domain: e.g "localhost:3000"
-  * app_code: is a application code.
+* you_domain: e.g "localhost:3000"
+* app_code: is a application code.
 
 ##Support
 
