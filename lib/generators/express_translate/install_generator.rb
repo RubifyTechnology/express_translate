@@ -16,6 +16,7 @@ module ExpressTranslate
     # Seed data for redis database
     def seeds_data
       ExpressTranslate.seeds
+      Account.reset
     end
   end
 end

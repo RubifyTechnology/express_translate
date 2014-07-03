@@ -1,5 +1,6 @@
 Express Translate
 =====
+I18n Translation Interface for end user in Rails app
 
   ```bash
    __                               _____                     _       _       
@@ -22,11 +23,12 @@ Express Translate
 ##Installation
 ### 1. Gemfile
 ```bash
-gem 'express_translate', '~> 1.0.8'
+gem 'express_translate', '~> 1.0.9'
 ```
  
 ### 2. Setup
 Run on terminal.
+
 ```gem install express_translate```
 
 ```bundle install```
@@ -35,59 +37,50 @@ Run on terminal.
 Open terminal and run:
 
 ```rails g express_translate:install```
-  
+
 ##Using
 ### Run
 Start Redis Server
 ``redis-server``
-### Modify accounts
+
+###Basic usage
+You can see login page at: ``/express_translate/login``
+
+Login with account:
+```bash
+username: "username"
+password: "password"
+```
+
+###Advanced usage
+#### Modify accounts
 
 Account list config in ``/config/express_translate.yml``.
 You can add account:
 ```bash
 account: 
   - 
-    username: "abc_name"
-    password: "abc_pass"
+    username: "your_username"
+    password: "your_password"
 ```
 
 You need reset account for modified
 
-``rails g express_translate:reset_account``
+**``http://you_domain/express_translate/reset/account``**
 
-Or goto url
-
-``http://you_domain/express_translate/reset/account``
-
-* e.g: http://localhost:3000/express_translate/reset/account
-
-### Seed
+### Seed data
 
 ``rails g express_translate:seed``
 
 ### Reset data
 ``rails g express_translate:reset``
 
-### Login page
-You can see login page at:
-  ``http://you_domain/express_translate/login``
-
-  * e.g: http://localhost:3000/express_translate/login
-  
-### Packages management
-You can see at: 
-  ``http://you_domain/express_translate``
-
-  * e.g: http://localhost:3000/express_translate
-  
-Note: You can see before login. Account for login in config file (``/config/express_translate.yml``).
-
 ### i18next
 Add script to header page
-``<script src="http://you_domain/express_translate/i18n/app_code"></script>``
+``<script src="http://you_domain/express_translate/i18n/package_id"></script>``
 Note: 
 * you_domain: e.g ``localhost:3000``
-* app_code: is a application code.
+* package_id: is a package id.
 
 ##Support
 
@@ -102,3 +95,12 @@ Note:
 ### Application
 * Backend for Ruby on Rails
 * Frontend (Single Page Application) with I18next (can you see more info: http://i18next.com)
+
+## Contributing to formnestic
+ 
+- Contribution, Suggestion and Issues are very much appreciated :). Please also fork and send your pull request!
+- Make sure to add tests for it when sending for pull requests. This is important so I don't break it in a future version unintentionally.
+
+## Copyright
+
+Copyright (c) 2014 Karl, released under the MIT license
