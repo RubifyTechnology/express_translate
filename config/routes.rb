@@ -34,5 +34,6 @@ Rails.application.routes.draw do
     # SERVICE
     get "/service/:packages/:language" => 'express_translate/services#service_language'
     get "/service/:package/" => 'express_translate/services#service_languages'
+    get "/i18n/:packages" => 'express_translate/services#i18n_lang'
   end  
 end

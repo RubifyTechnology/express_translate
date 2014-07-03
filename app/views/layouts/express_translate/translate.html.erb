@@ -2,8 +2,9 @@
 <html>
 <head>
   <title>Express Translate</title>
-  <%= stylesheet_link_tag    "express_translate/application", :media => "all" %>
+  <%= stylesheet_link_tag    "express_translate/application", :media => "all" %>  
   <%= javascript_include_tag "express_translate/application" %>
+  <script src="http://localhost:3000/express_translate/i18n/be"></script>
   <%= csrf_meta_tags %>
 </head>
 <body id="express_translate">
@@ -40,9 +41,7 @@
       <input type="file" id="upload_file" name="file_csv"/>
     </form>
     
-    <iframe id="upload_file_iframe" name="upload_file_iframe" src="#" style="width:1px; height:1px; opacity:0">
-      
-    </iframe>
+    <iframe id="upload_file_iframe" name="upload_file_iframe" src="#" style="width:1px; height:1px; opacity:0"></iframe>
   </div>
   
   <script> 

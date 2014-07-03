@@ -20,18 +20,36 @@ class ExpressTranslate::ServicesController < ExpressTranslate::BaseController
   def service_language
     respond_to do |format|
       format.json do
-        @data = {}
-        keys = Database.redis.keys("#{params[:packages]}#{params[:language]}.*")
-        keys.sort!
-        keys.each do |key|
-          service_language_detail(key)
-        end
-        render :json => @data
+        render :json => get_json_of_lang(params)
       end
     end
   end
   
+  def i18n_lang
+    @data_langs = {}
+    Package.find(params[:packages])["language"].each do |lang|
+      @data_langs.merge!({
+        lang["id"] => {
+          "translation" => get_json_of_lang({
+            :packages => params[:packages],
+            :language => lang["id"]
+          })
+        }
+      })
+    end
+  end
+  
   private
+  
+  def get_json_of_lang(params)
+    @data = {}
+    keys = Database.redis.keys("#{params[:packages]}#{params[:language]}.*")
+    keys.sort!
+    keys.each do |key|
+      service_language_detail(key)
+    end
+    return @data
+  end
   
   # Convert redis database to json data with key
   # Nnew arrayfor store value level key

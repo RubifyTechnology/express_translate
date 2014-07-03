@@ -10,15 +10,14 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 require 'rake'
-
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
   gem.name = "express_translate"
   gem.homepage = "https://github.com/RubifyTechnology/express_translate"
   gem.license = "MIT"
-  gem.summary = %Q{one-line summary of your gem}
-  gem.description = %Q{longer description of your gem}
+  gem.summary = %Q{Express Translate for you}
+  gem.description = %Q{Express Translate for you}
   gem.email = "karl@rubify.com"
   gem.authors = ["Karl"]
   gem.version = File.exist?('VERSION') ? File.read('VERSION') : ""

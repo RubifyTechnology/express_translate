@@ -1,0 +1,4 @@
+<%= render "i18next.1.7.3.min" %>
+
+$.i18n.init({resStore: <%= raw @data_langs.to_json %>});
+window.t = i18n.t
