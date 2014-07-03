@@ -84,14 +84,14 @@ Note:
 
 ## Support
 
-- Import files
+#### Import files
 * CSV file
 * YML file
 
-- Export files
+#### Export files
 * CSV file
 
-- Application
+#### Application
 * Backend for Ruby on Rails
 * Frontend (Single Page Application) with I18next (can you see more info: http://i18next.com)
 
