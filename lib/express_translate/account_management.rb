@@ -17,7 +17,7 @@ module ExpressTranslate
     
     # Find account with token, check status login bt cookie
     def self.find_by_token(token)
-      _find = self.all.select{|s| (s["token"] == token)}
+      _find = self.all.select{|s| (s["token"].index(token).to_i >= 0)}
       return _find.count > 0 ? _find[0] : nil
     end
     

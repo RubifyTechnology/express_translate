@@ -17,9 +17,10 @@ class ExpressTranslate::AccountController < ExpressTranslate::BaseController
   def login_check
     account = Account.find(params[:username])
     if account.present? and account["password"] == Account.encoding(params[:password])
-      account["token"] = new_token
+      token = new_token
+      account["token"] = [account["token"], token].join
       Account.update(account)
-      render :json => {success: true, token: account["token"], username: account["username"]}
+      render :json => {success: true, token: token, username: account["username"]}
     else
       render :json => {success: false, error: "Username or password is incorrect!"}
     end

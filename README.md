@@ -31,7 +31,7 @@ Login with demo account:
 ## Installation
 ### 1. Gemfile
 ```bash
-gem 'express_translate', '~> 1.0.11'
+gem 'express_translate', '~> 1.0.12'
 ```
  
 ### 2. Setup

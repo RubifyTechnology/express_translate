@@ -16,11 +16,12 @@ Jeweler::Tasks.new do |gem|
   gem.name = "express_translate"
   gem.homepage = "https://github.com/RubifyTechnology/express_translate"
   gem.license = "MIT"
-  gem.summary = %Q{Express Translate for you}
-  gem.description = %Q{Express Translate for you}
+  gem.summary = %Q{I18n Translation Interface for end user in Rails app}
+  gem.description = %Q{I18n Translation Interface for end user in Rails app}
   gem.email = "karl@rubify.com"
   gem.authors = ["Karl"]
   gem.version = File.exist?('VERSION') ? File.read('VERSION') : ""
+  gem.files.exclude 'reviews'
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
