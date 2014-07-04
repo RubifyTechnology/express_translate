@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "express_translate"
-  s.version = "1.0.12"
+  s.version = "1.0.13"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Karl"]
@@ -28,15 +28,12 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "app/.DS_Store",
-    "app/assets/.DS_Store",
-    "app/assets/images/.DS_Store",
-    "app/assets/images/express_translate/.DS_Store",
     "app/assets/images/express_translate/add.png",
     "app/assets/images/express_translate/back.png",
     "app/assets/images/express_translate/blur.svg",
     "app/assets/images/express_translate/close.png",
     "app/assets/images/express_translate/embed.png",
+    "app/assets/images/express_translate/favicon.ico",
     "app/assets/images/express_translate/file.png",
     "app/assets/images/express_translate/flags/Chad.png",
     "app/assets/images/express_translate/flags/ar.png",
