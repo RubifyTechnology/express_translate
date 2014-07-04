@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = "express_translate"
-  s.version = "1.0.11"
+  s.version = "1.0.12"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Karl"]
   s.date = "2014-07-04"
-  s.description = "Express Translate for you"
+  s.description = "I18n Translation Interface for end user in Rails app"
   s.email = "karl@rubify.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -221,6 +221,7 @@ Gem::Specification.new do |s|
     "node_modules/redis/package.json",
     "node_modules/redis/test-unref.js",
     "node_modules/redis/test.js",
+    "reviews/thumb.png",
     "spec/.rspec",
     "spec/controllers/account_controller_spec.rb",
     "spec/controllers/ajax/codes_controller_spec.rb",
@@ -237,7 +238,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.23"
-  s.summary = "Express Translate for you"
+  s.summary = "I18n Translation Interface for end user in Rails app"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
