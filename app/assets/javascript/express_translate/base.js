@@ -29,9 +29,22 @@ function showInfo() {
   $(".username_show").html(getRlangCookie("username"));
   $(".logout").click(function(event) {
     event.preventDefault();
-    setRlangCookie("token", "", -1);
-    setRlangCookie("username", "", -1);
-    window.location = "/express_translate";
+    $(".logout_dialog").dialog({
+      resizable: false,
+      height:140,
+      modal: true,
+      buttons: {
+        Yes: function() {
+          $(this).dialog("close");
+          setRlangCookie("token", "", -1);
+          setRlangCookie("username", "", -1);
+          window.location = "/express_translate";
+        },
+        No: function() {
+          $(this).dialog("close");
+        }
+      }
+    })
   });
 }
 
