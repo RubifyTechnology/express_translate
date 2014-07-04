@@ -20,6 +20,14 @@ I18n Translation Interface for end user in Rails app
 
 =====
 
+
+# DEMO LINK
+``http://express-translate.herokuapp.com``
+
+Login with demo account:
+  username: ``express_translate``
+  password: ``password``
+
 ## Installation
 ### 1. Gemfile
 ```bash
