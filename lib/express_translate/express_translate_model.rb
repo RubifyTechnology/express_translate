@@ -123,7 +123,6 @@ module ExpressTranslate
     # Check attributes for allow store only one item
     def self.protect_attr(item)
       if item.to_json == ""
-        puts item.inspect
         return nil
       end
       item = JSON.parse(item.to_json)

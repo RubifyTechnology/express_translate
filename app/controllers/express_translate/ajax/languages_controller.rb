@@ -42,7 +42,7 @@ class ExpressTranslate::Ajax::LanguagesController < ActionController::Base
     if check['success'] == true
       @selects = YAML.load_file("#{ExpressTranslate.root}/config/languages.yml")
       @origin = Language.get_origin(params[:packages])
-      @origin_keys = LanguageDetail.info(@origin).all.collect{|x| x['code']}
+      @origin_keys = @origin.present? ? LanguageDetail.info(@origin).all.collect{|x| x['code']} : []
       @languages = Package.find(params[:packages])['language']
       @max = @origin.nil? ? 1 : LanguageDetail.info(@origin).all.count
       @LanguageDetail = LanguageDetail
