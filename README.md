@@ -2,7 +2,7 @@ Express Translate
 =====
 I18n Translation Interface for end user in Rails app
 
-![Express Translate](/reviews/thumb.png)
+<!-- ![Express Translate](/reviews/thumb.png) -->
 
   ```bash
    __                               _____                     _       _       
